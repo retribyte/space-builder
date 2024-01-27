@@ -49,9 +49,15 @@
         <section>
             <h2>Features</h2>
             <ol>
-                <li>Gives users the ability to create stars and planets to construct star systems with.
-                    This input is processed and various facts and other information 
-                    is approximated, <br /> including but not limited to:
+                <li>Gives users the ability to create stars and planets to construct star systems with
+                this input is processed and various facts and other information is approximated, 
+                    <br /> including but not limited to:
+                    <style>
+                        ul li {
+                            color:rgb(254, 218, 74);
+                        }
+                    </style>
+                    
                     <ul>
                         <li>Gravity strength</li>
                         <li>Year length</li>
@@ -64,12 +70,31 @@
                     Ability to save current and load back into solar systems. Each one being plotted on a galactic map.
                 </li>
                 <li>
-
+                    Hamburger cheeseburger whopper Hamburger cheeseburger whopper 
+                    Hamburger cheeseburger whopper Hamburger cheeseburger whopper
+                    Hamburger cheeseburger whopper
                 </li>
             </ol>
         </section>
-    </div>
-
-
+        
+        <footer id="bottomFooter" style="color: rgb(254, 218, 74); position: fixed; right: 0; width: 100%; transition: right 0.5s;">
+            <p>Christopher Romer</p>
+            <p>Zachary Harris</p>
+            <p> Joseph Vastola</p>
+        </footer>
+        <script>
+            window.addEventListener('scroll', function() {
+                var bottomFooter = document.getElementById('bottomFooter');
+                var scrollPosition = window.scrollY + window.innerHeight;
+                var documentHeight = document.body.offsetHeight;
+                if (scrollPosition >= documentHeight) {
+                    bottomFooter.style.right = '0';
+                } else {
+                    bottomFooter.style.right = '-100%';
+                }
+            });
+        </script>
+    
+    
 </body>
 </html>
