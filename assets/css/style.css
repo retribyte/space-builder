@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'News Gothic Extra Condensed Regular';
+    src: url('../fonts/News Gothic Extra Condensed Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'News Gothic Bold';
+    src: url('../fonts/News Gothic Std Bold.ttf') format('truetype');
+}
+
+body {
+    background-color: black;
+    color: rgb(254, 218, 74);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url('../images/stars.jpg')
+}
+
+.skewed {
+    position: fixed;
+    transform: perspective(550px) rotateX(25deg) scale(75%);
+    height: 103vh; /* Sorry, magic number */
+    letter-spacing: 0.25em;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.skewed::-webkit-scrollbar {
+    display: none;
+}
+
+.spacer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    opacity: 50%;
+    font-weight: bold;
+
+    animation: fade-in 8s;
+}
+
+.spacer .large {
+    font-size:20em;
+}
+    
+h1, h2, h3 {
+    font-family:'News Gothic Extra Condensed Regular', 'Times New Roman', Times, serif;
+    margin: 0.5em 0 0.5em 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 15em;
+}
+
+h2 {
+    font-size: 8em;
+}
+
+h3 {
+    font-size: 6em;
+}
+
+p, li {
+    font-family: 'News Gothic Bold', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 4em;
+    text-align: justify;
+    text-align-last:center;
+}
+
+ol {
+    counter-reset: li;
+}
+
+ol > li {
+    margin: 0 0 1em 20%;
+    list-style-type: none;
+}
+
+ol > li::before {
+    font-size: 5em;
+	content:counter(li) '.'; /* Use the counter as content */
+	counter-increment:li; /* Increment the counter by 1 */
+    position: absolute;
+    margin: -5% 0 0 -20%;
+}
+
+ul > li {
+    font-size: 1em;
+    margin-left: 20%;
+    width: fit-content;
+    color: lightgoldenrodyellow;
+}
+
+li.important-list-element::marker {
+    content: '☆';
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
