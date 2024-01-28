@@ -15,16 +15,33 @@ body {
     overflow: hidden;
 }
 
-.skewed {
+header {
+    position: relative; /* Ensure z-index is respected */
+    z-index: 10; /* Higher than #main-content */
+    width: fit-content;
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color: black;
+}
+
+#main-content {
     position: absolute;
     bottom: 0;
     transform-origin: 50%;
-    transform: perspective(550px) rotateX(25deg) scale(75%);
-    height: 100vh; /* Sorry, magic number */
+    height: 100vh;
     letter-spacing: 0.25em;
     overflow-y: scroll;
-    padding-top: 35vh;
+    padding-top: 35vh; /* Sorry, magic number */
     scrollbar-width: none;
+}
+
+#main-content:not(.skewed) {
+    margin: 0 15%;
+    font-size: 50%;
+}
+
+.skewed {
+    transform: perspective(550px) rotateX(25deg) scale(75%);
 }
 
 @media only screen and (max-width: 600px) {
@@ -46,7 +63,7 @@ body {
     opacity: 50%;
     font-weight: bold;
 
-    animation: fade-in 8s;
+    animation: fade-in 4s;
 }
 
 .spacer .large {

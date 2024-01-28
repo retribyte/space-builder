@@ -6,9 +6,15 @@
     <meta name="description" content="a tool to create stars, planets and watch them go around the star">
     <title>Space Builder</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/disable-styles.js"></script>
 </head>
 <body>
-    <div class="skewed">
+    <header>
+        <input id="disable-styles" type="checkbox" onclick="disableTextSkew()">
+        <label for="disable-styles">Disable skewed text</label>
+    </header>
+
+    <div class="skewed" id="main-content">
         <div class="spacer">
             
                 <span class="large">￬</span>
