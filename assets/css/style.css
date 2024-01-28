@@ -11,16 +11,26 @@ body {
     background-color: black;
     color: rgb(254, 218, 74);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-image: url('../images/stars.jpg')
+    background-image: url('../images/stars.jpg');
+    overflow: hidden;
 }
 
 .skewed {
-    position: fixed;
+    position: absolute;
+    bottom: 0;
+    transform-origin: 50%;
     transform: perspective(550px) rotateX(25deg) scale(75%);
-    height: 103vh; /* Sorry, magic number */
+    height: 100vh; /* Sorry, magic number */
     letter-spacing: 0.25em;
     overflow-y: scroll;
+    padding-top: 35vh;
     scrollbar-width: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .skewed {
+        transform: none !important;
+    }
 }
 
 .skewed::-webkit-scrollbar {
@@ -42,6 +52,10 @@ body {
 .spacer .large {
     font-size:20em;
 }
+
+.skewed * {
+    padding: 0 7%;
+}
     
 h1, h2, h3 {
     font-family:'News Gothic Extra Condensed Regular', 'Times New Roman', Times, serif;
@@ -51,22 +65,27 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 15em;
+    font-size: 10em;
 }
 
 h2 {
-    font-size: 8em;
+    font-size: 6em;
 }
 
 h3 {
-    font-size: 6em;
+    font-size: 4em;
 }
 
 p, li {
     font-family: 'News Gothic Bold', Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 4em;
+    font-size: 3em;
     text-align: justify;
     text-align-last:center;
+}
+
+em {
+    padding: 0 !important;
+    font-style: italic;
 }
 
 ol {
@@ -74,7 +93,7 @@ ol {
 }
 
 ol > li {
-    margin: 0 0 1em 20%;
+    margin: 0 0 0.5em 10%;
     list-style-type: none;
 }
 
@@ -83,7 +102,7 @@ ol > li::before {
 	content:counter(li) '.'; /* Use the counter as content */
 	counter-increment:li; /* Increment the counter by 1 */
     position: absolute;
-    margin: -5% 0 0 -20%;
+    margin: -3% 0 0 -12%;
 }
 
 ul > li {
@@ -93,8 +112,50 @@ ul > li {
     color: lightgoldenrodyellow;
 }
 
+ul > li::marker {
+    color: rgb(254, 218, 74);
+    content: '▸';
+}
+
 li.important-list-element::marker {
-    content: '☆';
+    content: '★';
+}
+
+cite {
+    display: block;
+}
+
+.highlight, a {
+    color: lightgoldenrodyellow;
+}
+
+span {
+    padding: 0 !important;
+}
+
+.user-story * {
+    margin: 0.25em 0;
+}
+
+#bottomFooter p {
+    color: lightgrey;
+}
+
+#bottomFooter ul {
+    text-align: center;
+    margin: 0 0 10em 0;
+}
+
+#bottomFooter li {
+    font-size: 2em;
+    color: gray;
+    display: inline;
+    margin: 0;
+    padding: 0 1em;
+}
+
+#bottomFooter li::marker {
+    content:'';
 }
 
 @keyframes fade-in {
