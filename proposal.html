@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="name" content="Joseph, Zachary, Christopher">
+    <meta name="description" content="a tool to create stars, planets and watch them go around the star">
+    <title>Space Builder</title>
+    <link rel="stylesheet" href="assets/css/proposal.css">
+    <script src="assets/js/disable-styles.js"></script>
+</head>
+<body>
+    <header>
+        <input id="disable-styles" type="checkbox" onclick="disableTextSkew()">
+        <label for="disable-styles">Disable skewed text</label>
+    </header>
+
+    <div class="skewed" id="main-content">
+        <div class="spacer">
+            
+                <span class="large">￬</span>
+                <p>&nbsp;Scroll down&nbsp;</p>
+                <span class="large">￬</span>
+            
+        </div>
+
+        <h1 class="text">
+            Space Builder
+        </h1>
+
+        <section>
+            <h2>Concept</h2>
+            <p>
+                <span class="highlight">Space Builder</span class="highlight"> is a solar system simulation web-app, where users can create stars and planets and assemble them into solar systems.
+                Users will submit basic information about their astronomical objects, and the application calculates additional detailed characteristics.
+                Each planet will be visualized on a plot centered around the parent star, showing its distance and orbital path.
+                For each planet in a system, the application will give a '<span class="highlight">habitability&nbsp;score</span class="highlight">,'
+                ranking each planet by its likelihood to support life.
+                Space Builder is not only educational, offering insights into various celestial bodies and the conditions for life,
+                but also fun, as users watch their own systems come together, piece-by-piece.
+            </p>
+        </section>
+
+        <section>
+            <h2>The Problem</h2>
+            <p>
+                There are many space simulators out there. However, many either focus on realistic physics simulation or are too
+                occupied with visual sophistication. Our project aims to be a simple representation of what a star system looks like,
+                in order to demonstrate the complex ways stars and planets interact. 
+            </p>
+            <p>
+                For example, the:
+                <cite><a href="https://phet.colorado.edu/en/simulations/my-solar-system" target="_blank">PhET 'My Solar System' simulation</a></cite>
+                only addresses the effects of gravity between objects, and only allows limited elements.
+            </p>
+            <p>
+                On the other hand:
+                <cite><a href="https://theskylive.com/3dsolarsystem">The Sky Live's simulator</a></cite>
+                only demonstrates <em>our</em> solar system, and not the creation of unique, hypothetical systems to play around with.
+            </p>
+            <p>
+                We intend to give a simplistic simulator for newcomers and enthusiasts alike.
+            </p>
+        </section>
+
+        <section>
+            <h2>Description</h2>
+            <p>
+                The main interactive feature of this app is creation of astronomical bodies, starting with a star.
+                The user will input basic information like the star's name and size, and the star will be placed on the plot, 
+                resized and recolored according to the user's input. Afterwards, the user will input a similar form to create planets 
+                to revolve around that star, similarly resized and recolored accordingly. A dashboard panel will display further information 
+                about the selected star or planet, calculated from the user's form input, such as temperature, orbital period, rotational period, 
+                and gravity strength. Once there are multiple elements in the system, the plot will display each element in its orbital cycle, 
+                as well as the star's '<span class="highlight">habitable zone</span>'—the range of distances where life can exist.
+            </p>
+            <p>
+                Once a user has finished constructing a star system, they will be prompted to '<span class="highlight">place</span>' the system somewhere within the empty galaxy,
+                and once they choose a location, their progress will be saved and they can restore their system whenever they open the site.
+                From this point on, the user can continue creating star systems and placing them on the galaxy map, with all previous star systems
+                remaining on the map. The user will be able to place '<span class="highlight">landmark</span class="highlight">' points in the galaxy,
+                as well as highlight areas of significance (such as a district, or an empire's jurisdiction).
+            </p>
+        </section>
+
+        <section>
+            <h2>User Stories</h2>
+
+            <h3>Example 1</h3>
+            <div class="user-story">
+                <p>As a <span class="highlight">space newcomer;</span></p>
+                <p>I want to <span class="highlight">create my own solar systems;</span></p>
+                <p>So that <span class="highlight">I can learn more about outer space.</span></p>
+            </div>
+                
+            <h3>Example 2</h3>
+            <div class="user-story">
+                <p>As a <span class="highlight">space enthusiast;</span></p>
+                <p>I want to <span class="highlight">create my own galaxy;</span></p>
+                <p>So that <span class="highlight">I can see my nerd fantasies realized.</span></p>
+            </div>
+                
+            <h3>Example 3</h3>
+            <div class="user-story">
+                <p>As a <span class="highlight">dungeon master;</span></p>
+                <p>I want to <span class="highlight">create my own galaxy;</span></p>
+                <p>So that <span class="highlight">my players will stop asking about it.</span></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <ol>
+                <li>Users can create custom stars and planets within an isolated star system.
+                This input is processed and various facts and other information is approximated, 
+                    <br /> including but not limited to:
+                    
+                    <ul>
+                        <li>Gravity strength</li>
+                        <li>Year length</li>
+                        <li>Day length</li>
+                        <li>Temperature</li>
+                        <li class="important-list-element highlight">Habitability score!</li>
+                    </ul>
+                </li>
+                <li>
+                    Users can save solar systems that they create and load them back at a later time.
+                    Saved systems are plotted on a galactic map at a particular location.
+                </li>
+                <li>
+                    Users can view a birds-eye view of the galaxy, containing all saved solar systems.
+                    Additionally, users can place '<span class="highlight">landmarks</span>'
+                    and draw '<span class="highlight">regions</span>', as well as give labels and descriptions for both.
+                </li>
+            </ol>
+        </section>
+        
+        <footer id="bottomFooter">
+            <p>Created by</p>
+            <ul>
+                <li>Christopher Roemer</li>
+                <li>Zachary Harris</li>
+                <li>Joseph Vastola</li>
+            </ul>
+        </footer>
+    
+    
+</body>
+</html>
