@@ -6,6 +6,7 @@
     <meta name="description" content="Create your own solar system!">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Space Builder</title>
+    <link rel="stylesheet" href="css/app.css">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -15,7 +16,8 @@
     <div class="container-fluid w-100 p-3">
         <nav class="row navbar navbar-expand-lg navbar-dark bg-dark">
             <ul class="navbar-nav collapse navbar-collapse">
-                <a class="navbar-brand" href="#">Space Builder</a>
+                <img src="./assets/images/7547889.png" class= "header-icon" alt="header icon">
+                <a class="navbar-brand title" href="#">Space Builder</a>
                 <li class="nav-item nav-link active">Home</li>
                 <li class="nav-item nav-link">About</li>
             </ul>
@@ -36,9 +38,44 @@
             </section>
             <main class="col-8 ">
                 <img src="./assets/images/stars.jpg" style="width: 100%">
+                <div class="button-left"><button type="button" class="btn btn-outline-primary">Create</button></div>
+                <div class="button-right"><button type="button" class="btn btn-outline-danger">Save</button></div>
             </main>
+
+
             <section class="col  bg-secondary">
                 <h1>Information</h1>
+                <ul>
+                    <li>
+                        <span class="data-type">Name:</span>
+                        <span class="planet-data"> Planet 1</span>
+                    </li>
+                    <li>
+                        <span class="data-type">Dist. from star: </span>
+                        <span class="planet-data">.37 AU</span>
+                    </li>
+                    <li>
+                        <span class="data-type">Size:</span>
+                        <span class="planet-data">1.37 Earth Mass</span>
+                    </li>
+                    <li>
+                        <span class="data-type">Planet Type:</span>
+                        <span class="planet-data">Terrestrial</span>
+                    </li>
+                    <ol class="line"> </ol>
+                    <li>
+                        <span class="data-type">Day Length:</span>
+                        <span class="planet-data">2 Earth Days</span>
+                    </li>
+                    <li>
+                        <span class="data-type">Year Length:</span>
+                        <span class="planet-data">2.73 Earth Years</span>
+                    </li>
+                    <li>
+                        <div class="gravity">Acc. Due to Gravity:</div>
+                        <div class="gravity planet-data">9.41 m/s^2</div>
+                    </li>
+                </ul>
             </section>
         </div>
     </div>
