@@ -1,6 +1,87 @@
-main {
+body {
     background-image: url("../images/stars.jpg");
 }
 
-body {
+main {
+    position: relative;
+    z-index: 1;
+}
+
+section > div {
+    background-color: #353a3f;
+}
+
+#left-panel, #right-panel {
+    background-color: transparent !important;
+    z-index: 100;
+}
+
+.collapsed {
+    display: none;
+    width: 0;
+    overflow: hidden;
+    transition: 0.5s ease;
+}
+
+.toggle-button {
+    position: absolute;
+    top:0;
+    z-index: 101;
+}
+
+.side-button button {
+    font-weight: bold;
+}
+
+#left-toggle {
+    left: 0;
+}
+
+#right-toggle {
+    right: 0;
+}
+
+.button-left {
+    float: left;
+    margin-left: 2%;
+}
+
+.button-right {
+    float: right;
+    margin-right: 2%;
+}
+
+.title {
+    font-size: 30px;
+}
+
+.header-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+#info li {
+    text-align: left;
+}
+
+.planet-data, .data-type {
+    border-radius: 3px;
+    padding: 0.1em;
+}
+
+.planet-data {
+    background-color: #4c6783;
+}
+
+.data-type {
+    font-weight: bold;
+}
+
+.line {
+    background-image: linear-gradient(to left, white, white);
+    height: 2px;
+    margin-top: 6px;
 }
