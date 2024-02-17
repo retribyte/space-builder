@@ -70,10 +70,12 @@ section > div {
 .planet-data, .data-type {
     border-radius: 3px;
     padding: 0.1em;
+    margin-top: .25px;
 }
 
 .planet-data {
     background-color: #4c6783;
+    border-radius: 2px;
 }
 
 .data-type {
@@ -82,6 +84,12 @@ section > div {
 
 .line {
     background-image: linear-gradient(to left, white, white);
-    height: 2px;
-    margin-top: 6px;
+    height: .5px;
+    margin-top: .25em;
+    margin-bottom: .25em;
 }
+
+.image {
+    margin-top: 2%;
+}
+
