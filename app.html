@@ -18,8 +18,8 @@
 <link rel="manifest" href="./assets/Favicon/site.webmanifest">
 </head>
 <body class="bg-dark text-light">
-    <div class="container-fluid">
-        <nav class="row navbar navbar-expand-lg navbar-dark bg-dark">
+    <div id="root-container" class="container-fluid">
+        <nav id="top-navbar" class="row navbar navbar-expand navbar-dark bg-dark">
             <ul class="navbar-nav collapse navbar-collapse">
                 <img src="./assets/images/7547889.png" class= "header-icon" alt="Space Builder logo">
                 <a class="navbar-brand title" href="#">Space Builder</a>
@@ -30,16 +30,22 @@
         <div class="row align-items-start text-center">
 
             <!-- Left Column -->
-            <section id="left" class="col-md-2 h-100 px-0  text-light">
+            <section id="left" class="col-md-2 h-100 px-0 text-light">
                 <div id="left-column-content" class="collapse-horizontal">
                     <h1>Astronomical Objects</h1>
                     <nav class="container text-start">
-                        <ul>
-                            <li>Star</li>
-                                <ul>
-                                    <li>Planet 1</li>
-                                    <li>Planet 2</li>
-                                    <li>Planet 3</li>
+                        <ul class="star">
+                            <li>Sol</li>
+                                <ul class="planet">
+                                    <li>Mercury</li>
+                                    <li>Venus</li>
+                                    <li>Earth</li>
+                                        <ul class="moon"><li>Luna</li></ul>
+                                    <li>Mars</li>
+                                    <li>Jupiter</li>
+                                    <li>Saturn</li>
+                                    <li>Uranus</li>
+                                    <li>Neptune</li>
                                 </ul>
                         </ul>
                     </nav>
@@ -55,7 +61,7 @@
                     Toggle Right Column
                 </button> -->
                 <div class="button-left side-button"><button type="button" class="btn btn-outline-primary">Create</button></div>
-                <img class="image" src="./assets/images/bad-solar-system-diagram.avif" alt="Placeholder diagram of the Solar System" >
+                <img class="image" src="./assets/images/bad-solar-system-diagram.avif" alt="Placeholder diagram of the Solar System">
                 <div class="button-right side-button"><button type="button" class="btn btn-outline-danger">Save</button></div>
             </main>
 
@@ -70,7 +76,7 @@
                         </li>
                         <li>
                             <span class="data-type">Dist. from star:</span>
-                            <span class="planet-data">.37 AU</span>
+                            <span class="planet-data">0.37 AU</span>
                         </li>
                         <li>
                             <span class="data-type">Size:</span>
@@ -95,7 +101,7 @@
                         </li>
                         <li>
                             <span class="gravity data-type">Gravity Strength:</span>
-                            <span class="gravity planet-data">9.41 m/s^2</span>
+                            <span class="gravity planet-data">9.41 m/s<sup>2</sup></span>
                         </li>
                     </ul>
                 </div>

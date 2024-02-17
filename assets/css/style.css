@@ -1,5 +1,13 @@
+html {
+    height: 100vh;
+}
+
 body {
     background-image: url("../images/stars.jpg");
+}
+
+body, #root-container, #main-column {
+    height: 100%;
 }
 
 main {
@@ -7,7 +15,7 @@ main {
     z-index: 1;
 }
 
-section > div {
+section {
     background-color: #353a3f;
 }
 
@@ -89,7 +97,58 @@ section > div {
     margin-bottom: .25em;
 }
 
-.image {
-    margin-top: 2%;
+#main-column {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
 }
 
+#top-navbar ul {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 745px) {
+    #main-column, #top-navbar ul {
+        flex-direction: column;
+    }
+}
+
+.image {
+    min-height: 100%;
+}
+
+#left ul {
+    list-style-type: none;
+}
+
+#left ul li {
+    position: relative;
+    padding-left: 2em;
+}
+
+#left ul li::before {
+    content: "";
+    position: absolute;
+    height: 1.5em;
+    top: 10%;
+    left: 0;
+    width: 1.5em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: invert(1);
+}
+
+.star li::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/OOjs_UI_icon_sun-ltr.svg');
+}
+
+.planet li::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1d/Planet_with_rings_icon.svg');
+    top: 20% !important;
+}
+
+.moon li::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/OOjs_UI_icon_moon.svg');
+    top: 10% !important;
+}
