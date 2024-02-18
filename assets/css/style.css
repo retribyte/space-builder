@@ -15,7 +15,7 @@ main {
     z-index: 1;
 }
 
-section {
+section, .dark {
     background-color: #353a3f;
 }
 
@@ -151,4 +151,8 @@ section {
 .moon li::before {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/OOjs_UI_icon_moon.svg');
     top: 10% !important;
+}
+
+.highlight {
+    color: rgb(254, 218, 74);
 }
