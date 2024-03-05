@@ -24,6 +24,24 @@ section, .dark {
     z-index: 100;
 }
 
+#left, #right {
+    min-width: 250px;
+    transition-duration: transform 1s;
+}
+
+#main-column {
+    min-width: 60%;
+}
+
+@media (max-width: 1250px) {
+    #left {
+        transform: translateX(-250px);
+    }
+    #right {
+        transform: translateX(250px);
+    }
+}
+
 .collapsed {
     display: none;
     width: 0;
