@@ -33,14 +33,16 @@ section, .dark {
     min-width: 60%;
 }
 
-/* @media (max-width: 1250px) {
+@media (max-width: 1250px) {
     #left {
-        transform: translateX(-250px);
+        /* transform: translateX(-250px); */
+        display: none;
     }
     #right {
-        transform: translateX(250px);
+        /* transform: translateX(250px); */
+        display: none;
     }
-} */
+}
 
 .collapsed {
     display: none;
