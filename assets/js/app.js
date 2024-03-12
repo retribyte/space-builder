@@ -4,26 +4,37 @@ function collapseSidebar(whichSide) {
     // column.classList.toggle('d-none');
 }
 
+let leftPanelCollapsed = false;
 document.querySelector('.closebtn.left').addEventListener('click', (event) => {
     let left = document.querySelector('#left');
     let main = document.querySelector('main');
-    if (left.style.display != 'none') {
+    if (!leftPanelCollapsed) {
         main.style.marginLeft = left.getBoundingClientRect().width;
-        left.style.display = 'none';
+        left.style.transform = 'translateX(-100%)';
+        leftPanelCollapsed = true;
     } else {
-        left.style.display = 'unset';
         main.style.marginLeft = 'unset';
+        left.style.transform = 'translateX(0)';
+        leftPanelCollapsed = false;
     }
 });
 
+let rightPanelCollapsed = false;
 document.querySelector('.closebtn.right').addEventListener('click', (event) => {
     let right = document.querySelector('#right');
     let main = document.querySelector('main');
-    if (right.style.display != 'none') {
+    if (!rightPanelCollapsed) {
         main.style.marginRight = right.getBoundingClientRect().width;
-        right.style.display = 'none';
+        right.style.transform = 'translateX(100%)';
+        rightPanelCollapsed = true;
     } else {
-        right.style.display = 'unset';
         main.style.marginRight = 'unset';
+        right.style.transform = 'translateX(0)';
+        rightPanelCollapsed = false;
     }
 });
+
+if (window.innerWidth <= 1260) {
+    leftPanelCollapsed = true;
+    rightPanelCollapsed = true;
+}

@@ -1,6 +1,7 @@
 html {
     height: 100vh;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 body {
@@ -33,28 +34,20 @@ section, .dark {
     min-width: 250px;
     transition-duration: transform 1s;
     transition: visibility 1s;
+    position: absolute;
+    top: 0;
+}
+
+#left {
+    left: 0;
+}
+
+#right {
+    right: 0;
 }
 
 #main-column {
     min-width: 60%;
-}
-
-@media (max-width: 1250px) {
-    #left, #right {
-        display: none;
-        position: absolute;
-        z-index: 2;
-        top: 3em;
-    }
-
-    .closebtn {
-        position: absolute;
-        top: 0;
-    }
-
-    .closebtn.right {
-        right: 0;
-    }
 }
 
 .collapsed {
@@ -84,12 +77,12 @@ section, .dark {
 
 .button-left {
     float: left;
-    margin-left: 2%;
+    margin-left: 5em;
 }
 
 .button-right {
     float: right;
-    margin-right: 2%;
+    margin-right: 5em;
 }
 
 .title {
@@ -196,4 +189,28 @@ section, .dark {
     color: white;
     margin: 0 0.5em;
     z-index: 3;
+}
+
+@media (max-width: 1250px) {
+    #left, #right {
+        z-index: 2;
+        top: 3em;
+    }
+
+    .closebtn {
+        position: absolute;
+        top: 0;
+    }
+
+    .closebtn.right {
+        right: 0;
+    }
+
+    .button-left {
+        margin-left: 0;
+    }
+
+    .button-right {
+        margin-right: 0;
+    }
 }
