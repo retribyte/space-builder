@@ -1,5 +1,6 @@
 html {
     height: 100vh;
+    overflow-y: hidden;
 }
 
 body {
@@ -8,6 +9,10 @@ body {
 
 body, #root-container, #main-column {
     height: 100%;
+}
+
+.row {
+    position: relative;
 }
 
 main {
@@ -21,12 +26,13 @@ section, .dark {
 
 #left-panel, #right-panel {
     background-color: transparent !important;
-    z-index: 100;
+    z-index: 2;
 }
 
 #left, #right {
     min-width: 250px;
     transition-duration: transform 1s;
+    transition: visibility 1s;
 }
 
 #main-column {
@@ -34,13 +40,20 @@ section, .dark {
 }
 
 @media (max-width: 1250px) {
-    #left {
-        /* transform: translateX(-250px); */
+    #left, #right {
         display: none;
+        position: absolute;
+        z-index: 2;
+        top: 3em;
     }
-    #right {
-        /* transform: translateX(250px); */
-        display: none;
+
+    .closebtn {
+        position: absolute;
+        top: 0;
+    }
+
+    .closebtn.right {
+        right: 0;
     }
 }
 
@@ -182,4 +195,5 @@ section, .dark {
     text-decoration: none;
     color: white;
     margin: 0 0.5em;
+    z-index: 3;
 }
