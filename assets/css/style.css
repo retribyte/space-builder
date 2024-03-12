@@ -33,14 +33,14 @@ section, .dark {
     min-width: 60%;
 }
 
-@media (max-width: 1250px) {
+/* @media (max-width: 1250px) {
     #left {
         transform: translateX(-250px);
     }
     #right {
         transform: translateX(250px);
     }
-}
+} */
 
 .collapsed {
     display: none;
@@ -173,4 +173,11 @@ section, .dark {
 
 .highlight {
     color: rgb(254, 218, 74);
+}
+
+.closebtn {
+    font-size: 2em;
+    text-decoration: none;
+    color: white;
+    margin: 0 0.5em;
 }
