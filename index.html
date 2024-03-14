@@ -29,28 +29,21 @@
         </nav>
         <div class="row align-items-start text-center">
 
-            <!-- Left Column -->
+         <!-- Left Column -->
             <section id="left" class="col-md-2 h-100 px-0 text-light">
                 <div id="left-column-content" class="collapse-horizontal">
                     <h1>Astronomical Objects</h1>
-                    <nav class="container text-start">
-                        <ul class="star">
-                            <li>Sol</li>
-                                <ul class="planet">
-                                    <li>Mercury</li>
-                                    <li>Venus</li>
-                                    <li>Earth</li>
-                                        <ul class="moon"><li>Luna</li></ul>
-                                    <li>Mars</li>
-                                    <li>Jupiter</li>
-                                    <li>Saturn</li>
-                                    <li>Uranus</li>
-                                    <li>Neptune</li>
-                                </ul>
-                        </ul>
-                    </nav>
+                    <div id="inputFieldsContainer">
+                        <!-- Input fields for entering planet names -->
+                        <input type="text" id="planetInput1" class="planet-input" placeholder="Planet 1">
+                        <input type="text" id="planetInput2" class="planet-input" placeholder="Planet 2">
+                        <input type="text" id="planetInput3" class="planet-input" placeholder="Planet 3">
+                        <!-- Add more input fields for additional planets -->
+                    </div>
                 </div>
             </section>
+
+
 
             <!-- Main Content Column -->
             <main class="col px-0 h-100" id="main-column">
@@ -62,10 +55,15 @@
             </main>
 
             <!-- Right Column -->
+            
             <section id="right" class="col-md-2 h-100 px-0  text-light data-collumn">
                 <div id="right-column-content" class="collapse-horizontal">
                     <h1>Information</h1>
                     <ul id="info">
+                        <li>
+                            <span class="data-type">Name:</span>
+                            <span id="planetName" class="planet-data">[Planet Name]</span>
+                        </li>
                         <li>
                             <span class="data-type">Name:</span>
                             <span class="planet-data"> Mercury</span>
