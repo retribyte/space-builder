@@ -1,3 +1,8 @@
+:root {
+    --create-color: 113, 150, 253;
+    --save-color: 220, 83, 119;
+}
+
 html {
     height: 100vh;
     overflow-y: hidden;
@@ -30,18 +35,24 @@ section, .dark {
     z-index: 2;
 }
 
-#left, #right {
+#children-panel, #create-panel, #info-panel {
     min-width: 250px;
     transition: transform 0.25s ease-out;
     position: absolute;
     top: 0;
 }
 
-#left {
+#children-panel {
     left: 0;
 }
 
-#right {
+#create-panel {
+    z-index: 4;
+    background-color: #39597a;
+    transform: translateX(-100%);
+}
+
+#info-panel {
     right: 0;
 }
 
@@ -64,14 +75,6 @@ section, .dark {
 
 .side-button button {
     font-weight: bold;
-}
-
-#left-toggle {
-    left: 0;
-}
-
-#right-toggle {
-    right: 0;
 }
 
 .button-left {
@@ -117,7 +120,7 @@ section, .dark {
 
 .line {
     background-image: linear-gradient(to left, white, white);
-    height: .5px;
+    height: 1px;
     margin-top: .25em;
     margin-bottom: .25em;
 }
@@ -143,16 +146,16 @@ section, .dark {
     min-height: 100%;
 }
 
-#left ul {
+#children-panel ul {
     list-style-type: none;
 }
 
-#left ul li {
+#children-panel ul li {
     position: relative;
     padding-left: 2em;
 }
 
-#left ul li::before {
+#children-panel ul li::before {
     content: "";
     position: absolute;
     height: 1.5em;
@@ -202,8 +205,30 @@ section, .dark {
     color: white;
 }
 
+#create {
+    color: rgb(var(--create-color));
+    border-color: rgb(var(--create-color));
+}
+
+#create:hover, #create.selected {
+    color: white;
+    background-color: rgb(var(--create-color));
+    border-color: rgb(var(--create-color));
+}
+
+#save {
+    color: rgb(var(--save-color));
+    border-color: rgb(var(--save-color));
+}
+
+#save:hover, #save.selected {
+    color: white;
+    background-color: rgb(var(--save-color));
+    border-color: rgb(var(--save-color));
+}
+
 @media (max-width: 1250px) {
-    #left, #right {
+    #children-panel, #info-panel {
         z-index: 2;
         top: 3em;
         padding: 0;
