@@ -28,66 +28,74 @@
             </ul>
         </nav>
         <div class="row align-items-start text-center"> 
-            <!-- Lefter Column -->
-            <section id="create-panel" class="col-md-2 h-100 px-0 text-light">
-                <div id="create-panel-content" class="collapse-horizontal">
-                    <h1>Create</h1>
-                    <div id="inputFieldsContainer">
-                        <!-- Input fields for entering planet names -->
-                        <input type="text" id="sunInput" class="sun-input" placeholder="Sun"> 
-                        <select id="objectType">
-                            <option value="planet">Planet</option>
-                            <option value="moon">Moon</option>
-                        </select>
-                        
-                        <div id="planetInputContainer" style="display: none;">
-                            <input type="text" id="planetInput" class="planet-input" placeholder="Planet">
-                        </div>
-                        
-                        <div id="moonInputContainer" style="display: none;">
-                            <input type="text" id="moonInput" class="moon-input" placeholder="Moon">
-                        </div>
-                        
-                        <script>
-                            document.getElementById("objectType").addEventListener("change", function() {
-                                var selectedType = this.value;
-                                if (selectedType === "planet") {
-                                    document.getElementById("planetInputContainer").style.display = "block";
-                                    document.getElementById("moonInputContainer").style.display = "none";
-                                } else if (selectedType === "moon") {
-                                    document.getElementById("moonInputContainer").style.display = "block";
-                                    document.getElementById("planetInputContainer").style.display = "none";
-                                }
-                            });
-                        </script>
-                        <input type="text" id="name" class="name-input" placeholder="Name">
-                        <input type="text" id="size" class="size-input" placeholder="Size">
-                        <input type="text" id="distance" class="distance" placeholder="Distance from Sun">
-                </div>
-            </section>
-
-            <!-- Left Column -->
-            <section id="children-panel" class="col-md-2 h-100 px-0 text-light">
-                <div id="children-panel-content" class="collapse-horizontal">
-                    <h1>Astronomical Objects</h1>
-                    <nav class="container text-start">
-                        <ul class="star">
-                            <li><input type="text" id="sunInput" class="sun-input" placeholder="Sun"></li>
-                            <ul class="planet">
-                                <li><input type="text" id="planetInput1" class="planet-input smaller-input" placeholder="Planet 1"></li>
-                                <li><input type="text" id="planetInput2" class="planet-input smaller-input" placeholder="Planet 2"></li>
-                                <li><input type="text" id="planetInput3" class="planet-input smaller-input" placeholder="Planet 3"></li>
-                                <ul class="moon">
-                                    <li><input type="text" id="moonInput1" class="moon-input smaller-input" placeholder="Moon"></li>
-                                </ul>
-                                <li><input type="text" id="planetInput4" class="planet-input smaller-input" placeholder="Planet 4"></li>
-                                <li><input type="text" id="planetInput5" class="planet-input smaller-input" placeholder="Planet 5"></li>
-                            </ul>
-                        </ul>
-                    </nav>
-                </div>
-            </section>
+        <!-- Lefter Column -->
+<section id="create-panel" class="col-md-2 h-100 px-0 text-light">
+    <div id="create-panel-content" class="collapse-horizontal">
+        <h1>Create</h1>
+        <div id="inputFieldsContainer">
+            <!-- Input fields for entering planet names -->
+            <input type="text" id="sunInput" class="sun-input" placeholder="Sun"> 
+            <select id="objectType">
+                <option value="planet">Planet</option>
+                <option value="moon">Moon</option>
+            </select>
             
+            <div id="planetInputContainer" style="display: none;">
+                <input type="text" id="planetInput" class="planet-input" placeholder="Planet">
+            </div>
+            
+            <div id="moonInputContainer" style="display: none;">
+                <input type="text" id="moonInput" class="moon-input" placeholder="Moon">
+            </div>
+            
+            <input type="text" id="name" class="name-input" placeholder="Name">
+            <input type="text" id="size" class="size-input" placeholder="Size">
+            <input type="text" id="distance" class="distance" placeholder="Distance from Sun">
+        </div>
+    </div>
+</section>
+
+<!-- Left Column -->
+<section id="children-panel" class="col-md-2 h-100 px-0 text-light">
+    <div id="children-panel-content" class="collapse-horizontal">
+        <h1>Astronomical Objects</h1>
+        <nav class="container text-start">
+            <ul class="star">
+                <li><input type="text" id="sunInputLeft" class="sun-input" placeholder="Sun"></li>
+                <ul class="planet">
+                    <li><input type="text" id="planetInput1" class="planet-input smaller-input" placeholder="Planet 1"></li>
+                    <li><input type="text" id="planetInput2" class="planet-input smaller-input" placeholder="Planet 2"></li>
+                    <li><input type="text" id="planetInput3" class="planet-input smaller-input" placeholder="Planet 3"></li>
+                    <li><input type="text" id="planetInput4" class="planet-input smaller-input" placeholder="Planet 4"></li>
+                    <li><input type="text" id="planetInput5" class="planet-input smaller-input" placeholder="Planet 5"></li>
+                </ul>
+            </ul>
+        </nav>
+    </div>
+</section>
+<script>
+    // Outputs input from user into Astronomical Objects column
+    function updateInput(inputId, inputLeftId) {
+        const input = document.getElementById(inputId);
+        const inputLeft = document.getElementById(inputLeftId);
+        inputLeft.value = input.value;
+    }
+    document.getElementById("sunInput").addEventListener("input", function() {
+        updateInput("sunInput", "sunInputLeft");
+    });
+    document.getElementById("name").addEventListener("input", function() {
+        updateInput("name", "planetInput1");
+    });
+    document.getElementById("size").addEventListener("input", function() {
+        updateInput("size", "planetInput2");
+    });
+    document.getElementById("distance").addEventListener("input", function() {
+        updateInput("distance", "planetInput3");
+    });
+    
+</script>
+
+
             <!-- Main Content Column -->
             <main class="col px-0 h-100" id="main-column">
                 <div class="closebtn left"><a href="javascript:void(0)">&equiv;</a></div>
