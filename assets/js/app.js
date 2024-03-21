@@ -4,46 +4,67 @@ function collapseSidebar(whichSide) {
     // column.classList.toggle('d-none');
 }
 
-let leftPanelCollapsed = false;
-document.querySelector('.closebtn.left').addEventListener('click', () => { resizePanel('left') });
+let childrenPanelCollapsed = false;
+let createPanelCollapsed = true;
+let infoPanelCollapsed = false;
 
-let rightPanelCollapsed = false;
-document.querySelector('.closebtn.right').addEventListener('click', () => { resizePanel('right') });
+document.querySelector('.closebtn.left')
+    .addEventListener('click', () => { resizePanel('children-panel') });
+document.querySelector('.closebtn.right')
+    .addEventListener('click', () => { resizePanel('info-panel') });
+document.querySelector('#create')
+    .addEventListener('click', () => { resizePanel('create-panel') });
 
-function resizePanel(side) {
-    let panel = document.querySelector(`#${side}`);
+function resizePanel(panelId) {
+    let panel = document.querySelector(`#${panelId}`);
     let main = document.querySelector('main');
-    let isPanelCollapsed = side === 'left' ? leftPanelCollapsed : rightPanelCollapsed;
-    let marginProperty = side === 'left' ? 'marginLeft' : 'marginRight';
-    let transformValue = side === 'left' ? '-100%' : '100%';
+    let isPanelCollapsed;
+    let transformValue;
+
+    // Determine transform values
+    switch (panelId) {
+        case 'children-panel':
+            isPanelCollapsed = childrenPanelCollapsed;
+            transformValue = '-100%';
+            break;
+        case 'create-panel':
+            isPanelCollapsed = createPanelCollapsed;
+            transformValue = '-100%';
+            break;
+        case 'info-panel':
+            isPanelCollapsed = infoPanelCollapsed;
+            transformValue = '100%';
+            break;
+    }
+
     if (!isPanelCollapsed) {
-        // main.style[marginProperty] = panel.getBoundingClientRect().width + 'px';
-        console.log(`Goodbye, ${side} panel!`);
+        console.log(`Goodbye, ${panelId}!`);
         panel.style.transform = `translateX(${transformValue})`;
     } else {
-        // main.style[marginProperty] = 'unset';
-        console.log(`Hello, ${side} panel!`);
+        console.log(`Hello, ${panelId}!`);
         panel.style.transform = 'translateX(0)';
     }
 
-    if (side === 'left') {
-        leftPanelCollapsed = !leftPanelCollapsed;
-    } else {
-        rightPanelCollapsed = !rightPanelCollapsed;
+    // Toggle the collapsed state
+    if (panelId === 'children-panel') {
+        childrenPanelCollapsed = !childrenPanelCollapsed;
+    } else if (panelId === 'create-panel') {
+        createPanelCollapsed = !createPanelCollapsed;
+        document.querySelector('#create').classList.toggle('selected');
+    } else if (panelId === 'info-panel') {
+        infoPanelCollapsed = !infoPanelCollapsed;
     }
 }
 window.onresize = () => {
     if (window.innerWidth <= 1260) {
         console.log('Window resized; collapsing panels');
-        leftPanelCollapsed = false;
-        rightPanelCollapsed = false;
-        resizePanel('left');
-        resizePanel('right');
+        if (!childrenPanelCollapsed) resizePanel('children-panel');
+        if (!createPanelCollapsed) resizePanel('create-panel');
+        if (!infoPanelCollapsed) resizePanel('info-panel');
     } else {
         console.log('Window resized; expanding panels');
-        leftPanelCollapsed = true;
-        rightPanelCollapsed = true;
-        resizePanel('left');
-        resizePanel('right');
+        if (childrenPanelCollapsed) resizePanel('children-panel');
+        // The create panel remains collapsed unless explicitly opened by the user
+        if (infoPanelCollapsed) resizePanel('info-panel');
     }
 };
