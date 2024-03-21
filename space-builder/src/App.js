@@ -55,12 +55,7 @@ function App() {
         
       </nav>
       <div className="row align-items-start text-center">
-        
-        <section id="left" className="col-md-2 h-100 px-0 text-light">
-          <input type="text" value={inputValue} onChange={handleInputChange} placeholder="Enter text" />
-        </section>
-
-        
+   
         <main className="col px-0 h-100" id="main-column">
           <div className="closebtn left" onClick={handleClickLeft}>&equiv;</div>
         
