@@ -1,0 +1,282 @@
+:root {
+    --create-color: 113, 150, 253;
+    --save-color: 220, 83, 119;
+}
+
+html {
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+body {
+    background-image: url("../images/stars.jpg");
+}
+
+body, #root-container, #main-column {
+    height: 100%;
+}
+
+.row {
+    position: relative;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+section, .dark {
+    background-color: #353a3f;
+}
+
+#left-panel, #right-panel {
+    background-color: transparent !important;
+    z-index: 2;
+}
+
+#children-panel, #create-panel, #info-panel {
+    min-width: 250px;
+    transition: transform 0.25s ease-out;
+    position: absolute;
+    top: 0;
+}
+
+#children-panel {
+    left: 0;
+}
+
+#create-panel {
+    z-index: 4;
+    background-color: #39597a;
+    transform: translateX(-100%);
+}
+
+#info-panel {
+    right: 0;
+}
+
+#main-column {
+    min-width: 60%;
+}
+
+.collapsed {
+    display: none;
+    width: 0;
+    overflow: hidden;
+    transition: 0.5s ease;
+}
+
+.toggle-button {
+    position: absolute;
+    top:0;
+    z-index: 101;
+}
+
+.side-button button {
+    font-weight: bold;
+}
+
+.button-left {
+    float: left;
+    margin-left: 5em;
+}
+
+.button-right {
+    float: right;
+    margin-right: 5em;
+}
+
+.title {
+    font-size: 30px;
+}
+
+.header-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+#info li {
+    text-align: left;
+}
+
+.planet-data, .data-type {
+    border-radius: 3px;
+    padding: 0.1em;
+    margin-top: .25px;
+}
+
+.planet-data {
+    background-color: #4c6783;
+    border-radius: 2px;
+}
+
+.data-type {
+    font-weight: bold;
+}
+
+.line, hr {
+    width: 90%;
+    border-top: 2px solid white;
+    height: 1px;
+    margin-top: .25em;
+    margin-bottom: .25em;
+    opacity: 1;
+}
+
+#main-column {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#top-navbar ul {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 745px) {
+    #main-column, #top-navbar ul {
+        flex-direction: column;
+    }
+}
+
+.image {
+    min-height: 100%;
+}
+
+#children-panel ul {
+    list-style-type: none;
+}
+
+#children-panel ul li {
+    position: relative;
+    padding-left: 2em;
+}
+
+#children-panel ul li::before {
+    content: "";
+    position: absolute;
+    height: 1.5em;
+    top: 10%;
+    left: 0;
+    width: 1.5em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: invert(1);
+}
+
+.star li::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/OOjs_UI_icon_sun-ltr.svg');
+}
+
+.planet li::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1d/Planet_with_rings_icon.svg');
+    top: 20% !important;
+}
+
+.moon li::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/OOjs_UI_icon_moon.svg');
+    top: 10% !important;
+}
+
+.highlight {
+    color: rgb(254, 218, 74);
+}
+
+.closebtn {
+    background-color: black;
+    border-radius: 5px;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 0.5em;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.closebtn a {
+    font-size: 2em;
+    text-decoration: none;
+    color: white;
+}
+
+#create {
+    color: rgb(var(--create-color));
+    border-color: rgb(var(--create-color));
+}
+
+#create:hover, #create.selected {
+    color: white;
+    background-color: rgb(var(--create-color));
+    border-color: rgb(var(--create-color));
+}
+
+#save {
+    color: rgb(var(--save-color));
+    border-color: rgb(var(--save-color));
+}
+
+#save:hover, #save.selected {
+    color: white;
+    background-color: rgb(var(--save-color));
+    border-color: rgb(var(--save-color));
+}
+
+@media (max-width: 1250px) {
+    #children-panel, #info-panel {
+        z-index: 2;
+        top: 3em;
+        padding: 0;
+    }
+
+    .closebtn {
+        position: absolute;
+        top: 0;
+    }
+
+    .closebtn.right {
+        right: 0;
+    }
+
+    .button-left {
+        margin-left: 0;
+    }
+
+    .button-right {
+        margin-right: 0;
+    }
+}
+
+input, select, label {
+    width: 45% !important;
+}
+
+label {
+    text-align: right;
+    margin-right: 0.25em;
+}
+
+span.unit {
+    margin-left: 0.25em;
+    text-align: left;
+}
+
+#inputFieldsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 85%;
+}
