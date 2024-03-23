@@ -1,0 +1,188 @@
+@font-face {
+    font-family: 'News Gothic Extra Condensed Regular';
+    src: url('../fonts/News Gothic Extra Condensed Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'News Gothic Bold';
+    src: url('../fonts/News Gothic Std Bold.ttf') format('truetype');
+}
+
+body {
+    background-color: black;
+    color: rgb(254, 218, 74);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url('../images/stars.jpg');
+    overflow: hidden;
+}
+
+header {
+    position: relative; /* Ensure z-index is respected */
+    z-index: 10; /* Higher than #main-content */
+    width: fit-content;
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color: black;
+}
+
+#main-content {
+    position: absolute;
+    bottom: 0;
+    transform-origin: 50%;
+    height: 100vh;
+    letter-spacing: 0.25em;
+    overflow-y: scroll;
+    padding-top: 35vh; /* Sorry, magic number */
+    scrollbar-width: none;
+}
+
+#main-content:not(.skewed) {
+    margin: 0 15%;
+    font-size: 50%;
+}
+
+.skewed {
+    transform: perspective(550px) rotateX(25deg) scale(75%);
+}
+
+@media only screen and (max-width: 600px) {
+    .skewed {
+        transform: none !important;
+    }
+}
+
+.skewed::-webkit-scrollbar {
+    display: none;
+}
+
+.spacer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    opacity: 50%;
+    font-weight: bold;
+
+    animation: fade-in 4s;
+}
+
+.spacer .large {
+    font-size:20em;
+}
+
+.skewed * {
+    padding: 0 7%;
+}
+    
+h1, h2, h3 {
+    font-family:'News Gothic Extra Condensed Regular', 'Times New Roman', Times, serif;
+    margin: 0.5em 0 0.5em 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 10em;
+}
+
+h2 {
+    font-size: 6em;
+}
+
+h3 {
+    font-size: 4em;
+}
+
+p, li {
+    font-family: 'News Gothic Bold', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3em;
+    text-align: justify;
+    text-align-last:center;
+}
+
+em {
+    padding: 0 !important;
+    font-style: italic;
+}
+
+ol {
+    counter-reset: li;
+}
+
+ol > li {
+    margin: 0 0 0.5em 10%;
+    list-style-type: none;
+}
+
+ol > li::before {
+    font-size: 5em;
+	content:counter(li) '.'; /* Use the counter as content */
+	counter-increment:li; /* Increment the counter by 1 */
+    position: absolute;
+    margin: -3% 0 0 -12%;
+}
+
+ul > li {
+    font-size: 1em;
+    margin-left: 20%;
+    width: fit-content;
+    color: lightgoldenrodyellow;
+}
+
+ul > li::marker {
+    color: rgb(254, 218, 74);
+    content: '▸';
+}
+
+li.important-list-element::marker {
+    content: '★';
+}
+
+cite {
+    display: block;
+}
+
+.highlight, a {
+    color: lightgoldenrodyellow;
+}
+
+span {
+    padding: 0 !important;
+}
+
+.user-story * {
+    margin: 0.25em 0;
+}
+
+#bottomFooter p {
+    color: lightgrey;
+}
+
+#bottomFooter ul {
+    text-align: center;
+    margin: 0 0 10em 0;
+}
+
+#bottomFooter li {
+    font-size: 2em;
+    color: gray;
+    display: inline;
+    margin: 0;
+    padding: 0 1em;
+}
+
+#bottomFooter li::marker {
+    content:'';
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
