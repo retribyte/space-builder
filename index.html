@@ -35,10 +35,12 @@
         <div id="inputFieldsContainer">
             <!-- Input fields for entering planet names -->
             <input type="text" id="sunInput" class="sun-input" placeholder="Sun"> 
-            <select id="objectType">
+            
+            <select id="planetmoon" class="form-select mb-3">
                 <option value="planet">Planet</option>
                 <option value="moon">Moon</option>
             </select>
+            
             
             <div id="planetInputContainer" style="display: none;">
                 <input type="text" id="planetInput" class="planet-input" placeholder="Planet">
@@ -51,7 +53,14 @@
             <input type="text" id="name" class="name-input" placeholder="Name">
             <input type="text" id="size" class="size-input" placeholder="Size">
             <input type="text" id="distance" class="distance" placeholder="Distance from Sun">
+
+            <select id="planetType" class="form-select mb-3">
+                <option value="gas">Gas</option>
+                <option value="terrestrial">Terrestrial</option>
+            </select>
+            
         </div>
+        <button id="confirmButton" class="btn btn-primary">Confirm</button>
     </div>
 </section>
 
@@ -62,16 +71,16 @@
         <nav class="container text-start">
             <ul class="star">
                 <li><input type="text" id="sunInputLeft" class="sun-input" placeholder="Sun"></li>
-                <ul class="planet">
                     <li><input type="text" id="planetInput1" class="planet-input smaller-input" placeholder="Planet 1"></li>
                     <li><input type="text" id="planetInput2" class="planet-input smaller-input" placeholder="Planet 2"></li>
                     <li><input type="text" id="planetInput3" class="planet-input smaller-input" placeholder="Planet 3"></li>
                     <li><input type="text" id="planetInput4" class="planet-input smaller-input" placeholder="Planet 4"></li>
                     <li><input type="text" id="planetInput5" class="planet-input smaller-input" placeholder="Planet 5"></li>
-                </ul>
-            </ul>
+            </ul>  
+        </ul> 
         </nav>
     </div>
+    
 </section>
 <script>
     // Outputs input from user into Astronomical Objects column
