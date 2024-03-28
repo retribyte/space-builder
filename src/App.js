@@ -6,9 +6,12 @@ import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
 import './assets/css/style.css';
 import './model';
-import sample from './sample.json';
+import sampleData from './sample.json';
 
 function App() {
+    const [galaxy, setGalaxy] = useState(JSON.parse(sampleData));
+    console.log(galaxy);
+
     return (
         <div id="root-container" className="container-fluid">
             <Navbar />

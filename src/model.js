@@ -1,4 +1,6 @@
 // System for creating and retrieving information about Stars, Planets, and Moons
+import React, { useState } from 'react';
+import galaxy from './sample.json';
 
 function createPlanet(name, size, distance, type) {
     let planet = {
@@ -33,6 +35,27 @@ function createStar(name, size) {
         }
     }
     return star;
+}
+
+function addPlanetToStar(starName, name, size, distance, type) {
+    const star = galaxy.systems.find(system => system.name === starName);
+    if (!star) {
+        console.error('Star does not exist!');
+        return;
+    }
+    star.planets.push(createPlanet(name, size, distance, type));
+}
+
+function addMoonToPlanet(planetName, name, size, distance) {
+    const planet = galaxy.systems
+        .flatMap(system => system.planets)
+        .find(planet => planet.name === planetName);
+
+    if (!planet) {
+        console.error('Planet does not exist!');
+        return;
+    }
+    planet.moons.push(createMoon(name, size, distance));
 }
 
 function test() {

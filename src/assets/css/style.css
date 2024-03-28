@@ -272,7 +272,7 @@ span.unit {
     text-align: left;
 }
 
-#inputFieldsContainer {
+#createForm {
     display: flex;
     flex-direction: column;
     align-items: center;
