@@ -10,6 +10,7 @@ import sampleData from './sample.json';
 
 function App() {
     const [galaxy, setGalaxy] = useState(null);
+    const [selectedObject, setSelectedObject] = useState(null);
 
     useEffect(() => {
         const savedData = localStorage.getItem('data');
@@ -57,7 +58,7 @@ function App() {
         <div id="root-container" className="container-fluid">
             <Navbar />
             <div className="row align-items-start text-center h-100"> 
-                <CreatePanel />
+                <CreatePanel data={galaxy} selected={selectedObject} callback={addNewChild} />
                 <ChildrenPanel />
                 <MainColumn data={galaxy} />
                 <InfoPanel />

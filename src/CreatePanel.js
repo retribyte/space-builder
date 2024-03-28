@@ -3,20 +3,19 @@ import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
 import model from './model';
 
-function CreatePanel() {
-    const [selectedObject, setSelectedObject] = useState('planet'); // Defaults to planet
+function CreatePanel({callback, selected}) {
+    const [selectedType, setSelectedType] = useState('planet'); // Defaults to planet
+    const [formData, setFormData] = useState();
+
     const handleSelectionChange = (event) => {
-        setSelectedObject(event.target.value);
+        setSelectedType(event.target.value);
     }
 
     const handleSubmit = (event) => {
-        if (selectedObject == 'planet') {
-            // Handle planet creation
-            // Handle App state change
-        } else {
-            // Handle moon creation
-            // Handle App state change
+        if (!selected) {
+            console.error("Nothing is selected!");
         }
+        callback([selectedType, selected, ...data]);
     }
 
     return (
@@ -26,17 +25,22 @@ function CreatePanel() {
                 <form id="createForm">
                     <div id="inputContainer">
                         <label htmlFor="planetmoon">What object?</label>
-                        <select id="planetmoon" className="form-select" onChange={handleSelectionChange} value={selectedObject}>
+                        <select id="planetmoon" className="form-select" onChange={handleSelectionChange} value={selectedType}>
                             <option value="planet">Planet</option>
                             <option value="moon">Moon</option>
                         </select>
                     </div>
                     <hr />
-                    { selectedObject === 'planet' && <PlanetCreate /> }
-                    { selectedObject === 'moon' && <MoonCreate /> }
+                    { selectedType === 'planet' && <PlanetCreate handleData={(data) => {setFormData(data)}} /> }
+                    { selectedType === 'moon' && <MoonCreate handleData={(data) => {setFormData(data)}} /> }
                     <hr />
                 </form>
-                <button id="confirmButton" className="btn btn-primary">Confirm</button>
+                <button 
+                    id="confirmButton" 
+                    className="btn btn-primary"
+                    onClick={handleSubmit}>
+                        Confirm
+                </button>
             </div>
         </section>
     );
