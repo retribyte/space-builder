@@ -2,7 +2,7 @@ import React from 'react';
 
 function InfoPanel() {
     return (
-        <section id="info-panel" className="col-md-2 h-100 px-0 text-light data-column">
+        <section id="info-panel" className="col-md-2 px-0 text-light data-column">
             <div id="info-panel-content" className="collapse-horizontal">
                 <h1>Information</h1>
                 <ul id="info">

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import Navbar from './Navbar';
 import CreatePanel from './CreatePanel';
 import ChildrenPanel from './ChildrenPanel';
@@ -13,7 +12,7 @@ function App() {
     return (
         <div id="root-container" className="container-fluid">
             <Navbar />
-            <div className="row align-items-start text-center"> 
+            <div className="row align-items-start text-center h-100"> 
                 <CreatePanel />
                 <ChildrenPanel />
                 <MainColumn />

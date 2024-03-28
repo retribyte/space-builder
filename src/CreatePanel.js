@@ -2,7 +2,7 @@ import React from 'react';
 
 function CreatePanel() {
     return (
-        <section id="create-panel" className="col-md-2 h-100 px-0 text-light">
+        <section id="create-panel" className="col-md-2 px-0 text-light">
             <div id="create-panel-content" className="collapse-horizontal">
                 <h1>Create</h1>
                 <form id="inputFieldsContainer">

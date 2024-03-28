@@ -2,7 +2,7 @@ import React from 'react';
 
 function ChildrenPanel() {
     return (
-        <section id="children-panel" className="col-md-2 h-100 px-0 text-light">
+        <section id="children-panel" className="col-md-2 px-0 text-light">
             <div id="children-panel-content" className="collapse-horizontal">
                 <h1>Astronomical Objects</h1>
                 <nav className="container text-start">
