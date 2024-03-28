@@ -4,6 +4,7 @@ import CreatePanel from './CreatePanel';
 import ChildrenPanel from './ChildrenPanel';
 import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
+import './assets/css/style.css';
 
 function App() {
     return (
