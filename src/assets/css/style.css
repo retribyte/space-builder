@@ -276,6 +276,8 @@ span.unit {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #172838;
+    padding: 1em 0;
 }
 
 #inputContainer {
@@ -283,4 +285,34 @@ span.unit {
     flex-direction: row;
     align-items: center;
     width: 85%;
+}
+
+.tab-selector {
+
+}
+
+.tab-selector ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #193857;
+}
+
+.tab-selector li {
+    float: left;
+    width: 50%;
+}
+
+.tab-selector li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+    text-decoration: none;
+}
+
+.tab-selector li a:hover, .tab-selector li a.selected {
+    background-color: #172838;
+    border-radius: 0.5em 0.5em 0 0;
 }

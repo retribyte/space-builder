@@ -3,44 +3,38 @@ import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
 import model from './model';
 
-function CreatePanel({data, selected, callback}) {
+function CreatePanel({selected, callback}) {
     const [selectedType, setSelectedType] = useState('planet'); // Defaults to planet
     const [formData, setFormData] = useState();
 
-    const handleSelectionChange = (event) => {
-        setSelectedType(event.target.value);
-    }
-
     const handleSubmit = (event) => {
+        console.log("Submit button clicked.");
         if (!selected) {
             console.error("Nothing is selected!");
         }
-        callback([selectedType, selected, ...data]);
+        callback([selectedType, selected, ...formData]);
+    }
+
+    const handleTabSwitch = (event) => {
+        setSelectedType(event.target.textContent.toLowerCase());
+        console.log(event.target.textContent.toLowerCase());
+        event.target.className += "selected";
     }
 
     return (
         <section id="create-panel" className="col-md-2 px-0 text-light">
             <div id="create-panel-content" className="collapse-horizontal">
                 <h1>Create</h1>
-                <form id="createForm">
-                    <div id="inputContainer">
-                        <label htmlFor="planetmoon">What object?</label>
-                        <select id="planetmoon" className="form-select" onChange={handleSelectionChange} value={selectedType}>
-                            <option value="planet">Planet</option>
-                            <option value="moon">Moon</option>
-                        </select>
-                    </div>
-                    <hr />
+                <div>
+                    <nav className='tab-selector'>
+                        <ul>
+                            <li><a onClick={handleTabSwitch}>Planet</a></li>
+                            <li><a onClick={handleTabSwitch}>Moon</a></li>
+                        </ul>
+                    </nav>
                     { selectedType === 'planet' && <PlanetCreate handleData={(data) => {setFormData(data)}} /> }
                     { selectedType === 'moon' && <MoonCreate handleData={(data) => {setFormData(data)}} /> }
-                    <hr />
-                </form>
-                <button 
-                    id="confirmButton" 
-                    className="btn btn-primary"
-                    onClick={handleSubmit}>
-                        Confirm
-                </button>
+                </div>
             </div>
         </section>
     );
