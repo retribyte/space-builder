@@ -58,6 +58,8 @@ function addMoonToPlanet(planetName, name, size, distance) {
     planet.moons.push(createMoon(name, size, distance));
 }
 
+export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet };
+
 function test() {
     // Example of how this would be used
     let sol = createStar('Sol', 696340);
