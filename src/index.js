@@ -1,11 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
+import Bootstrap from './Bootstrap';
+import './assets/css/style.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <App />
     <script src="./model.js"></script>
-  </React.StrictMode>
+    <Bootstrap />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
