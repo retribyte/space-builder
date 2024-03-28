@@ -3,7 +3,7 @@ import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
 import model from './model';
 
-function CreatePanel({callback, selected}) {
+function CreatePanel({data, selected, callback}) {
     const [selectedType, setSelectedType] = useState('planet'); // Defaults to planet
     const [formData, setFormData] = useState();
 
