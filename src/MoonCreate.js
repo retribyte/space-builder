@@ -1,13 +1,39 @@
 import React from "react";
 
-function MoonCreate({ handleData }) {
+function MoonCreate({ planets, handleData }) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const primary = document.getElementById('planet-selector').value;
+        const name = document.getElementById('name-input').value;
+        const size = document.getElementById('size-input').value;
+        const distance = document.getElementById('distance-input').value;
+        const type = document.getElementById('planetType').value;
+
+        const formData = [
+            primary,
+            name,
+            size,
+            distance,
+            type
+        ];
+
+        console.log('Pulling hand grenade...')
+        handleData(formData);
+    }
+
     return (
-        <form id="createForm">
+        <form id="createForm" onSubmit={handleSubmit}>
             <div id="inputContainer">
-                <label htmlFor="planetmoon">What object?</label>
-                <select id="planetmoon" className="form-select">
-                    <option value="planet">Planet</option>
-                    <option value="moon">Moon</option>
+                <label htmlFor="planet-selector">To which planet?</label>
+                <select id="planet-selector" className="form-select">
+                    {
+                        planets.map( (planet) => {
+                            return (
+                                <option key={planet.name} value={planet.name}>{planet.name}</option>
+                            );
+                        })
+                    }
                 </select>
             </div>
             <hr />
@@ -27,8 +53,8 @@ function MoonCreate({ handleData }) {
                     <span className="unit">km</span>
                 </div>
                 <div id="inputContainer">
-                    <label htmlFor="distance-input">Moon type:</label>
-                    <select id="planetType" className="form-select ">
+                    <label htmlFor="planetType">Moon type:</label>
+                    <select id="planetType" className="form-select">
                         <option value="terrestrial">Terrestrial</option>
                     </select>
                 </div>

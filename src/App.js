@@ -5,12 +5,54 @@ import ChildrenPanel from './ChildrenPanel';
 import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
 import './assets/css/style.css';
-import model from './model';
+import model from './factory';
 import sampleData from './sample.json';
 
 function App() {
     const [galaxy, setGalaxy] = useState(null);
     const [selectedObject, setSelectedObject] = useState(null);
+
+    const addPlanetToStar = (starName, name, size, distance, type) => {
+        setGalaxy(galaxyBefore => {
+            const updatedSystems = galaxyBefore.systems.map(system => {
+                // Check if this is the right star
+                if (system.name === starName) {
+                    // Found the star, now add the new planet to its planets array
+                    return {
+                        ...system,
+                        planets: [...system.planets, model.createPlanet(name, size, distance, type)]
+                    };
+                }
+                // Not it! Return the unmodified system...
+                return system;
+            });
+    
+            return { ...galaxyBefore, systems: updatedSystems };
+        });
+    };
+    
+    const addMoonToPlanet = (planetName, name, size, distance, type) => {
+        setGalaxy(galaxyBefore => {
+            const updatedSystems = galaxyBefore.systems.map(system => {
+                // Check if this is the right planet
+                const updatedPlanets = system.planets.map(planet => {
+                    if (planet.name === planetName) {
+                        // Found the planet, now add the new moon to its moons array
+                        return {
+                            ...planet,
+                            moons: [...planet.moons, model.createMoon(name, size, distance, type)]
+                        };
+                    }
+                    // Not it! Return the unmodified planet...
+                    return planet;
+                });
+    
+                return { ...system, planets: updatedPlanets };
+            });
+    
+            return { ...galaxyBefore, systems: updatedSystems };
+        });
+    };
 
     useEffect(() => {
         const savedData = localStorage.getItem('data');
@@ -44,14 +86,16 @@ function App() {
             }));
         }
         else if (kind == 'planet') {
-            model.addPlanetToStar(primary.name, name, size, distance, objectCompositionType);
+            addPlanetToStar(primary, name, size, distance, objectCompositionType);
         }
         else if (kind == 'moon') {
-            model.addMoonToPlanet(primary.name, name, size, distance, objectCompositionType);
+            addMoonToPlanet(primary, name, size, distance, objectCompositionType);
         }
         else {
             console.error('I don\'t know how to make a ' + kind + '...');
         }
+
+        console.log(galaxy);
     };
 
     return (

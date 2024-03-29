@@ -1,11 +1,30 @@
 import React from "react";
 
 function PlanetCreate({ handleData }) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById('name-input').value;
+        const size = document.getElementById('size-input').value;
+        const distance = document.getElementById('distance-input').value;
+        const type = document.getElementById('planetType').value;
+
+        const formData = [
+            name,
+            size,
+            distance,
+            type
+        ];
+
+        console.log('Pulling hand grenade...')
+        handleData(formData);
+    }
+
     return (
-        <form id="createForm">
+        <form id="createForm" onSubmit={handleSubmit}>
             <div id="inputContainer">
                 <label htmlFor="planetmoon">What object?</label>
-                <select id="planetmoon" className="form-select">
+                <select id="planetmoon" className="form-select" disabled>
                     <option value="planet">Planet</option>
                     <option value="moon">Moon</option>
                 </select>
@@ -27,7 +46,7 @@ function PlanetCreate({ handleData }) {
                     <span className="unit">AU</span>
                 </div>
                 <div id="inputContainer">
-                    <label htmlFor="distance-input">Planet type:</label>
+                    <label htmlFor="type-input">Planet type:</label>
                     <select id="planetType" className="form-select ">
                         <option value="gas">Gas</option>
                         <option value="terrestrial">Terrestrial</option>
