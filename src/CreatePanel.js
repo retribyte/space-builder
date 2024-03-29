@@ -1,43 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
+import StarCreate from './StarCreate';
+import PlanetCreate from './PlanetCreate';
+import MoonCreate from './MoonCreate';
+import model from './factory';
 
-function CreatePanel() {
+function CreatePanel({data, selected, callback}) {
+    const [selectedType, setSelectedType] = useState('star'); // Defaults to star
+    const [formData, setFormData] = useState();
+    const [starCreated, setStarCreated] = useState(false);
+
+    const handleTabSwitch = (event) => {
+        if (!starCreated || event.target.textContent.toLowerCase() == 'star') {
+            return;
+        }
+        setSelectedType(event.target.textContent.toLowerCase());
+        console.log(event.target.textContent.toLowerCase() + " tab clicked");
+        const children = event.target.parentElement.parentElement.children;
+        for (let i = 0; i < children.length; i++) {
+            console.log(children[i].querySelector('a'))
+            children[i].querySelector('a').classList.remove("selected");
+        }
+        event.target.classList.add("selected");
+    }
+
+    const handleData = (formData) => {
+        console.log(formData);
+        console.log("selected type is " + selectedType);
+        console.log('Pulling bigger hand grenade...');
+        
+        let primary;
+        if (selectedType == 'star') {
+            setStarCreated(true);
+            callback({
+                kind: selectedType,
+                primary: undefined,
+                ...formData
+            });
+            setSelectedType('planet');
+            document.querySelector('li#tab-star > a').classList.remove('selected');
+            document.querySelector('li#tab-planet > a').classList.add('selected');
+        }
+        else if (selectedType == 'planet') {
+            // TEMP:
+            primary = data.systems[0];
+            callback({
+                kind: selectedType,
+                primary: primary.name,
+                ...formData
+            });
+        } else if (selectedType == 'moon') {
+            primary = formData[0];
+            callback({
+                kind: selectedType, 
+                ...formData
+            });
+        }
+    };
+
     return (
-        <section id="create-panel" className="col-md-2 h-100 px-0 text-light">
+        <section id="create-panel" className="col-md-2 px-0 text-light">
             <div id="create-panel-content" className="collapse-horizontal">
                 <h1>Create</h1>
-                <form id="inputFieldsContainer">
-                    <div id="inputContainer">
-                        <label htmlFor="planetmoon">What object?</label>
-                        <select id="planetmoon" className="form-select">
-                            <option value="planet">Planet</option>
-                            <option value="moon">Moon</option>
-                        </select>
-                    </div>
-                    <hr />
-                    <div id="inputContainer">
-                        <label htmlFor="name-input">Name: </label>
-                        <input type="text" id="name-input" className="form-control" placeholder="Earth" />
-                    </div>
-                    <div id="inputContainer">
-                        <label htmlFor="size-input">Size: </label>
-                        <input type="text" id="size-input" className="form-control" placeholder="6000" />
-                        <span className="unit">km</span>
-                    </div>
-                    <div id="inputContainer">
-                        <label htmlFor="distance-input">Primary distance:</label>
-                        <input type="text" id="distance-input" className="form-control" placeholder="2.53" />
-                        <span className="unit">AU</span>
-                    </div>
-                    <div id="inputContainer">
-                        <label htmlFor="distance-input">Planet type:</label>
-                        <select id="planetType" className="form-select ">
-                            <option value="gas">Gas</option>
-                            <option value="terrestrial">Terrestrial</option>
-                        </select>
-                    </div>
-                    <hr />
-                </form>
-                <button id="confirmButton" className="btn btn-primary">Confirm</button>
+                <div>
+                    <nav className='tab-selector'>
+                        <ul>
+                            <li id="tab-star"><a class="selected" onClick={handleTabSwitch}>Star</a></li>
+                            <li id="tab-planet"><a onClick={handleTabSwitch}>Planet</a></li>
+                            <li id="tab-moon"><a onClick={handleTabSwitch}>Moon</a></li>
+                        </ul>
+                    </nav>
+                    { selectedType === 'star' && <StarCreate handleData={handleData} /> }
+                    { selectedType === 'planet' && <PlanetCreate handleData={handleData} /> }
+                    { selectedType === 'moon' && <MoonCreate planets={data.systems[0].planets} handleData={handleData} /> }
+                </div>
             </div>
         </section>
     );

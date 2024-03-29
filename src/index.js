@@ -7,6 +7,7 @@ import './assets/css/style.css';
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <script src="./model.js"></script>
     <Bootstrap />
   </React.StrictMode>,
   document.getElementById('root')
