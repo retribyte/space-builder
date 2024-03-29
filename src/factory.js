@@ -33,4 +33,47 @@ function createStar(name, size, temperature) {
     return star;
 }
 
-export default { createStar, createPlanet, createMoon };
+function addPlanetToStar(setState, starName, name, size, distance, type) {
+    setState(galaxyBefore => {
+        const updatedSystems = galaxyBefore.systems.map(system => {
+            // Check if this is the right star
+            if (system.name === starName) {
+                // Found the star, now add the new planet to its planets array
+                return {
+                    ...system,
+                    planets: [...system.planets, createPlanet(name, size, distance, type)]
+                };
+            }
+            // Not it! Return the unmodified system...
+            return system;
+        });
+
+        return { ...galaxyBefore, systems: updatedSystems };
+    });
+    console.log(galaxy);
+};
+
+function addMoonToPlanet(setState, planetName, name, size, distance, type) {
+    setState(galaxyBefore => {
+        const updatedSystems = galaxyBefore.systems.map(system => {
+            // Check if this is the right planet
+            const updatedPlanets = system.planets.map(planet => {
+                if (planet.name === planetName) {
+                    // Found the planet, now add the new moon to its moons array
+                    return {
+                        ...planet,
+                        moons: [...planet.moons, createMoon(name, size, distance, type)]
+                    };
+                }
+                // Not it! Return the unmodified planet...
+                return planet;
+            });
+
+            return { ...system, planets: updatedPlanets };
+        });
+
+        return { ...galaxyBefore, systems: updatedSystems };
+    });
+};
+
+export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet };
