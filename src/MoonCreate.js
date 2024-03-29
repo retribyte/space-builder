@@ -10,13 +10,13 @@ function MoonCreate({ planets, handleData }) {
         const distance = document.getElementById('distance-input').value;
         const type = document.getElementById('planetType').value;
 
-        const formData = [
-            primary,
-            name,
-            size,
-            distance,
-            type
-        ];
+        const formData = {
+            primary: primary,
+            name: name,
+            size: size,
+            distance: distance,
+            objectCompositionType: type
+        };
 
         console.log('Pulling hand grenade...')
         handleData(formData);

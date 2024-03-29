@@ -23,10 +23,11 @@ function createMoon(name, size, distance, type) {
     return moon;
 }
 
-function createStar(name, size) {
+function createStar(name, size, temperature) {
     let star = {
         name: name,
         size: Number(size),
+        temperature: temperature,
         planets: []
     }
     return star;

@@ -6,7 +6,7 @@ import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
 import './assets/css/style.css';
 import model from './factory';
-import sampleData from './sample.json';
+// import sampleData from './sample.json';
 
 function App() {
     const [galaxy, setGalaxy] = useState(null);
@@ -29,6 +29,7 @@ function App() {
     
             return { ...galaxyBefore, systems: updatedSystems };
         });
+        console.log(galaxy);
     };
     
     const addMoonToPlanet = (planetName, name, size, distance, type) => {
@@ -62,28 +63,31 @@ function App() {
                 setGalaxy(data);
                 console.log("Reached end of try block");
             } catch (e) {
-                console.log("Save data is invalid. Loading default system.");
-                setGalaxy(sampleData);
+                console.log("Save data is invalid. Loading empty system.");
+                setGalaxy({});
             }
         } else {
-            console.log("Save data does not exist. Loading default system.");
-            setGalaxy(sampleData);
+            console.log("Save data does not exist. Loading empty system.");
+            setGalaxy({});
         }
     }, []);
 
-    console.log(galaxy);
-
     const addNewChild = (details) => {
-        const [kind, primary, name, size, distance, objectCompositionType] = details;
+        const {kind, primary, name, size, distance, objectCompositionType, temperature} = details;
         if (kind == 'star') {
-            let star = model.createStar(name, size);
-            setGalaxy( (galaxyBefore) => ({
-                ...galaxyBefore,
+            let star = model.createStar(name, size, temperature);
+            const oldGalaxy = { ...galaxy };
+            let existingSystems = [];
+            if (Object.keys(oldGalaxy).length != 0) {
+                existingSystems = oldGalaxy.systems;
+            }
+            setGalaxy({
+                ...oldGalaxy,
                 systems: [
-                    ...galaxyBefore.systems,
+                    ...existingSystems,
                     star
                 ]
-            }));
+            });
         }
         else if (kind == 'planet') {
             addPlanetToStar(primary, name, size, distance, objectCompositionType);

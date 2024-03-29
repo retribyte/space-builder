@@ -9,12 +9,12 @@ function PlanetCreate({ handleData }) {
         const distance = document.getElementById('distance-input').value;
         const type = document.getElementById('planetType').value;
 
-        const formData = [
-            name,
-            size,
-            distance,
-            type
-        ];
+        const formData = {
+            name: name,
+            size: size,
+            distance: distance,
+            objectCompositionType: type
+        };
 
         console.log('Pulling hand grenade...')
         handleData(formData);
