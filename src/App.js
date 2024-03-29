@@ -9,7 +9,7 @@ import factory from './factory';
 // import sampleData from './sample.json';
 
 function App() {
-    const [galaxy, setGalaxy] = useState({});
+    const [galaxy, setGalaxy] = useState({systems: []});
     const [selectedObject, setSelectedObject] = useState(null);
 
     useEffect(() => {
@@ -62,7 +62,7 @@ function App() {
             <Navbar />
             <div className="row align-items-start text-center h-100"> 
                 <CreatePanel data={galaxy} selected={selectedObject} callback={addNewChild} />
-                <ChildrenPanel />
+                <ChildrenPanel data={galaxy} />
                 <MainColumn data={galaxy} />
                 <InfoPanel />
             </div>
