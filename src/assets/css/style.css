@@ -308,6 +308,7 @@ select:disabled {
 .tab-selector li {
     float: left;
     width: calc(100% / 3);
+    cursor: pointer;
 }
 
 .tab-selector li a {
@@ -321,6 +322,17 @@ select:disabled {
 .tab-selector li a:hover, .tab-selector li a.selected {
     background-color: #193857;
     border-radius: 0.5em 0.5em 0 0;
+}
+
+.tab-selector .disabled {
+    background-color: #181c20;
+    border-radius: 0.5em 0.5em 0 0;
+    color: grey;
+    cursor: not-allowed;
+}
+
+.tab-selector .disabled:hover {
+    background-color: #181c20;
 }
 
 #planet-selector option {
