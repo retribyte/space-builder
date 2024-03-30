@@ -1,6 +1,6 @@
 import React from 'react';
 
-function InfoPanel() {
+function InfoPanel(props) {
     return (
         <section id="info-panel" className="col-md-2 px-0 text-light data-column">
             <div id="info-panel-content" className="collapse-horizontal">
@@ -8,11 +8,7 @@ function InfoPanel() {
                 <ul id="info">
                     <li>
                         <span className="data-type">Name:</span>
-                        <span id="planetName" className="planet-data">[Planet Name]</span>
-                    </li>
-                    <li>
-                        <span className="data-type">Name:</span>
-                        <span className="planet-data"> Mercury</span>
+                        <span id="planet-name" className="planet-data">{props.selected ? props.selected.name : 'Nothing selected'}</span>
                     </li>
                     <li>
                         <span className="data-type">Dist. from star:</span>

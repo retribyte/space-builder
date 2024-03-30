@@ -10,17 +10,14 @@ function CreatePanel({data, selected, callback}) {
     const [starCreated, setStarCreated] = useState(false);
 
     const handleTabSwitch = (event) => {
-        if (!starCreated || event.target.textContent.toLowerCase() == 'star') {
+        if (!starCreated                                        // If there's no star...
+            || event.target.textContent.toLowerCase() == 'star' // ...or star is already selected...
+            || data.systems[0].planets.length == 0              // ...or there's no planets...
+        ) {
             return;
         }
         setSelectedType(event.target.textContent.toLowerCase());
         console.log(event.target.textContent.toLowerCase() + " tab clicked");
-        const children = event.target.parentElement.parentElement.children;
-        for (let i = 0; i < children.length; i++) {
-            console.log(children[i].querySelector('a'))
-            children[i].querySelector('a').classList.remove("selected");
-        }
-        event.target.classList.add("selected");
     }
 
     const handleData = (formData) => {
@@ -64,9 +61,21 @@ function CreatePanel({data, selected, callback}) {
                 <div>
                     <nav className='tab-selector'>
                         <ul>
-                            <li id="tab-star"><a class="selected" onClick={handleTabSwitch}>Star</a></li>
-                            <li id="tab-planet"><a onClick={handleTabSwitch}>Planet</a></li>
-                            <li id="tab-moon"><a onClick={handleTabSwitch}>Moon</a></li>
+                            <li id="tab-star">
+                                <a className={`${selectedType === 'star' ? 'selected' : ''} ${starCreated ? 'disabled' : ''}`} onClick={handleTabSwitch}>
+                                    Star
+                                </a>
+                            </li>
+                            <li id="tab-planet">
+                                <a className={`${selectedType === 'planet' ? 'selected' : ''} ${!starCreated ? 'disabled' : ''}`} onClick={handleTabSwitch}>
+                                    Planet
+                                </a>
+                            </li>
+                            <li id="tab-moon">
+                                <a className={`${selectedType === 'moon' ? 'selected' : ''} ${!starCreated ? 'disabled' : ''} ${!data.systems[0] || data.systems[0].planets.length == 0 ? 'disabled' : ''}`} onClick={handleTabSwitch}>
+                                    Moon
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                     { selectedType === 'star' && <StarCreate handleData={handleData} /> }

@@ -4,7 +4,6 @@ import CreatePanel from './CreatePanel';
 import ChildrenPanel from './ChildrenPanel';
 import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
-import './assets/css/style.css';
 import factory from './factory';
 // import sampleData from './sample.json';
 
@@ -57,14 +56,27 @@ function App() {
         console.log(galaxy);
     };
 
+    useEffect(() => {
+        if (selectedObject != null) {
+            console.log("selected object is " + selectedObject.name);
+        } else {
+            console.log("selected object is null");
+        }
+    }, [selectedObject]);
+
+    const updateSelectedObject = (object) => {
+        let foundObject = factory.findObject(galaxy.systems, object);
+        setSelectedObject(foundObject);
+    }
+
     return (
         <div id="root-container" className="container-fluid">
             <Navbar />
             <div className="row align-items-start text-center h-100"> 
                 <CreatePanel data={galaxy} selected={selectedObject} callback={addNewChild} />
-                <ChildrenPanel data={galaxy} />
-                <MainColumn data={galaxy} />
-                <InfoPanel />
+                <ChildrenPanel data={galaxy} selected={selectedObject} setSelected={updateSelectedObject} />
+                <MainColumn data={galaxy} selected={selectedObject} />
+                <InfoPanel selected={selectedObject} />
             </div>
         </div>
     );

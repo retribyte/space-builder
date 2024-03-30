@@ -37,6 +37,7 @@ main {
 }
 
 #children-panel, #create-panel, #info-panel {
+    z-index: 4;
     min-width: 250px;
     transition: transform 0.25s ease-out;
     position: absolute;
@@ -48,7 +49,6 @@ main {
 }
 
 #create-panel {
-    z-index: 4;
     background-color: #39597a;
 
     /* Temporary -- revert back to -100% once done testing
@@ -116,6 +116,7 @@ main {
 .planet-data {
     background-color: #4c6783;
     border-radius: 2px;
+    margin-left: 0.3em;
 }
 
 .data-type {
@@ -293,10 +294,6 @@ select:disabled {
     color: #444444 !important;
 }
 
-.tab-selector {
-
-}
-
 .tab-selector ul {
     list-style-type: none;
     margin: 0;
@@ -308,6 +305,7 @@ select:disabled {
 .tab-selector li {
     float: left;
     width: calc(100% / 3);
+    cursor: pointer;
 }
 
 .tab-selector li a {
@@ -323,6 +321,37 @@ select:disabled {
     border-radius: 0.5em 0.5em 0 0;
 }
 
+.tab-selector .disabled {
+    background-color: #181c20;
+    border-radius: 0.5em 0.5em 0 0;
+    color: grey;
+    cursor: not-allowed;
+}
+
+.tab-selector .disabled:hover {
+    background-color: #181c20;
+}
+
 #planet-selector option {
     text-transform: capitalize;
+}
+
+ul.star li {
+    z-index: 40;
+    width: fit-content;
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+
+ul.star li:hover {
+    cursor: pointer !important;
+    text-decoration: underline;
+}
+
+ul.star li.selected {
+    font-weight: bold;
+    text-decoration: underline;
+    background-color: #555d65;
+    border-color: #555d65;
+    box-shadow: 0px 0px 5px 1px #555d65 !important;
 }
