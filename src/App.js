@@ -76,7 +76,7 @@ function App() {
                 <CreatePanel data={galaxy} selected={selectedObject} callback={addNewChild} />
                 <ChildrenPanel data={galaxy} selected={selectedObject} setSelected={updateSelectedObject} />
                 <MainColumn data={galaxy} selected={selectedObject} />
-                <InfoPanel />
+                <InfoPanel selected={selectedObject} />
             </div>
         </div>
     );

@@ -116,6 +116,7 @@ main {
 .planet-data {
     background-color: #4c6783;
     border-radius: 2px;
+    margin-left: 0.3em;
 }
 
 .data-type {
@@ -291,10 +292,6 @@ select:disabled {
     background-color: #aaaaaa !important;
     border-color: #7f7f7f !important;
     color: #444444 !important;
-}
-
-.tab-selector {
-
 }
 
 .tab-selector ul {
