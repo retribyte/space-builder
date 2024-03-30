@@ -327,11 +327,22 @@ select:disabled {
     text-transform: capitalize;
 }
 
-ul.star li:hover {
+ul.star li {
+    z-index: 40;
     width: fit-content;
+    padding: 2px 6px;
+    border-radius: 5px;
 }
 
 ul.star li:hover {
     cursor: pointer !important;
     text-decoration: underline;
+}
+
+ul.star li.selected {
+    font-weight: bold;
+    text-decoration: underline;
+    background-color: #555d65;
+    border-color: #555d65;
+    box-shadow: 0px 0px 5px 1px #555d65 !important;
 }
