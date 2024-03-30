@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import StarCreate from './StarCreate';
 import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
+import InfoPanel from './InfoPanel';
 
 function CreatePanel({ data, selected, callback }) {
     const [selectedType, setSelectedType] = useState('star'); // Defaults to star
-    const [formData, setFormData] = useState();
+    const [formData, setFormData] = useState({}); 
     const [starCreated, setStarCreated] = useState(false);
     const [isPanelOpen, setIsPanelOpen] = useState(false); 
 
@@ -55,6 +56,7 @@ function CreatePanel({ data, selected, callback }) {
                 ...formData
             });
         }
+        setFormData(formData);
     };
 
     const handleFinish = () => {
@@ -80,6 +82,7 @@ function CreatePanel({ data, selected, callback }) {
                 </div>
                 <button className="btn btn-outline-primary" type="button" onClick={handleFinish}>Finish</button>
             </div>
+            <InfoPanel formData={formData} /> 
         </section>
     );
 }
