@@ -9,16 +9,16 @@ function ChildrenPanel(props) {
                 <nav className="container text-start">
                         {
                             galaxy.systems.map((system) => (
-                                <ul className="star" key={system.name}>
-                                    <li>{system.name}</li>
+                                <ul className="star">
+                                    <li key={system.name} onClick={() => props.setSelected(system.name)}>{system.name}</li>
                                     <ul className="planet">
                                         {system.planets.map((planet) => (
-                                        <React.Fragment key={planet.name}>
-                                            <li>{planet.name}</li>
+                                        <React.Fragment>
+                                            <li key={planet.name} onClick={() => props.setSelected(planet.name)}>{planet.name}</li>
                                             {planet.moons && planet.moons.length > 0 && (
                                             <ul className="moon">
                                                 {planet.moons.map((moon) => (
-                                                <li key={moon.name}>{moon.name}</li>
+                                                <li key={moon.name} onClick={() => props.setSelected(moon.name)}>{moon.name}</li>
                                                 ))}
                                             </ul>
                                             )}

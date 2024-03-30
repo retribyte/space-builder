@@ -4,7 +4,6 @@ import CreatePanel from './CreatePanel';
 import ChildrenPanel from './ChildrenPanel';
 import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
-import './assets/css/style.css';
 import factory from './factory';
 // import sampleData from './sample.json';
 
@@ -57,12 +56,17 @@ function App() {
         console.log(galaxy);
     };
 
+    const updateSelectedObject = (object) => {
+        setSelectedObject(factory.findObject(galaxy.systems, object));
+        console.log("selected object is " + selectedObject.name);
+    }
+
     return (
         <div id="root-container" className="container-fluid">
             <Navbar />
             <div className="row align-items-start text-center h-100"> 
                 <CreatePanel data={galaxy} selected={selectedObject} callback={addNewChild} />
-                <ChildrenPanel data={galaxy} />
+                <ChildrenPanel data={galaxy} selected={selectedObject} setSelected={updateSelectedObject} />
                 <MainColumn data={galaxy} />
                 <InfoPanel />
             </div>

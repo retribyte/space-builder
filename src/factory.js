@@ -76,4 +76,37 @@ function addMoonToPlanet(setState, planetName, name, size, distance, type) {
     });
 };
 
-export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet };
+function findObject(node, key) {
+    // Check if this node is the object I want
+    if (node.name === key) {
+        return node;
+    }
+
+    // If node is object, look at properties & call recursive func
+    if (typeof node === 'object' && node !== null) {
+        for (let prop in node) {
+            if (node.hasOwnProperty(prop) && typeof node[prop] === 'object') {
+                const result = findObject(node[prop], key);
+                if (result) {
+                    return result;
+                }
+            }
+        }
+    }
+
+    // If node is object, iterate through elements
+    if (Array.isArray(node)) {
+        for (let i = 0; i < node.length; i++) {
+            const result = findObject(node[i], key);
+            if (result) {
+                return result;
+            }
+        }
+    }
+
+    // If object not found, return null
+    return null;
+}
+
+
+export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet, findObject };
