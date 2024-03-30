@@ -58,6 +58,10 @@ function CreatePanel({ data, selected, callback }) {
         }
     };
 
+    const handleFinish = () => {
+        setIsPanelOpen(false); // Close the panel back
+    }
+
     return (
         <section id="create-panel" className="col-md-2 px-0 text-light">
             <button className="btn btn-outline-primary" type="button" onClick={() => setIsPanelOpen(!isPanelOpen)}>Create</button>
@@ -75,6 +79,7 @@ function CreatePanel({ data, selected, callback }) {
                     { selectedType === 'planet' && <PlanetCreate handleData={handleData} /> }
                     { selectedType === 'moon' && <MoonCreate planets={data.systems[0].planets} handleData={handleData} /> }
                 </div>
+                <button className="btn btn-outline-primary" type="button" onClick={handleFinish}>Finish</button>
             </div>
         </section>
     );
