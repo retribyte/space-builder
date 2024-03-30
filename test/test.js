@@ -13,6 +13,7 @@ let data = {
 function calcMass(data) {
     let volume = .75 * 3.14 * ((data.size/2) ** 3);
     let density = 0;
+    let earthMass = 5.97219 * (10 ** 24);
     if (data.type === "T") {
         density = 5.55;
     }
@@ -20,7 +21,7 @@ function calcMass(data) {
         density = .687;
     }
     
-    return ((density / volume) * 10000) ;
+    return ((density / volume) / earthMass) ;
 };
 
 function calcGravity(data) {
