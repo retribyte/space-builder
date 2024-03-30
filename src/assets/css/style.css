@@ -327,6 +327,11 @@ select:disabled {
     text-transform: capitalize;
 }
 
-ul.star li a:hover {
+ul.star li:hover {
+    width: fit-content;
+}
+
+ul.star li:hover {
     cursor: pointer !important;
+    text-decoration: underline;
 }

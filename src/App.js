@@ -56,9 +56,17 @@ function App() {
         console.log(galaxy);
     };
 
+    useEffect(() => {
+        if (selectedObject != null) {
+            console.log("selected object is " + selectedObject.name);
+        } else {
+            console.log("selected object is null");
+        }
+    }, [selectedObject]);
+
     const updateSelectedObject = (object) => {
-        setSelectedObject(factory.findObject(galaxy.systems, object));
-        console.log("selected object is " + selectedObject.name);
+        let foundObject = factory.findObject(galaxy.systems, object);
+        setSelectedObject(foundObject);
     }
 
     return (
@@ -67,7 +75,7 @@ function App() {
             <div className="row align-items-start text-center h-100"> 
                 <CreatePanel data={galaxy} selected={selectedObject} callback={addNewChild} />
                 <ChildrenPanel data={galaxy} selected={selectedObject} setSelected={updateSelectedObject} />
-                <MainColumn data={galaxy} />
+                <MainColumn data={galaxy} selected={selectedObject} />
                 <InfoPanel />
             </div>
         </div>
