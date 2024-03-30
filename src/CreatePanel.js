@@ -4,13 +4,14 @@ import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
 import model from './factory';
 
-function CreatePanel({data, selected, callback}) {
+function CreatePanel({ data, selected, callback }) {
     const [selectedType, setSelectedType] = useState('star'); // Defaults to star
     const [formData, setFormData] = useState();
     const [starCreated, setStarCreated] = useState(false);
+    const [isPanelOpen, setIsPanelOpen] = useState(false); 
 
     const handleTabSwitch = (event) => {
-        if (!starCreated || event.target.textContent.toLowerCase() == 'star') {
+        if (!starCreated || event.target.textContent.toLowerCase() === 'star') {
             return;
         }
         setSelectedType(event.target.textContent.toLowerCase());
@@ -29,7 +30,7 @@ function CreatePanel({data, selected, callback}) {
         console.log('Pulling bigger hand grenade...');
         
         let primary;
-        if (selectedType == 'star') {
+        if (selectedType === 'star') {
             setStarCreated(true);
             callback({
                 kind: selectedType,
@@ -40,7 +41,7 @@ function CreatePanel({data, selected, callback}) {
             document.querySelector('li#tab-star > a').classList.remove('selected');
             document.querySelector('li#tab-planet > a').classList.add('selected');
         }
-        else if (selectedType == 'planet') {
+        else if (selectedType === 'planet') {
             // TEMP:
             primary = data.systems[0];
             callback({
@@ -48,7 +49,7 @@ function CreatePanel({data, selected, callback}) {
                 primary: primary.name,
                 ...formData
             });
-        } else if (selectedType == 'moon') {
+        } else if (selectedType === 'moon') {
             primary = formData[0];
             callback({
                 kind: selectedType, 
@@ -59,12 +60,13 @@ function CreatePanel({data, selected, callback}) {
 
     return (
         <section id="create-panel" className="col-md-2 px-0 text-light">
-            <div id="create-panel-content" className="collapse-horizontal">
+            <button className="btn btn-outline-primary" type="button" onClick={() => setIsPanelOpen(!isPanelOpen)}>Create</button>
+            <div id="create-panel-content" className={`collapse ${isPanelOpen ? 'show' : ''}`}>
                 <h1>Create</h1>
                 <div>
                     <nav className='tab-selector'>
                         <ul>
-                            <li id="tab-star"><a class="selected" onClick={handleTabSwitch}>Star</a></li>
+                            <li id="tab-star"><a className="selected" onClick={handleTabSwitch}>Star</a></li>
                             <li id="tab-planet"><a onClick={handleTabSwitch}>Planet</a></li>
                             <li id="tab-moon"><a onClick={handleTabSwitch}>Moon</a></li>
                         </ul>
