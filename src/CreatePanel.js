@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import StarCreate from './StarCreate';
 import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
-import model from './factory';
 
 function CreatePanel({ data, selected, callback }) {
     const [selectedType, setSelectedType] = useState('star'); // Defaults to star
@@ -64,7 +63,7 @@ function CreatePanel({ data, selected, callback }) {
 
     return (
         <section id="create-panel" className="col-md-2 px-0 text-light">
-            <button className="btn btn-outline-primary" type="button" onClick={() => setIsPanelOpen(!isPanelOpen)}>Create</button>
+            <button className="btn btn-outline-primary btn-transparent" type="button" onClick={() => setIsPanelOpen(!isPanelOpen)}>Create</button>
             <div id="create-panel-content" className={`collapse ${isPanelOpen ? 'show' : ''}`}>
                 <h1>Create</h1>
                 <div>

@@ -29,6 +29,7 @@ main {
 .row > section {
     background-color: #353a3f;
     padding-bottom: 1em;
+    z-index: 1;
 }
 
 #left-panel, #right-panel {
@@ -49,11 +50,11 @@ main {
 
 #create-panel {
     z-index: 4;
-    background-color: #39597a;
+    background-color: #353a3f;
 
     /* Temporary -- revert back to -100% once done testing
     /* transform: translateX(-100%); */
-    transform: translateX(100%);
+    transform: translateX(60%);
 }
 
 #info-panel {
