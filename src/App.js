@@ -10,6 +10,39 @@ import factory from './factory';
 function App() {
     const [galaxy, setGalaxy] = useState({systems: []});
     const [selectedObject, setSelectedObject] = useState(null);
+    
+    const [isChildrenPanelCollapsed, setChildrenPanelCollapsed] = useState(false);
+    const [isCreatePanelCollapsed, setCreatePanelCollapsed] = useState(true);
+    const [isInfoPanelCollapsed, setInfoPanelCollapsed] = useState(false);
+
+    const toggleChildrenPanel = () => {
+        setChildrenPanelCollapsed(!isChildrenPanelCollapsed)
+    }
+    const toggleCreatePanel = () => {
+        setCreatePanelCollapsed(!isCreatePanelCollapsed)
+    }
+    const toggleInfoPanel = () => {
+        setInfoPanelCollapsed(!isInfoPanelCollapsed)
+    }
+
+    function handleResize() {
+        console.log('Window resized; collapsing panels');
+        if (window.innerWidth <= 1260) {
+            if (!isChildrenPanelCollapsed) toggleChildrenPanel();
+            if (!isCreatePanelCollapsed) toggleCreatePanel();
+            if (!isInfoPanelCollapsed) toggleInfoPanel();
+        } else {
+            console.log('Window resized; expanding panels');
+            if (isChildrenPanelCollapsed) toggleChildrenPanel();
+            // The create panel remains collapsed unless explicitly opened by the user
+            if (isInfoPanelCollapsed) toggleInfoPanel();
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isChildrenPanelCollapsed, isCreatePanelCollapsed, isInfoPanelCollapsed, toggleChildrenPanel, toggleCreatePanel, toggleInfoPanel]);
 
     useEffect(() => {
         const savedData = localStorage.getItem('data');
@@ -73,10 +106,18 @@ function App() {
         <div id="root-container" className="container-fluid">
             <Navbar />
             <div className="row align-items-start text-center h-100"> 
-                <CreatePanel data={galaxy} selected={selectedObject} callback={addNewChild} />
-                <ChildrenPanel data={galaxy} selected={selectedObject} setSelected={updateSelectedObject} />
-                <MainColumn data={galaxy} selected={selectedObject} />
-                <InfoPanel selected={selectedObject} />
+                <CreatePanel data={galaxy} selected={selectedObject} callback={addNewChild} collapsed={isCreatePanelCollapsed}/>
+                <ChildrenPanel data={galaxy} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
+
+                <div className="closebtn left"><a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>&equiv;</a></div>
+                   <div className="button-left side-button"><button id="create" type="button" className="btn btn-outline-primary" onClick={toggleCreatePanel}>Create</button></div>
+
+                    <MainColumn data={galaxy} selected={selectedObject} />
+
+                    <div className="button-right side-button"><button id="save" type="button" className="btn btn-outline-danger">Save</button></div>
+
+                <div className="closebtn right"><a onClick={toggleInfoPanel}>&equiv;</a></div>
+                <InfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} />
             </div>
         </div>
     );

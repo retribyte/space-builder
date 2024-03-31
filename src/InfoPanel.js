@@ -5,7 +5,7 @@ function InfoPanel(props) {
     const selectedObject = props.selected;
 
     return (
-        <section id="info-panel" className="col-md-2 px-0 text-light data-column">
+        <section id="info-panel" className="col-md-2 px-0 text-light data-column" style={{ transform: props.collapsed ? 'translateX(100%)' : 'translateX(0)' }}>
             <div id="info-panel-content" className="collapse-horizontal">
                 <h1>Information</h1>
                 <ul id="info">
