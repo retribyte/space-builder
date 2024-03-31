@@ -141,7 +141,8 @@ main {
 }
 
 .image {
-    max-height: 50%;
+    max-height: 500px;
+    max-width: 500px;
 }
 
 #children-panel ul {
