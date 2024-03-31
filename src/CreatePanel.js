@@ -6,7 +6,7 @@ import InfoPanel from './InfoPanel';
 
 function CreatePanel({ data, selected, callback }) {
     const [selectedType, setSelectedType] = useState('star'); // Defaults to star
-    const [formData, setFormData] = useState({}); 
+    const [formData, setFormData] = useState();
     const [starCreated, setStarCreated] = useState(false);
     const [isPanelOpen, setIsPanelOpen] = useState(false); 
 
@@ -56,7 +56,6 @@ function CreatePanel({ data, selected, callback }) {
                 ...formData
             });
         }
-        setFormData(formData);
     };
 
     const handleFinish = () => {
@@ -65,24 +64,28 @@ function CreatePanel({ data, selected, callback }) {
 
     return (
         <section id="create-panel" className="col-md-2 px-0 text-light">
-            <button className="btn btn-outline-primary btn-transparent" type="button" onClick={() => setIsPanelOpen(!isPanelOpen)}>Create</button>
-            <div id="create-panel-content" className={`collapse ${isPanelOpen ? 'show' : ''}`}>
-                <h1>Create</h1>
-                <div>
-                    <nav className='tab-selector'>
-                        <ul>
-                            <li id="tab-star"><a className="selected" onClick={handleTabSwitch}>Star</a></li>
-                            <li id="tab-planet"><a onClick={handleTabSwitch}>Planet</a></li>
-                            <li id="tab-moon"><a onClick={handleTabSwitch}>Moon</a></li>
-                        </ul>
-                    </nav>
-                    { selectedType === 'star' && <StarCreate handleData={handleData} /> }
-                    { selectedType === 'planet' && <PlanetCreate handleData={handleData} /> }
-                    { selectedType === 'moon' && <MoonCreate planets={data.systems[0].planets} handleData={handleData} /> }
+            <div className="d-flex flex-column">
+                <button className="btn btn-outline-primary btn-transparent" type="button" onClick={() => setIsPanelOpen(!isPanelOpen)}>Create</button>
+                <div id="create-panel-content" className={`collapse ${isPanelOpen ? 'show' : ''}`}>
+                    <h1>Create</h1>
+                    <div>
+                        <nav className='tab-selector'>
+                            <ul>
+                                <li id="tab-star"><a className="selected" onClick={handleTabSwitch}>Star</a></li>
+                                <li id="tab-planet"><a onClick={handleTabSwitch}>Planet</a></li>
+                                <li id="tab-moon"><a onClick={handleTabSwitch}>Moon</a></li>
+                            </ul>
+                        </nav>
+                        { selectedType === 'star' && <StarCreate handleData={handleData} /> }
+                        { selectedType === 'planet' && <PlanetCreate handleData={handleData} /> }
+                        { selectedType === 'moon' && <MoonCreate planets={data.systems[0].planets} handleData={handleData} /> }
+                    </div>
+                    <div className="d-flex justify-content-center mt-2">
+                        <button className="btn btn-outline-primary" type="button" onClick={handleFinish}>Finish</button>
+                    </div>
                 </div>
-                <button className="btn btn-outline-primary" type="button" onClick={handleFinish}>Finish</button>
+                
             </div>
-            <InfoPanel formData={formData} /> 
         </section>
     );
 }
