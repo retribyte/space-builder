@@ -1,0 +1,35 @@
+{
+    "name": "Milky Way",
+    "type": "spiral",
+    "systems": [
+        {
+            "name": "Sol",
+            "size": 696340,
+            "planets": [
+                {
+                    "name": "Earth",
+                    "size": 6371,
+                    "distance": 1,
+                    "type": "Terrestrial",
+                    "moons": [
+                        {
+                            "name": "Luna",
+                            "size": 1737,
+                            "distance": 0.002569
+                        },
+                        {
+                            "name": "Cupid",
+                            "size": 925,
+                            "distance": 0.001352
+                        },
+                        {
+                            "name": "Labumba",
+                            "size": 5184,
+                            "distance": 0.006128
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

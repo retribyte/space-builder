@@ -1,10 +1,75 @@
-import React from 'react';
-import './assets/css/style.css';
-// import './assets/js/window.js';
+import React, { useState, useEffect } from 'react';
+import Navbar from './Navbar';
+import CreatePanel from './CreatePanel';
+import ChildrenPanel from './ChildrenPanel';
+import MainColumn from './MainColumn';
+import InfoPanel from './InfoPanel';
+import factory from './factory';
+// import sampleData from './sample.json';
 
-function App(props) {
+function App() {
+    const [galaxy, setGalaxy] = useState({systems: []});
+    const [selectedObject, setSelectedObject] = useState(null);
+
+    useEffect(() => {
+        const savedData = localStorage.getItem('data');
+        if (savedData !== null) {
+            try {
+                let data = JSON.parse(savedData);
+                console.log("Save data found. Loading system.");
+                setGalaxy(data);
+            } catch (e) {
+                console.log("Save data is invalid. Loading empty system.");
+            }
+        } else {
+            console.log("Save data does not exist. Loading empty system.");
+        }
+    }, []);
+
+    const addNewChild = (details) => {
+        const {kind, primary, name, size, distance, objectCompositionType, temperature} = details;
+        if (kind == 'star') {
+            let star = factory.createStar(name, size, temperature);
+            const oldGalaxy = { ...galaxy };
+            let existingSystems = [];
+            if (Object.keys(oldGalaxy).length != 0) {
+                existingSystems = oldGalaxy.systems;
+            }
+            setGalaxy({
+                ...oldGalaxy,
+                systems: [
+                    ...existingSystems,
+                    star
+                ]
+            });
+        }
+        else if (kind == 'planet') {
+            factory.addPlanetToStar(setGalaxy, primary, name, size, distance, objectCompositionType);
+        }
+        else if (kind == 'moon') {
+            factory.addMoonToPlanet(setGalaxy, primary, name, size, distance, objectCompositionType);
+        }
+        else {
+            console.error('I don\'t know how to make a ' + kind + '...');
+        }
+
+        console.log(galaxy);
+    };
+
+    useEffect(() => {
+        if (selectedObject != null) {
+            console.log("selected object is " + selectedObject.name);
+        } else {
+            console.log("selected object is null");
+        }
+    }, [selectedObject]);
+
+    const updateSelectedObject = (object) => {
+        let foundObject = factory.findObject(galaxy.systems, object);
+        setSelectedObject(foundObject);
+    }
+
     return (
-        
         <div id="root-container" className="container-fluid">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -93,7 +158,50 @@ function App(props) {
                     <div className="closebtn right"><a href="javascript:void(0)">&equiv;</a></div>
                 </main>
 
-                <info />
+                <section id="info-panel" className="col-md-2 h-100 px-0  text-light data-column">
+                    <div id="info-panel-content" className="collapse-horizontal">
+                        <h1>Information</h1>
+                        <ul id="info">
+                            <li>
+                                <span className="data-type">Name:</span>
+                                <span id="planetName" className="planet-data">[Planet Name]</span>
+                            </li>
+                            <li>
+                                <span className="data-type">Name:</span>
+                                <span className="planet-data"> Mercury</span>
+                            </li>
+                            <li>
+                                <span className="data-type">Dist. from star:</span>
+                                <span className="planet-data">0.38 AU</span>
+                            </li>
+                            <li>
+                                <span className="data-type">Size:</span>
+                                <span className="planet-data">.38 Earth Diameter</span>
+                            </li>
+                            <li>
+                                <span className="data-type">Planet Type:</span>
+                                <span className="planet-data">Terrestrial</span>
+                            </li>
+                            <hr />
+                            <li>
+                                <span className="data-type">Day Length:</span>
+                                <span className="planet-data">176 Earth Days</span>
+                            </li>
+                            <li>
+                                <span className="data-type">Year Length:</span>
+                                <span className="planet-data">.24 Earth Years</span>
+                            </li>
+                            <li>
+                                <span className="data-type">Planet mass:</span>
+                                <span className="planet-data"> .055 earth mass</span>
+                            </li>
+                            <li>
+                                <span className="gravity data-type">Gravity Strength:</span>
+                                <span className="gravity planet-data"> 3.7 m/s<sup>2</sup></span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
             </div>
         </div>
     );
