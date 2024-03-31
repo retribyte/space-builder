@@ -50,10 +50,11 @@ main {
 
 #create-panel {
     background-color: #39597a;
+    z-index: 5;
 
-    /* Temporary -- revert back to -100% once done testing
-    /* transform: translateX(-100%); */
-    transform: translateX(100%);
+    /* Temporary -- revert back to -100% once done testing */
+    transform: translateX(-100%);
+    /* transform: translateX(100%); */
 }
 
 #info-panel {
@@ -79,16 +80,6 @@ main {
 
 .side-button button {
     font-weight: bold;
-}
-
-.button-left {
-    float: left;
-    margin-left: 5em;
-}
-
-.button-right {
-    float: right;
-    margin-right: 5em;
 }
 
 .title {
@@ -134,7 +125,7 @@ main {
 
 #main-column {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     height: 100%;
 }
 
@@ -150,7 +141,7 @@ main {
 }
 
 .image {
-    min-height: 100%;
+    max-height: 50%;
 }
 
 #children-panel ul {
@@ -195,21 +186,33 @@ main {
 .closebtn {
     background-color: black;
     border-radius: 5px;
-    width: 2em;
+    width: 2em !important;
     height: 2em;
     text-align: center;
     vertical-align: middle;
     margin: 0 0.5em;
-    z-index: 3;
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items:center;
+    cursor: pointer;
+    position:absolute;
+}
+
+.closebtn.left {
+    top: 0;
+    left: 0;
+}
+
+.closebtn.right {
+    top: 0;
+    right: 0;
 }
 
 .closebtn a {
     font-size: 2em;
     text-decoration: none;
-    color: white;
+    color: white !important;
 }
 
 #create {
