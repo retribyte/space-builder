@@ -45,6 +45,10 @@ function App() {
     }, [isChildrenPanelCollapsed, isCreatePanelCollapsed, isInfoPanelCollapsed, toggleChildrenPanel, toggleCreatePanel, toggleInfoPanel]);
 
     useEffect(() => {
+        handleResize();
+    }, []);
+
+    useEffect(() => {
         const savedData = localStorage.getItem('data');
         if (savedData !== null) {
             try {

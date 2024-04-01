@@ -127,6 +127,7 @@ main {
     display: flex;
     flex-direction: column;
     height: 100%;
+    align-items: center;
 }
 
 #top-navbar ul {
