@@ -12,15 +12,15 @@ export function calcMass (planetData) {
     }
     
     return ((density / volume) / earthMass) ;
+
 };
 
 export function calcGravity (planetData) {
 
-    let G = 6.67 * 10**-11
     let mass = calcMass(planetData);
+    let earthMass = 5.97219 * (10 ** 24);
 
-
-    return( G * (mass / ((planetData.size/2) ** 2)));
+    return((mass / earthMass) * 9.807);
 };
 
 export function calcDayLength (planetData) {
