@@ -24,9 +24,7 @@ function App() {
         } else {
             console.log("Save data does not exist. Loading empty system.");
         }
-    }, []);
-
-    useEffect(() => {
+        
         console.log(galaxy);
     }, [])
 
