@@ -12,7 +12,7 @@ function CreatePanel({ data, selected, callback, collapsed }) {
     const handleTabSwitch = (event) => {
         if (!starCreated                                        // If there's no star...
             || event.target.textContent.toLowerCase() == 'star' // ...or star is already selected...
-            || data.systems[0].planets.length == 0              // ...or there's no planets...
+            || data.planets.length == 0                         // ...or there's no planets...
         ) {
             return;
         }
@@ -39,7 +39,7 @@ function CreatePanel({ data, selected, callback, collapsed }) {
         }
         else if (selectedType === 'planet') {
             // TEMP:
-            primary = data.systems[0];
+            primary = data;
             callback({
                 kind: selectedType,
                 primary: primary.name,
@@ -73,7 +73,7 @@ function CreatePanel({ data, selected, callback, collapsed }) {
                                     </a>
                                 </li>
                                 <li id="tab-moon">
-                                    <a className={`${selectedType === 'moon' ? 'selected' : ''} ${!starCreated ? 'disabled' : ''} ${!data.systems[0] || data.systems[0].planets.length == 0 ? 'disabled' : ''}`} onClick={handleTabSwitch}>
+                                    <a className={`${selectedType === 'moon' ? 'selected' : ''} ${!starCreated ? 'disabled' : ''} ${!data.planets || data.planets.length == 0 ? 'disabled' : ''}`} onClick={handleTabSwitch}>
                                         Moon
                                     </a>
                                 </li>
@@ -81,7 +81,7 @@ function CreatePanel({ data, selected, callback, collapsed }) {
                         </nav>
                         { selectedType === 'star' && <StarCreate handleData={handleData} /> }
                         { selectedType === 'planet' && <PlanetCreate handleData={handleData} /> }
-                        { selectedType === 'moon' && <MoonCreate planets={data.systems[0].planets} handleData={handleData} /> }
+                        { selectedType === 'moon' && <MoonCreate planets={data.planets} handleData={handleData} /> }
                     </div>
                 </div>
                 

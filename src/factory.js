@@ -34,45 +34,38 @@ function createStar(name, size, temperature) {
 }
 
 function addPlanetToStar(setState, starName, name, size, distance, type) {
-    setState(galaxyBefore => {
-        const updatedSystems = galaxyBefore.systems.map(system => {
-            // Check if this is the right star
-            if (system.name === starName) {
-                // Found the star, now add the new planet to its planets array
-                return {
-                    ...system,
-                    planets: [...system.planets, createPlanet(name, size, distance, type)]
-                };
-            }
-            // Not it! Return the unmodified system...
-            return system;
-        });
-
-        return { ...galaxyBefore, systems: updatedSystems };
+    setState((systemBefore) => {
+        // console.log("System before:", systemBefore);
+        // Found the star, now add the new planet to its planets array
+        return {
+            ...systemBefore,
+            planets: [
+                ...systemBefore.planets,
+                createPlanet(name, size, distance, type)
+            ]
+        };
     });
-    console.log(galaxy);
+    // console.log("System after:", system);
 };
 
 function addMoonToPlanet(setState, planetName, name, size, distance, type) {
-    setState(galaxyBefore => {
-        const updatedSystems = galaxyBefore.systems.map(system => {
+    setState(systemBefore => {
+        // Map through all planets
+        const updatedPlanets = systemBefore.planets.map(planet => {
             // Check if this is the right planet
-            const updatedPlanets = system.planets.map(planet => {
-                if (planet.name === planetName) {
-                    // Found the planet, now add the new moon to its moons array
-                    return {
-                        ...planet,
-                        moons: [...planet.moons, createMoon(name, size, distance, type)]
-                    };
-                }
-                // Not it! Return the unmodified planet...
-                return planet;
-            });
-
-            return { ...system, planets: updatedPlanets };
+            if (planet.name === planetName) {
+                // Found the planet, now add the new moon to its moons array
+                return {
+                    ...planet,
+                    moons: [...planet.moons, createMoon(name, size, distance, type)]
+                };
+            }
+            // Not it! Return the unmodified planet...
+            return planet;
         });
 
-        return { ...galaxyBefore, systems: updatedSystems };
+        // Return the updated system with the modified planets array
+        return { ...systemBefore, planets: updatedPlanets };
     });
 };
 
