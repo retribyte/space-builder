@@ -10,7 +10,7 @@ function MainColumn(props) {
                 <p style={{minHeight: "1em", color: 'white'}}>{JSON.stringify(props.selectedObject)}</p>
             </>
             {/* <img className="image" src={placeholder} alt="Placeholder diagram of the Solar System" /> */}
-            <SystemCanvas />
+            <SystemCanvas system={props.data} />
         </main>
     );
 }
