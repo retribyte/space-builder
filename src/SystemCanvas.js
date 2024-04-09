@@ -31,7 +31,7 @@ function SystemCanvas(props) {
             ctx.fillStyle = "yellow";
             ctx.fill();
         }
-    }, []);
+    });
 
     return (
         <canvas id="solar-system-canvas" width="500" height="500">
