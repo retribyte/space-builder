@@ -1,4 +1,5 @@
 import React from 'react';
+import SystemCanvas from './SystemCanvas';
 import placeholder from './assets/images/bad-solar-system-diagram.avif';
 
 function MainColumn(props) {
@@ -8,7 +9,8 @@ function MainColumn(props) {
                 <p style={{width: "60%", color: 'white'}}>{JSON.stringify(props.data)}</p>
                 <p style={{minHeight: "1em", color: 'white'}}>{JSON.stringify(props.selectedObject)}</p>
             </>
-            <img className="image" src={placeholder} alt="Placeholder diagram of the Solar System" />
+            {/* <img className="image" src={placeholder} alt="Placeholder diagram of the Solar System" /> */}
+            <SystemCanvas />
         </main>
     );
 }
