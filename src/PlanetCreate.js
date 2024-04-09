@@ -89,6 +89,13 @@ function PlanetCreate({ handleData }) {
                     />
                     <span className="unit">AU</span>
                 </div>
+                <div id="inputContainer">
+                    <label htmlFor="type-input">Planet type:</label>
+                     <select id="planetType" className="form-select">
+                    <option value="gas">Gas</option>
+                     <option value="terrestrial">Terrestrial</option>
+                </select>
+                </div>
             </div>
             <hr />
             <button id="confirmButton" type="submit" className="btn btn-primary">Confirm</button>
