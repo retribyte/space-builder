@@ -88,6 +88,25 @@ function SystemView(props) {
         setSelectedObject(foundObject);
     }
 
+    // Sample data
+    useEffect(() => {
+        setSystem({
+            name: "Sol",
+            size: 696340,
+            temperature: 5772,
+            planets: [
+                {name: "Mercury", size: 2440, distance: 0.39, type: 'terrestrial'},
+                {name: "Venus", size: 6052, distance: 0.72, type: 'terrestrial'},
+                {name: "Earth", size: 6371, distance: 1, type: 'terrestrial'},
+                {name: "Mars", size: 3389, distance: 1.52, type: 'terrestrial'},
+                {name: "Jupiter", size: 69911, distance: 5.20, type: 'gas'},
+                {name: "Saturn", size: 58232, distance: 9.58, type: 'gas'},
+                {name: "Uranus", size: 25362, distance: 19.22, type: 'ice'},
+                {name: "Neptune", size: 24622, distance: 30.05, type: 'ice'}
+            ]
+        });
+    }, [])
+
     return (
         <div id="root-container" className="container-fluid">
             <Navbar />
