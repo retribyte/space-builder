@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { starColor } from './calc';
 
 function SystemCanvas(props) {
     const system = props.system;
@@ -13,6 +14,12 @@ function SystemCanvas(props) {
         const KM_CONVERSION_FACTOR_OTHER    = 1 / 1000;     // Radius:    1000 km = 1px
         const AU_CONVERSION_FACTOR          = 150;          // Distance:   150 km = 1px
         const BASE_CONVERT_MULTIPLIER       = 1 / Math.log(1.25);
+
+        const colors = {
+            'terrestrial' : 'brown',
+            'gas' : 'violet',
+            'ice' : 'cyan'
+        }
 
         // Grab the Canvas context
         // ALWAYS clear it before re-rendering!!!
@@ -37,10 +44,7 @@ function SystemCanvas(props) {
         const starPivot = starRadius + 10;
 
         ctx.arc(width/2, starPivot, starRadius, 0, 2 * Math.PI);
-        ctx.strokeStyle = "orange";
-        ctx.lineWidth = 5;
-        ctx.stroke();
-        ctx.fillStyle = "yellow";
+        ctx.fillStyle = starColor(system.temperature);
         ctx.fill();
 
         // Render planets
@@ -59,12 +63,9 @@ function SystemCanvas(props) {
             // Draw planet
             ctx.beginPath();
             const planetRadius = Math.log(planet.size * KM_CONVERSION_FACTOR_OTHER) * BASE_CONVERT_MULTIPLIER;
-            const planetColor  = planet.type == 'terrestrial' ? 'brown' : 'cyan';
+            const planetColor  = colors[planet.type];
 
             ctx.arc(width/2, drawDistance, planetRadius, 0, 2 * Math.PI);
-            ctx.strokeStyle = planetColor;
-            ctx.lineWidth = 5;
-            ctx.stroke();
             ctx.fillStyle = planetColor;
             ctx.fill();
         }
