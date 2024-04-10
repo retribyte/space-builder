@@ -34,7 +34,9 @@ function SystemCanvas(props) {
         // Render star
         ctx.beginPath();
         const starRadius = system.size * KM_CONVERSION_FACTOR_STAR;
-        ctx.arc(width/2, starRadius + 10, starRadius, 0, 2 * Math.PI);
+        const starPivot = starRadius + 10;
+
+        ctx.arc(width/2, starPivot, starRadius, 0, 2 * Math.PI);
         ctx.strokeStyle = "orange";
         ctx.lineWidth = 5;
         ctx.stroke();
@@ -42,11 +44,19 @@ function SystemCanvas(props) {
         ctx.fill();
 
         // Render planets
-        const starOffset = starRadius * 2 + 20;
+        const starOffset = starPivot + 20;
         for (const planet of system.planets) {
             console.log("Rendering planet:", planet.name);
             let drawDistance = Math.log(planet.distance + 1) * AU_CONVERSION_FACTOR + starOffset;
 
+            // Draw orbit
+            ctx.beginPath()
+            ctx.arc(width/2, starPivot, drawDistance - 45, 0, 2 * Math.PI);
+            ctx.strokeStyle = '#ffffff40';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Draw planet
             ctx.beginPath();
             const planetRadius = Math.log(planet.size * KM_CONVERSION_FACTOR_OTHER) * BASE_CONVERT_MULTIPLIER;
             const planetColor  = planet.type == 'terrestrial' ? 'brown' : 'cyan';
