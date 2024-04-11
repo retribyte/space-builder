@@ -90,6 +90,7 @@ function SystemView(props) {
 
     // Sample data
     useEffect(() => {
+        return;
         setSystem({
             name: "Sol",
             size: 696340,

@@ -4,12 +4,16 @@ import { starColor } from './calc';
 function SystemCanvas(props) {
     const system = props.system;
 
+    const setCanvasSize = (canvas) => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
     useEffect(() => {
         var canvas = document.getElementById("solar-system-canvas");
-        const width = canvas.width;
-        const height = canvas.height;
+        setCanvasSize(canvas);
         
-        const GLOBAL_SCALE                  = 1;
+          let GLOBAL_SCALE                  = props.scale;
         const KM_CONVERSION_FACTOR_STAR     = 1 / 20000;    // Radius:   10000 km = 1px
         const KM_CONVERSION_FACTOR_OTHER    = 1 / 1000;     // Radius:    1000 km = 1px
         const AU_CONVERSION_FACTOR          = 150;          // Distance:   150 km = 1px
@@ -24,8 +28,8 @@ function SystemCanvas(props) {
         // Grab the Canvas context
         // ALWAYS clear it before re-rendering!!!
         var ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, width, height); // Don't remove
-        ctx.scale(GLOBAL_SCALE, GLOBAL_SCALE);
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Don't remove
+        // ctx.scale(GLOBAL_SCALE, GLOBAL_SCALE);
 
         console.log("data is", system);
 
@@ -34,45 +38,45 @@ function SystemCanvas(props) {
             ctx.font = "30px Arial";
             ctx.fillStyle = "white";
             ctx.textAlign = "center";
-            ctx.fillText("Nothing to display", width/2, height/2);
+            ctx.fillText("Nothing to display", canvas.width/2, canvas.height/2);
             return;
         }
 
         // Render star
         ctx.beginPath();
         const starRadius = system.size * KM_CONVERSION_FACTOR_STAR;
-        const starPivot = starRadius + 10;
+        const starPivotY = canvas.height/2 * GLOBAL_SCALE;
 
-        ctx.arc(width/2, starPivot, starRadius, 0, 2 * Math.PI);
+        ctx.arc(canvas.width/2, starPivotY, starRadius * GLOBAL_SCALE, 0, 2 * Math.PI);
         ctx.fillStyle = starColor(system.temperature);
         ctx.fill();
 
         // Render planets
-        const starOffset = starPivot + 20;
+        const starOffset = 20 * GLOBAL_SCALE;
         for (const planet of system.planets) {
             console.log("Rendering planet:", planet.name);
-            let drawDistance = Math.log(planet.distance + 1) * AU_CONVERSION_FACTOR + starOffset;
+            let drawDistance = (Math.log(planet.distance + 1) * AU_CONVERSION_FACTOR + starOffset) * GLOBAL_SCALE;
 
             // Draw orbit
             ctx.beginPath()
-            ctx.arc(width/2, starPivot, drawDistance - 45, 0, 2 * Math.PI);
+            ctx.arc(canvas.width/2, starPivotY, drawDistance, 0, 2 * Math.PI);
             ctx.strokeStyle = '#ffffff40';
             ctx.lineWidth = 2;
             ctx.stroke();
 
             // Draw planet
             ctx.beginPath();
-            const planetRadius = Math.log(planet.size * KM_CONVERSION_FACTOR_OTHER) * BASE_CONVERT_MULTIPLIER;
-            const planetColor  = colors[planet.type];
+            const planetRadius = (Math.log(planet.size * KM_CONVERSION_FACTOR_OTHER) * BASE_CONVERT_MULTIPLIER) * GLOBAL_SCALE;
+            const planetColor  = planet.color ? planet.color : colors[planet.type];
 
-            ctx.arc(width/2, drawDistance, planetRadius, 0, 2 * Math.PI);
+            ctx.arc(canvas.width/2, starPivotY + drawDistance, planetRadius * GLOBAL_SCALE, 0, 2 * Math.PI);
             ctx.fillStyle = planetColor;
             ctx.fill();
         }
     });
 
     return (
-        <canvas id="solar-system-canvas" width="1000" height="1000" style={{border: "5px solid white"}}>
+        <canvas id="solar-system-canvas" width="500" height="500">
 
         </canvas>
     );
