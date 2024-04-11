@@ -34,7 +34,7 @@ function SystemCanvas(props) {
         console.log("data is", system);
 
         // Display text if star exists
-        if (!system.name) {
+        if (!system.name || !system.size || !system.temperature) {
             ctx.font = "30px Arial";
             ctx.fillStyle = "white";
             ctx.textAlign = "center";
@@ -44,10 +44,11 @@ function SystemCanvas(props) {
 
         // Render star
         ctx.beginPath();
-        const starRadius = system.size * KM_CONVERSION_FACTOR_STAR;
+        let starRadius = system.size * KM_CONVERSION_FACTOR_STAR * GLOBAL_SCALE;
+        starRadius = starRadius < 10 ? 10 : starRadius;
         const starPivotY = canvas.height/2 * GLOBAL_SCALE;
 
-        ctx.arc(canvas.width/2, starPivotY, starRadius * GLOBAL_SCALE, 0, 2 * Math.PI);
+        ctx.arc(canvas.width/2, starPivotY, starRadius, 0, 2 * Math.PI);
         ctx.fillStyle = starColor(system.temperature);
         ctx.fill();
 
@@ -66,12 +67,37 @@ function SystemCanvas(props) {
 
             // Draw planet
             ctx.beginPath();
-            const planetRadius = (Math.log(planet.size * KM_CONVERSION_FACTOR_OTHER) * BASE_CONVERT_MULTIPLIER) * GLOBAL_SCALE;
+            let planetRadius = (Math.log(planet.size * KM_CONVERSION_FACTOR_OTHER) * BASE_CONVERT_MULTIPLIER) * GLOBAL_SCALE;
+            planetRadius = planetRadius < 5 ? 5 : planetRadius;
             const planetColor  = planet.color ? planet.color : colors[planet.type];
 
-            ctx.arc(canvas.width/2, starPivotY + drawDistance, planetRadius * GLOBAL_SCALE, 0, 2 * Math.PI);
+            ctx.arc(canvas.width/2, starPivotY + drawDistance, planetRadius, 0, 2 * Math.PI);
             ctx.fillStyle = planetColor;
             ctx.fill();
+
+            // Render moons
+            let moonOffset = planetRadius;
+            for (const moon of planet.moons) {
+                console.log("Rendering moon:", moon.name);
+                let moonDrawDistance = drawDistance;
+                moonOffset += (10 * GLOBAL_SCALE);
+
+                // Draw moon orbit
+                ctx.beginPath();
+                ctx.arc(canvas.width/2, starPivotY + drawDistance, moonOffset, 0, 2 * Math.PI);
+                ctx.strokeStyle = '#ffffff40';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw moon
+                ctx.beginPath();
+                let moonRadius = (Math.log(moon.size * KM_CONVERSION_FACTOR_OTHER) * BASE_CONVERT_MULTIPLIER) * GLOBAL_SCALE;
+                moonRadius = moonRadius < 0 ? 1 : moonRadius;
+                ctx.arc((canvas.width/2) + moonOffset, starPivotY + drawDistance, moonRadius, 0, 2 * Math.PI);
+                ctx.fillStyle = '#aaaacc';
+                ctx.fill();
+
+            }
         }
     });
 
