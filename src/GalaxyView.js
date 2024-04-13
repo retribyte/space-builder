@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createStar, createPlanet, createMoon } from './factory';
-// import './style.css'; 
+import './style.css'; 
 
 function GalaxyView() {
     const [systems, setSystems] = useState([]);
@@ -16,12 +16,12 @@ function GalaxyView() {
     }, []);
 
     const handleCreateStar = () => {
-        // const name = prompt("Enter star name:");
-        // if (name) {
-        //     const newStar = createStar(name, 1, 1);
-        //     setSystems([...systems, { name, stars: [newStar] }]);
-        //     localStorage.setItem('systems', JSON.stringify([...systems, { name, stars: [newStar] }]));
-        // }
+        const name = prompt("Enter star name:");
+        if (name) {
+            const newStar = createStar(name, 1, 1);
+            setSystems([...systems, { name, stars: [newStar] }]);
+            localStorage.setItem('systems', JSON.stringify([...systems, { name, stars: [newStar] }]));
+        }
     };
 
     const handleSelectSystem = (system) => {
