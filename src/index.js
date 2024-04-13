@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Bootstrap from './Bootstrap';
 import './assets/css/style.css';
+import { BrowserRouter } from 'react-router-dom';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -24,8 +25,7 @@ const app = initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <script src="./model.js"></script>
+    <BrowserRouter><App /></BrowserRouter>
     <Bootstrap />
   </React.StrictMode>,
   document.getElementById('root')

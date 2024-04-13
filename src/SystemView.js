@@ -90,7 +90,6 @@ function SystemView(props) {
 
     return (
         <div id="root-container" className="container-fluid">
-            <Navbar />
             <div className="row align-items-start text-center h-100"> 
                 <CreatePanel data={system} selected={selectedObject} callback={addNewChild} collapsed={isCreatePanelCollapsed}/>
                 <ChildrenPanel data={system} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
