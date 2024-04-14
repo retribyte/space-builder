@@ -406,4 +406,35 @@ ul.star li.selected {
     color: white;
   }
   
+  .right-panel {
+    position: absolute;
+    top: 4em;
+    right: 10px;
+    width: 200px;
+    height: 250px; 
+    background-color: #525252;
+    border: none;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+
+  .right-panel .content {
+    padding: 20px;
+    text-align: center;
+  }
+  
+.save-button {
+    position: absolute;
+    top: 100px;
+    left: 300px;   
+}
+
+.load-button {
+    position: absolute;
+    top: 100px; 
+    right: 250px;
+}
+
+  
+  
   

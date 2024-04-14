@@ -4,12 +4,9 @@ import './assets/css/style.css';
 const RightPanel = ({ isOpen, togglePanel }) => {
   return (
     <div className={`right-panel ${isOpen ? 'open' : ''}`}>
-      <button className="toggle-button" onClick={togglePanel}>
-        ☰
-      </button>
       <div className="content">
-        <h2>Right Panel Content</h2>
-        <p>This is the content of the right panel.</p>
+        <h2>Information</h2>
+        <p>This will contain info about what landmark the user clicks on</p>
       </div>
     </div>
   );

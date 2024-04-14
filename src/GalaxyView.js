@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LeftPanel from './LeftGalaxy';
+import RightPanel from './RightGalaxy'; 
 
 function GalaxyView() {
   const [leftPanelOpen, setLeftPanelOpen] = useState(false);
@@ -16,6 +17,9 @@ function GalaxyView() {
         <button className="toggle-button" onClick={toggleLeftPanel}>
         </button>
       </div>
+      <RightPanel isOpen={true} /> 
+      <button id="save" className="save-button" onClick={() => console.log("Save clicked")}>Save</button>
+      <button id="load" className="load-button" onClick={() => console.log("Load clicked")}>Load</button>
     </div>
   );
 }
