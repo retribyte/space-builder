@@ -1,59 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { createStar, createPlanet, createMoon } from './factory';
-import './style.css'; 
+import LeftPanel from './LeftGalaxy';
 
 function GalaxyView() {
-    const [systems, setSystems] = useState([]);
-    const [selectedSystem, setSelectedSystem] = useState(null);
-    const [showPanel, setShowPanel] = useState(true); 
+  const [leftPanelOpen, setLeftPanelOpen] = useState(false);
 
-    useEffect(() => {
-        const savedSystems = localStorage.getItem('systems');
-        if (savedSystems) {
-            setSystems(JSON.parse(savedSystems));
-        }
-    }, []);
+  const toggleLeftPanel = () => {
+    setLeftPanelOpen(!leftPanelOpen);
+  };
 
-    const handleCreateStar = () => {
-        const name = prompt("Enter star name:");
-        if (name) {
-            const newStar = createStar(name, 1, 1);
-            setSystems([...systems, { name, stars: [newStar] }]);
-            localStorage.setItem('systems', JSON.stringify([...systems, { name, stars: [newStar] }]));
-        }
-    };
+  return (
+    <div className="galaxy-page-container">
+      <LeftPanel isOpen={leftPanelOpen} togglePanel={toggleLeftPanel} />
+      
+      <div className="button-container">
+        <Link to="/system">
+          <button>Solar System1</button>
+        </Link>
+      </div>
 
-    const handleSelectSystem = (system) => {
-        setSelectedSystem(system);
-    };
-
-    const handleClosePanel = () => {
-        setShowPanel(false);
-    };
-
-    return (
-        <div className={`galaxy-view ${showPanel ? 'active' : ''}`}>
-            <div className="galaxy-view-content">
-                <h1>Welcome to Galaxy Builder</h1>
-                <button onClick={handleCreateStar}>Create Star</button>
-                <h2>Select a Solar System:</h2>
-                <ul>
-                    {systems.map((system, index) => (
-                        <li key={index}>
-                            <button onClick={() => handleSelectSystem(system)}>{system.name}</button>
-                        </li>
-                    ))}
-                </ul>
-                {selectedSystem && (
-                    <Link to={{ pathname: "/system", state: { system: selectedSystem } }}>
-                        Go to Space Builder
-                    </Link>
-                )}
-                <button onClick={handleClosePanel}>Close</button>
-            </div>
-        </div>
-    );
+      <div className="galaxy-panels">
+        <button className="toggle-button" onClick={toggleLeftPanel}>
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default GalaxyView;
