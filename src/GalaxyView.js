@@ -12,13 +12,6 @@ function GalaxyView() {
   return (
     <div className="galaxy-page-container">
       <LeftPanel isOpen={leftPanelOpen} togglePanel={toggleLeftPanel} />
-      
-      <div className="button-container">
-        <Link to="/system">
-          <button>Solar System1</button>
-        </Link>
-      </div>
-
       <div className="galaxy-panels">
         <button className="toggle-button" onClick={toggleLeftPanel}>
         </button>
