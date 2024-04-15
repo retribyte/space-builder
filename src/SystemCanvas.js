@@ -46,7 +46,7 @@ function SystemCanvas(props) {
         ctx.beginPath();
         let starRadius = system.size * KM_CONVERSION_FACTOR_STAR * GLOBAL_SCALE;
         starRadius = starRadius < 10 ? 10 : starRadius;
-        const starPivotY = canvas.height/2 * GLOBAL_SCALE;
+        const starPivotY = starRadius * 2 * GLOBAL_SCALE;
 
         ctx.arc(canvas.width/2, starPivotY, starRadius, 0, 2 * Math.PI);
         ctx.fillStyle = starColor(system.temperature);
@@ -57,6 +57,9 @@ function SystemCanvas(props) {
         for (const planet of system.planets) {
             console.log("Rendering planet:", planet.name);
             let drawDistance = (Math.log(planet.distance + 1) * AU_CONVERSION_FACTOR + starOffset) * GLOBAL_SCALE;
+            if (drawDistance <= (starRadius + 50)) {
+                drawDistance = starRadius + 50 + (drawDistance * 0.1);
+            }
 
             // Draw orbit
             ctx.beginPath()
@@ -69,6 +72,7 @@ function SystemCanvas(props) {
             ctx.beginPath();
             let planetRadius = (Math.log(planet.size * KM_CONVERSION_FACTOR_OTHER) * BASE_CONVERT_MULTIPLIER) * GLOBAL_SCALE;
             planetRadius = planetRadius < 5 ? 5 : planetRadius;
+
             const planetColor  = planet.color ? planet.color : colors[planet.type];
 
             ctx.arc(canvas.width/2, starPivotY + drawDistance, planetRadius, 0, 2 * Math.PI);
