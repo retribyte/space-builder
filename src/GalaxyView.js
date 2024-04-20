@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import LeftPanel from './LeftGalaxy';
 import RightPanel from './RightGalaxy'; 
 import GalaxyAdd from './GalaxyAdd';
+import GalaxyCanvas from './GalaxyCanvas';
 
 function GalaxyView() {
   const [leftPanelOpen, setLeftPanelOpen] = useState(true);
@@ -26,6 +27,7 @@ function GalaxyView() {
         </button>
 
       </div>
+        <GalaxyCanvas/>
       <RightPanel isOpen={true} /> 
       <button id="save" className="save-button" onClick={() => console.log("Save clicked")}>Save</button>
       <button id="load" className="load-button" onClick={() => console.log("Load clicked")}>Load</button>

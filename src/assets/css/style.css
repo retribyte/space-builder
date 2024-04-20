@@ -375,7 +375,7 @@ ul.star li.selected {
 }
 
 .galaxy-page-container {
-    background-image: url('../images/galaxy.jpg');
+    /* background-image: url('../images/galaxy.jpg'); */
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -466,8 +466,3 @@ ul.star li.selected {
     top: 60px; 
     right: 250px;
 }
-
-
-  
-  
-  
