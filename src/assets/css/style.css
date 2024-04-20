@@ -81,6 +81,9 @@ main {
 
 .side-button button {
     font-weight: bold;
+    position: absolute;
+    left: 20%;
+    z-index: 4;
 }
 
 .title {
@@ -275,9 +278,17 @@ main {
     .button-right {
         margin-right: 0;
     }
+
+    .side-button button {
+        left: 10%;
+    }
+
+    .scale-slider {
+        right: 10%;
+    }
 }
 
-input, select, label {
+#createForm input, #createForm select, #createForm label {
     width: 45% !important;
 }
 
@@ -467,7 +478,22 @@ ul.star li.selected {
     right: 250px;
 }
 
+.scale-slider {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position:absolute;
+    z-index:4;
+    top: 0;
+}
 
-  
-  
-  
+.scale-slider input {
+    width: 100%;
+}
+
+.scale-slider label, .scale-slider p {
+    width: fit-content;
+    color: white;
+    margin-bottom: 0;
+}
