@@ -6,6 +6,8 @@ import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
 import factory from './factory';
 import SystemView from './SystemView';
+import GalaxyView from './GalaxyView';
+import { BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
 // import sampleData from './sample.json';
 
 function App() {
@@ -30,7 +32,15 @@ function App() {
 
 
     return (
-        <SystemView system={galaxy.systems ? galaxy.systems[0] : {}}/>
+        <>
+            <Navbar />
+            <Routes>
+                <Route path="system" element={<SystemView system={galaxy.systems ? galaxy.systems[0] : {}}/>}/>
+                <Route path="galaxy" element={<GalaxyView />}/>
+                <Route path="*" element={<Navigate to="system" />} />
+            </Routes>
+           
+        </>
     );
 }
 

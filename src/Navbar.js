@@ -1,13 +1,15 @@
 import React from 'react';
 import logo from './assets/images/7547889.png';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
         <nav className="row navbar navbar-expand navbar-dark bg-dark">
             <ul className="navbar-nav collapse navbar-collapse">
                 <img src={logo} className="header-icon" alt="Space Builder logo" />
-                <a className="navbar-brand title" href="/">Space Builder</a>
-                <li className="nav-item active"><a className="nav-link" href="index.html">Home</a></li>
+                <Link to="/" className="navbar-brand title">Space Builder</Link>
+                <li className="nav-item"><Link to="system" className="nav-link">System</Link></li>
+                <li className="nav-item"><Link to="galaxy" className="nav-link">Galaxy</Link></li>
                 <li className="nav-item"><a className="nav-link" href="about.html">About</a></li>
             </ul>
         </nav>
