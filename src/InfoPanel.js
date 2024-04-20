@@ -17,11 +17,11 @@ function InfoPanel(props) {
                             </li>
                             <li>
                                 <span className="data-type">Dist. from star:</span>
-                                <span className="planet-data">{selectedObject.distanceFromStar} AU</span>
+                                <span className="planet-data">{selectedObject.distance} AU</span>
                             </li>
                             <li>
                                 <span className="data-type">Size:</span>
-                                <span className="planet-data">{selectedObject.size} Earth Diameter</span>
+                                <span className="planet-data">{selectedObject.size} Earth Radius</span>
                             </li>
                             <li>
                                 <span className="data-type">Planet Type:</span>
@@ -30,11 +30,11 @@ function InfoPanel(props) {
                             <hr />
                             <li>
                                 <span className="data-type">Day Length:</span>
-                                <span className="planet-data">{calcDayLength(selectedObject)} Earth Days</span>
+                                <span className="planet-data">{Math.round((calcDayLength(selectedObject) + Number.EPSILON) * 100) / 100} Earth Days</span>
                             </li>
                             <li>
                                 <span className="data-type">Year Length:</span>
-                                <span className="planet-data">{calcYearLength(selectedObject)} Earth Years</span>
+                                <span className="planet-data">{Math.round((calcYearLength(selectedObject) + Number.EPSILON) * 100) / 100} Earth Days</span>
                             </li>
                             <li>
                                 <span className="data-type">Planet mass:</span>
