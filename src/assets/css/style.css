@@ -231,9 +231,29 @@ main {
 }
 
 .closebtn a {
-    font-size: 2em;
     text-decoration: none;
     color: white !important;
+    display: flex;
+    align-items: center;
+}
+
+.closebtn .tooltip {
+    position: absolute;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
+    width: 100px;
+    height: 2em;
+    top: 15%;
+    left: 2em;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.closebtn:hover .tooltip {
+    opacity: 1;
 }
 
 #create {
@@ -299,7 +319,7 @@ main {
     }
 
     .scale-slider {
-        right: 10%;
+        top: 3em !important;
     }
 }
 
@@ -517,4 +537,8 @@ ul.star li.selected {
     width: fit-content;
     color: white;
     margin-bottom: 0;
+}
+
+.invert {
+    filter: invert(1);
 }
