@@ -139,14 +139,22 @@ function SystemView(props) {
                 <CreatePanel data={system} selected={selectedObject} callback={addNewChild} collapsed={isCreatePanelCollapsed}/>
                 <ChildrenPanel data={system} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
 
-                <div className="closebtn left"><a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>&equiv;</a></div>
+                <div className="closebtn left">
+                    <a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>
+                        <img className='invert' src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Planet_with_rings_icon.svg"></img>
+                    </a>
+                </div>
                 <div className="button-left side-button"><button id="create" type="button" className="btn btn-outline-primary" onClick={toggleCreatePanel}>Create</button></div>
-
+                
                 <MainColumn data={system} selected={selectedObject} />
 
                 <div className="button-right side-button"><button id="save" type="button" className="btn btn-outline-danger">Save</button></div>
 
-                <div className="closebtn right"><a onClick={toggleInfoPanel}>&equiv;</a></div>
+                <div className="closebtn right">
+                    <a onClick={toggleInfoPanel}>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/OOjs_UI_icon_info_big-invert.svg"></img>
+                    </a>
+                </div>
                 <InfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} />
             </div>
         </div>

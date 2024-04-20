@@ -60,7 +60,7 @@ function CreatePanel({ data, selected, callback, collapsed }) {
                 <div id="create-panel-content">
                     <h1>Create</h1>
                     <div>
-                        <nav className='tab-selector'>
+                        <nav className='tab-selector system'>
                             <ul>
                                 <li id="tab-star">
                                     <a className={`${selectedType === 'star' ? 'selected' : ''} ${starCreated ? 'disabled' : ''}`} onClick={handleTabSwitch}>

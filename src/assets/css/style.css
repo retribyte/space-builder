@@ -1,6 +1,7 @@
 :root {
     --create-color: 113, 150, 253;
     --save-color: 220, 83, 119;
+    --load-color: 40, 167, 69;
 }
 
 html, #root {
@@ -79,11 +80,25 @@ main {
     color: white;
 }
 
+.side-button {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 6em !important;
+    flex-direction: column;
+}
+
 .side-button button {
     font-weight: bold;
-    position: absolute;
-    left: 20%;
     z-index: 4;
+}
+
+.button-left {
+    left: 20%;
+}
+
+.button-right {
+    right: 20%;
 }
 
 .title {
@@ -216,9 +231,29 @@ main {
 }
 
 .closebtn a {
-    font-size: 2em;
     text-decoration: none;
     color: white !important;
+    display: flex;
+    align-items: center;
+}
+
+.closebtn .tooltip {
+    position: absolute;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
+    width: 100px;
+    height: 2em;
+    top: 15%;
+    left: 2em;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.closebtn:hover .tooltip {
+    opacity: 1;
 }
 
 #create {
@@ -244,14 +279,14 @@ main {
 }
 
 #load {
-    color: rgb(0, 0, 255);
-    border-color: rgb(0, 0, 255);
+    color: rgb(var(--load-color));
+    border-color: rgb(var(--load-color));
 }
 
 #load:hover, #load.selected {
     color: white;
-    background-color: rgb(0, 0, 255);
-    border-color: rgb(0, 0, 255);
+    background-color: rgb(var(--load-color));
+    border-color: rgb(var(--load-color));
 }
 
 
@@ -284,7 +319,7 @@ main {
     }
 
     .scale-slider {
-        right: 10%;
+        top: 3em !important;
     }
 }
 
@@ -331,9 +366,15 @@ select:disabled {
     background-color: #172838;
 }
 
-.tab-selector li {
+.tab-selector.system li {
     float: left;
     width: calc(100% / 3);
+    cursor: pointer;
+}
+
+.tab-selector.galaxy li {
+    float: left;
+    width: calc(100% / 2);
     cursor: pointer;
 }
 
@@ -496,4 +537,8 @@ ul.star li.selected {
     width: fit-content;
     color: white;
     margin-bottom: 0;
+}
+
+.invert {
+    filter: invert(1);
 }
