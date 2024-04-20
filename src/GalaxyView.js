@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GalaxyOverview from './GalaxyOverview';
-import GalaxyInfoPanel from './RightGalaxy';
+import GalaxyInfoPanel from './GalaxyInfo';
 import GalaxyCreatePanel from './GalaxyAdd';
 
 function GalaxyView(props) {

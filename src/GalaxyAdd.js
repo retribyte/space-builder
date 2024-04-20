@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './assets/css/style.css';
+import LandmarkCreate from './LandmarkCreate';
+import RegionCreate from './RegionCreate';
 
-const GalaxyAdd = ({ data, selected, collapsed, onClose }) => {
-    const [isChildrenPanelOpen, setIsChildrenPanelOpen] = useState(false);
+const GalaxyAdd = (props) => {
+    const [selectedType, setSelectedType] = useState('landmark');
 
-    const toggleChildrenPanel = () => {
-        setIsChildrenPanelOpen(!isChildrenPanelOpen);
-    };
+    const { callback, collapsed } = props;
+    
+    const handleTabSwitch = (event) => {
+        setSelectedType(event.target.textContent.toLowerCase());
+        console.log(event.target.textContent.toLowerCase() + " tab clicked");
+    }
 
-    const GalaxyAdd = ({ isOpen = false, onClose }) => {
-    };
+    const handleData = (formData) => {
+        console.log("Still nothing");
+    }
 
-    const handleCreatePanelClick = () => {
-        setIsChildrenPanelOpen(!isChildrenPanelOpen);
-    };
-
-    const handleTabSwitch = () => {
-        console.log("Sorry nothing yet");
+    const handleDraw = (bounds) => {
+        console.log("I can't draw yet");
     }
 
     return (
@@ -29,20 +29,19 @@ const GalaxyAdd = ({ data, selected, collapsed, onClose }) => {
                         <nav className='tab-selector galaxy'>
                             <ul>
                                 <li id="tab-landmark">
-                                    <a onClick={handleTabSwitch}>
+                                    <a className={`${selectedType === 'landmark' ? 'selected' : ''}`}  onClick={handleTabSwitch}>
                                         Landmark
                                     </a>
                                 </li>
                                 <li id="tab-region">
-                                    <a onClick={handleTabSwitch}>
+                                    <a className={`${selectedType === 'region' ? 'selected' : ''}`} onClick={handleTabSwitch}>
                                         Region
                                     </a>
                                 </li>
                             </ul>
                         </nav>
-                        {/* {selectedType === 'star' && <StarCreate handleData={handleData} />} */}
-                        {/* {selectedType === 'planet' && <PlanetCreate handleData={handleData} />} */}
-                        {/* {selectedType === 'moon' && <MoonCreate planets={data.planets} handleData={handleData} />} */}
+                        {selectedType === 'landmark' && <LandmarkCreate handleData={handleData} />}
+                        {selectedType === 'region' && <RegionCreate handleData={handleData} />}
                     </div>
                 </div>
             </div>
