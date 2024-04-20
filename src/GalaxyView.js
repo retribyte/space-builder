@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GalaxyOverview from './GalaxyOverview';
-import RightPanel from './RightGalaxy';
-import GalaxyAdd from './GalaxyAdd';
+import GalaxyInfoPanel from './RightGalaxy';
+import GalaxyCreatePanel from './GalaxyAdd';
 
-function GalaxyView() {
+function GalaxyView(props) {
+    const [galaxy, setGalaxy] = useState(props.galaxy);
+    const [selectedObject, setSelectedObject] = useState(null);
+
     const [isChildrenPanelCollapsed, setChildrenPanelCollapsed] = useState(false);
     const [isCreatePanelCollapsed, setCreatePanelCollapsed] = useState(true);
     const [isInfoPanelCollapsed, setInfoPanelCollapsed] = useState(false);
@@ -16,23 +19,36 @@ function GalaxyView() {
         setLeftPanelCollapsed(!isLeftPanelCollapsed);
     };
 
-    const toggleGalaxyAdd = () => {
-        setIsGalaxyAddCollapsed(!isGalaxyAddCollapsed);
-    };
+    const toggleChildrenPanel = () => {
+        setChildrenPanelCollapsed(!isChildrenPanelCollapsed)
+    }
+    const toggleCreatePanel = () => {
+        setCreatePanelCollapsed(!isCreatePanelCollapsed)
+    }
+    const toggleInfoPanel = () => {
+        setInfoPanelCollapsed(!isInfoPanelCollapsed)
+    }
 
     return (
-        <div className="galaxy-page-container">
-            <GalaxyOverview collapsed={isChildrenPanelCollapsed} />
-            <div className="galaxy-panels">
-                <button className="toggle-button" onClick={toggleLeftPanel}>
-                    Create
-                </button>
+        <div id="root-container" className="container-fluid">
+            <div className="row align-items-start text-center h-100"> 
+                <GalaxyCreatePanel data={props.galaxy} selected={selectedObject} collapsed={isCreatePanelCollapsed} />
+                <GalaxyOverview collapsed={isChildrenPanelCollapsed} />
 
+                <div className="closebtn left"><a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>&equiv;</a></div>
+                
+                <div className="button-left side-button">
+                    <button id="create" type="button" className="btn btn-outline-primary" onClick={toggleCreatePanel}>
+                        Create
+                    </button>
+                </div>
+
+                <div className="closebtn right"><a onClick={toggleInfoPanel}>&equiv;</a></div>
+
+                <GalaxyInfoPanel collapsed={isInfoPanelCollapsed} />
+                <button id="save" className="save-button" onClick={() => console.log("Save clicked")}>Save</button>
+                <button id="load" className="load-button" onClick={() => console.log("Load clicked")}>Load</button>
             </div>
-            <RightPanel isOpen={true} />
-            <button id="save" className="save-button" onClick={() => console.log("Save clicked")}>Save</button>
-            <button id="load" className="load-button" onClick={() => console.log("Load clicked")}>Load</button>
-            <GalaxyAdd isOpen={isGalaxyAddCollapsed} onClose={toggleGalaxyAdd} />
         </div>
     );
 }

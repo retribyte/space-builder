@@ -331,9 +331,15 @@ select:disabled {
     background-color: #172838;
 }
 
-.tab-selector li {
+.tab-selector.system li {
     float: left;
     width: calc(100% / 3);
+    cursor: pointer;
+}
+
+.tab-selector.galaxy li {
+    float: left;
+    width: calc(100% / 2);
     cursor: pointer;
 }
 
