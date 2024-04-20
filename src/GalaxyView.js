@@ -42,12 +42,17 @@ function GalaxyView(props) {
                         Create
                     </button>
                 </div>
-
+                <div className="button-right side-button">
+                    <button id="load" type="button" className="btn btn-outline-success">
+                        Load
+                    </button>
+                    <button id="save" type="button" className="btn btn-outline-danger">
+                        Save
+                    </button>
+                </div>
                 <div className="closebtn right"><a onClick={toggleInfoPanel}>&equiv;</a></div>
 
                 <GalaxyInfoPanel collapsed={isInfoPanelCollapsed} />
-                <button id="save" className="save-button" onClick={() => console.log("Save clicked")}>Save</button>
-                <button id="load" className="load-button" onClick={() => console.log("Load clicked")}>Load</button>
             </div>
         </div>
     );

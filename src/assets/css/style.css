@@ -1,6 +1,7 @@
 :root {
     --create-color: 113, 150, 253;
     --save-color: 220, 83, 119;
+    --load-color: 40, 167, 69;
 }
 
 html, #root {
@@ -79,11 +80,25 @@ main {
     color: white;
 }
 
+.side-button {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 6em !important;
+    flex-direction: column;
+}
+
 .side-button button {
     font-weight: bold;
-    position: absolute;
-    left: 20%;
     z-index: 4;
+}
+
+.button-left {
+    left: 20%;
+}
+
+.button-right {
+    right: 20%;
 }
 
 .title {
@@ -244,14 +259,14 @@ main {
 }
 
 #load {
-    color: rgb(0, 0, 255);
-    border-color: rgb(0, 0, 255);
+    color: rgb(var(--load-color));
+    border-color: rgb(var(--load-color));
 }
 
 #load:hover, #load.selected {
     color: white;
-    background-color: rgb(0, 0, 255);
-    border-color: rgb(0, 0, 255);
+    background-color: rgb(var(--load-color));
+    border-color: rgb(var(--load-color));
 }
 
 
