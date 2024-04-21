@@ -26,7 +26,7 @@ function LandmarkCreate({ handleData }) {
                     <input type="text" id="name-input" className="form-control" placeholder="Earth" />
                 </div>
                 <div id="inputContainer">
-                    <label htmlFor="decription-input">Size: </label>
+                    <label htmlFor="decription-input">Description: </label>
                     <textarea type="text" id="decription-input" className="form-control" 
                         placeholder="The description of this landmark." rows="4" cols="50" />
                 </div>
