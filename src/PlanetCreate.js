@@ -4,6 +4,7 @@ function PlanetCreate({ handleData }) {
     const [name, setName] = useState('');
     const [size, setSize] = useState('');
     const [distance, setDistance] = useState('');
+    const [type, setType] = useState('gas');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -14,10 +15,10 @@ function PlanetCreate({ handleData }) {
         }
 
         const nameRegex = /^[a-zA-Z]+$/;
-        if (!nameRegex.test(name)) {
-            alert("Name can only contain letters.");
-            return;
-        }
+        // if (!nameRegex.test(name)) {
+        //     alert("Name can only contain letters.");
+        //     return;
+        // }
 
         const numericRegex = /^\d+$/;
         if (!numericRegex.test(size) || !numericRegex.test(distance)) {
@@ -26,15 +27,16 @@ function PlanetCreate({ handleData }) {
         }
 
         const numericValue = parseInt(size);
-        if (numericValue < 1 || numericValue > 100000) {
-            alert("Size must be in the range of 1 - 100000.");
+        if (numericValue < 1) {
+            alert("Size must be greater than 1.");
             return;
         }
 
         const formData = {
             name: name,
             size: size,
-            distance: distance
+            distance: distance,
+            objectCompositionType: type
         };
 
         handleData(formData);
@@ -42,6 +44,7 @@ function PlanetCreate({ handleData }) {
         setName('');
         setSize('');
         setDistance('');
+        setType('gas');
     }
 
     return (
@@ -91,9 +94,11 @@ function PlanetCreate({ handleData }) {
                 </div>
                 <div id="inputContainer">
                     <label htmlFor="type-input">Planet type:</label>
-                     <select id="planetType" className="form-select">
+                    <select id="planetType" className="form-select" 
+                        onChange={(e) => setType(e.target.value)} >
                     <option value="gas">Gas</option>
-                     <option value="terrestrial">Terrestrial</option>
+                    <option value="terrestrial">Terrestrial</option>
+                    <option value="ice">Ice</option>
                 </select>
                 </div>
             </div>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
 function MoonCreate({ planets, handleData }) {
+    const [primary, setPrimary] = useState('');
     const [name, setName] = useState('');
     const [size, setSize] = useState('');
     const [distance, setDistance] = useState('');
+    const [type, setType] = useState('terrestrial');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,10 +22,10 @@ function MoonCreate({ planets, handleData }) {
         }
 
         const nameRegex = /^[a-zA-Z]+$/;
-        if (!nameRegex.test(name)) {
-            alert('Name can only contain letters.');
-            return;
-        }
+        // if (!nameRegex.test(name)) {
+        //     alert('Name can only contain letters.');
+        //     return;
+        // }
 
         const numericRegex = /^\d+$/;
         if (!numericRegex.test(size) || !numericRegex.test(distance)) {
@@ -32,8 +34,8 @@ function MoonCreate({ planets, handleData }) {
         }
 
         const numericValue = parseInt(size);
-        if (numericValue < 1 || numericValue > 100000) {
-            alert('Size must be in the range of 1 - 100000.');
+        if (numericValue < 1) {
+            alert("Size must be greater than 1.");
             return;
         }
 
@@ -51,13 +53,15 @@ function MoonCreate({ planets, handleData }) {
         setName('');
         setSize('');
         setDistance('');
+        setType('terrestrial');
     };
 
     return (
         <form id="createForm" onSubmit={handleSubmit}>
             <div id="inputContainer">
                 <label htmlFor="planet-selector">To which planet?</label>
-                <select id="planet-selector" className="form-select">
+                <select id="planet-selector" className="form-select"
+                    onChange={(e) => setPrimary(e.target.value)}>
                     {planets.map((planet) => (
                         <option key={planet.name} value={planet.name}>{planet.name}</option>
                     ))}
@@ -107,8 +111,11 @@ function MoonCreate({ planets, handleData }) {
                 </div>
                 <div id="inputContainer">
                     <label htmlFor="planetType">Moon type:</label>
-                    <select id="planetType" className="form-select">
+                    <select id="planetType" className="form-select"
+                        onChange={(e) => setType(e.target.value)}>
                         <option value="terrestrial">Terrestrial</option>
+                        <option value="gas">Gas</option>
+                        <option value="ice">Ice</option>
                     </select>
                 </div>
             </div>
