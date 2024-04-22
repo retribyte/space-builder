@@ -36,6 +36,11 @@ function GalaxyView(props) {
         factory.addSystemToGalaxy(props.setGalaxy, newSystem, Math.floor(Math.random() * 1000), Math.floor(Math.random() * 1000));
     }
 
+    const updateSelectedObject = (object) => {
+        let foundObject = factory.findObject(props.galaxy, object);
+        setSelectedObject(foundObject);
+    }
+
     useEffect(() => { 
         console.log("system in hand:", state);
         if (state) {
@@ -47,7 +52,7 @@ function GalaxyView(props) {
         <div id="root-container" className="container-fluid">
             <div className="row align-items-start text-center h-100"> 
                 <GalaxyCreatePanel data={props.galaxy} selected={selectedObject} collapsed={isCreatePanelCollapsed} />
-                <GalaxyOverview data={props.galaxy} collapsed={isChildrenPanelCollapsed} />
+                <GalaxyOverview data={props.galaxy} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
 
                 <div className="closebtn left">
                     <a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>
