@@ -93,6 +93,11 @@ main {
     z-index: 4;
 }
 
+.side-button button a {
+    color: unset;
+    text-decoration: unset;
+}
+
 .button-left {
     left: 20%;
 }

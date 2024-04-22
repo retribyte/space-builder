@@ -46,6 +46,7 @@ function GalaxyView(props) {
         if (state) {
             saveNewSystem(state);
         }
+        console.log("selected:", selectedObject);
     }, [])
 
     return (
@@ -68,10 +69,13 @@ function GalaxyView(props) {
                 <p style={{width: "60%", color: 'white'}}>{JSON.stringify(props.galaxy)}</p>
                 <div className="button-right side-button">
                     <button id="load" type="button" className="btn btn-outline-success">
-                        Load
+                        <Link to={ selectedObject ? "/system" : "#" } state={ selectedObject }>Load</Link>
                     </button>
                     <button id="save" type="button" className="btn btn-outline-danger">
                         Save
+                    </button>
+                    <button id="new" type="button" className="btn btn-outline-info">
+                        <Link to="/system" state={ {} }>New</Link>
                     </button>
                 </div>
                 <div className="closebtn right">

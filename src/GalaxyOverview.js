@@ -9,7 +9,7 @@ const LeftPanel = (props) => {
                 <h1>Overview</h1>
                 <h2 className='systems-list'>Systems:</h2>
                 {
-                    galaxy.systems ? (
+                    galaxy.systems[0] ? (
                         <>
                             <nav className="container text-start">
                                 {
