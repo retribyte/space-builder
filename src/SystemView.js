@@ -5,16 +5,18 @@ import ChildrenPanel from './ChildrenPanel';
 import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
 import factory from './factory';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function SystemView(props) {
-    const location = useLocation();
     const [system, setSystem] = useState(props.system ? props.system : {});
     const [selectedObject, setSelectedObject] = useState(null);
 
     const [isChildrenPanelCollapsed, setChildrenPanelCollapsed] = useState(false);
     const [isCreatePanelCollapsed, setCreatePanelCollapsed] = useState(true);
     const [isInfoPanelCollapsed, setInfoPanelCollapsed] = useState(false);
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (location.state) {
@@ -99,6 +101,13 @@ function SystemView(props) {
         setSelectedObject(foundObject);
     }
 
+    const handleDiscardClick = (event) => {
+        event.preventDefault();
+        if (window.confirm("Are you sure you want to discard this system?")) {
+            navigate('/galaxy');
+        }
+    }
+
     // Sample data
     // useEffect(() => {
     //     // return;
@@ -163,6 +172,7 @@ function SystemView(props) {
                     <button id="save" type="button" className="btn btn-outline-danger">
                         <Link to={ system.name ? "/galaxy" : "#" } state={ system }>Save</Link>
                     </button>
+                    <a onClick={handleDiscardClick} className='discard'>Exit w/o Saving</a>
                 </div>
 
                 <div className="closebtn right">

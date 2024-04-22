@@ -84,7 +84,8 @@ main {
     display: flex;
     position: absolute;
     top: 0;
-    width: 6em !important;
+    flex-grow: 0;
+    max-width: 10em !important;
     flex-direction: column;
 }
 
@@ -100,10 +101,12 @@ main {
 
 .button-left {
     left: 20%;
+    align-items: flex-start;
 }
 
 .button-right {
     right: 20%;
+    align-items: flex-end;
 }
 
 .title {
@@ -328,7 +331,7 @@ main {
     }
 
     .scale-slider {
-        top: 3em !important;
+        top: 4.5em !important;
     }
 }
 
@@ -534,6 +537,16 @@ ul.star li.selected, ul.system li.selected {
     height: 2em;
     top: 60px; 
     right: 250px;
+}
+
+.discard {
+    z-index: 1;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    padding-top: 0.5em;
+    cursor: pointer;
 }
 
 .scale-slider {
