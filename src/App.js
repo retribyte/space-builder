@@ -36,7 +36,7 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path="system" element={<SystemView system={galaxy.systems ? galaxy.systems[0] : {}}/>}/>
-                <Route path="galaxy" element={<GalaxyView galaxy={galaxy} />}/>
+                <Route path="galaxy" element={<GalaxyView galaxy={galaxy} setGalaxy={setGalaxy} />}/>
                 <Route path="*" element={<Navigate to="system" />} />
             </Routes>
            

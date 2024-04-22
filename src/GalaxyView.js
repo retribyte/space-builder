@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import GalaxyOverview from './GalaxyOverview';
 import GalaxyInfoPanel from './GalaxyInfo';
 import GalaxyCreatePanel from './GalaxyAdd';
+import factory from './factory';
 
 function GalaxyView(props) {
-    const [galaxy, setGalaxy] = useState(props.galaxy);
     const [selectedObject, setSelectedObject] = useState(null);
 
     const [isChildrenPanelCollapsed, setChildrenPanelCollapsed] = useState(false);
@@ -14,6 +14,8 @@ function GalaxyView(props) {
 
     const [isLeftPanelCollapsed, setLeftPanelCollapsed] = useState(true);
     const [isGalaxyAddCollapsed, setIsGalaxyAddCollapsed] = useState(false);
+
+    let { state } = useLocation();
 
     const toggleLeftPanel = () => {
         setLeftPanelCollapsed(!isLeftPanelCollapsed);
@@ -28,6 +30,18 @@ function GalaxyView(props) {
     const toggleInfoPanel = () => {
         setInfoPanelCollapsed(!isInfoPanelCollapsed)
     }
+
+    const saveNewSystem = (newSystem) => {
+        // Randomize x and y coordinates for now
+        factory.addSystemToGalaxy(props.setGalaxy, newSystem, Math.floor(Math.random() * 1000), Math.floor(Math.random() * 1000));
+    }
+
+    useEffect(() => { 
+        console.log("system in hand:", state);
+        if (state) {
+            saveNewSystem(state);
+        }
+    }, [])
 
     return (
         <div id="root-container" className="container-fluid">
@@ -46,6 +60,7 @@ function GalaxyView(props) {
                         Create
                     </button>
                 </div>
+                <p style={{width: "60%", color: 'white'}}>{JSON.stringify(props.galaxy)}</p>
                 <div className="button-right side-button">
                     <button id="load" type="button" className="btn btn-outline-success">
                         Load

@@ -5,6 +5,7 @@ import ChildrenPanel from './ChildrenPanel';
 import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
 import factory from './factory';
+import { Link } from 'react-router-dom';
 
 function SystemView(props) {
     const [system, setSystem] = useState(props.system);
@@ -148,7 +149,11 @@ function SystemView(props) {
                 
                 <MainColumn data={system} selected={selectedObject} />
 
-                <div className="button-right side-button"><button id="save" type="button" className="btn btn-outline-danger">Save</button></div>
+                <div className="button-right side-button">
+                    <button id="save" type="button" className="btn btn-outline-danger">
+                        <Link to="/galaxy" state={{ system: system }}>Save</Link>
+                    </button>
+                </div>
 
                 <div className="closebtn right">
                     <a onClick={toggleInfoPanel}>
