@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import GalaxyOverview from './GalaxyOverview';
 import GalaxyInfoPanel from './GalaxyInfo';
 import GalaxyCreatePanel from './GalaxyAdd';
+import factory from './factory';
 
 function GalaxyView(props) {
-    const [galaxy, setGalaxy] = useState(props.galaxy);
     const [selectedObject, setSelectedObject] = useState(null);
 
     const [isChildrenPanelCollapsed, setChildrenPanelCollapsed] = useState(false);
@@ -14,6 +14,8 @@ function GalaxyView(props) {
 
     const [isLeftPanelCollapsed, setLeftPanelCollapsed] = useState(true);
     const [isGalaxyAddCollapsed, setIsGalaxyAddCollapsed] = useState(false);
+
+    let { state } = useLocation();
 
     const toggleLeftPanel = () => {
         setLeftPanelCollapsed(!isLeftPanelCollapsed);
@@ -29,11 +31,29 @@ function GalaxyView(props) {
         setInfoPanelCollapsed(!isInfoPanelCollapsed)
     }
 
+    const saveNewSystem = (newSystem) => {
+        // Randomize x and y coordinates for now
+        factory.addSystemToGalaxy(props.setGalaxy, newSystem, Math.floor(Math.random() * 1000), Math.floor(Math.random() * 1000));
+    }
+
+    const updateSelectedObject = (object) => {
+        let foundObject = factory.findObject(props.galaxy, object);
+        setSelectedObject(foundObject);
+    }
+
+    useEffect(() => { 
+        console.log("system in hand:", state);
+        if (state) {
+            saveNewSystem(state);
+        }
+        console.log("selected:", selectedObject);
+    }, [])
+
     return (
         <div id="root-container" className="container-fluid">
             <div className="row align-items-start text-center h-100"> 
                 <GalaxyCreatePanel data={props.galaxy} selected={selectedObject} collapsed={isCreatePanelCollapsed} />
-                <GalaxyOverview collapsed={isChildrenPanelCollapsed} />
+                <GalaxyOverview data={props.galaxy} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
 
                 <div className="closebtn left">
                     <a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>
@@ -46,12 +66,16 @@ function GalaxyView(props) {
                         Create
                     </button>
                 </div>
+                <p style={{width: "60%", color: 'white'}}>{JSON.stringify(props.galaxy)}</p>
                 <div className="button-right side-button">
                     <button id="load" type="button" className="btn btn-outline-success">
-                        Load
+                        <Link to={ selectedObject ? "/system" : "#" } state={ selectedObject }>Load</Link>
                     </button>
                     <button id="save" type="button" className="btn btn-outline-danger">
                         Save
+                    </button>
+                    <button id="new" type="button" className="btn btn-outline-info">
+                        <Link to="/system" state={ undefined }>New</Link>
                     </button>
                 </div>
                 <div className="closebtn right">

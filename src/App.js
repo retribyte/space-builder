@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
 // import sampleData from './sample.json';
 
 function App() {
-    const [galaxy, setGalaxy] = useState({systems: [{}]});
+    const [galaxy, setGalaxy] = useState({systems: []});
 
     useEffect(() => {
         const savedData = localStorage.getItem('data');
@@ -24,10 +24,10 @@ function App() {
                 console.log("Save data is invalid. Loading empty system.");
             }
         } else {
-            console.log("Save data does not exist. Loading empty system.");
+            // console.log("Save data does not exist. Loading empty system.");
         }
         
-        console.log(galaxy);
+        // console.log(galaxy);
     }, [])
 
 
@@ -35,8 +35,8 @@ function App() {
         <>
             <Navbar />
             <Routes>
-                <Route path="system" element={<SystemView system={galaxy.systems ? galaxy.systems[0] : {}}/>}/>
-                <Route path="galaxy" element={<GalaxyView galaxy={galaxy} />}/>
+                <Route path="system" element={<SystemView system={undefined}/>}/>
+                <Route path="galaxy" element={<GalaxyView galaxy={galaxy} setGalaxy={setGalaxy} />}/>
                 <Route path="*" element={<Navigate to="system" />} />
             </Routes>
            

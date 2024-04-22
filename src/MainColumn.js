@@ -16,7 +16,7 @@ function MainColumn(props) {
             </>
             {/* <img className="image" src={placeholder} alt="Placeholder diagram of the Solar System" /> */}
             <div className='scale-slider'>
-                <label for="globalScale">Scale</label>
+                <label htmlFor="globalScale">Scale</label>
                 <input type="range" id="globalScale" name="globalScale" min="0.1" max="2" defaultValue="1" step="0.1"
                     onChange={(event) => setGlobalScale(event.target.value)} 
                 />

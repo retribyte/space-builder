@@ -69,6 +69,19 @@ function addMoonToPlanet(setState, planetName, name, size, distance, type) {
     });
 };
 
+function addSystemToGalaxy(setState, system, xPos, yPos) {
+    setState(galaxyBefore => {
+        return {
+            ...galaxyBefore,
+            systems: [...galaxyBefore.systems, {
+                ...system,
+                xPos: xPos,
+                yPos: yPos
+            }]
+        };
+    });
+}
+
 function findObject(node, key) {
     // Check if this node is the object I want
     if (node.name === key) {
@@ -102,4 +115,4 @@ function findObject(node, key) {
 }
 
 
-export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet, findObject };
+export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet, addSystemToGalaxy, findObject };

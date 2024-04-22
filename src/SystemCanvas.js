@@ -31,7 +31,7 @@ function SystemCanvas(props) {
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Don't remove
         // ctx.scale(GLOBAL_SCALE, GLOBAL_SCALE);
 
-        console.log("data is", system);
+        // console.log("data is", system);
 
         // Display text if star exists
         if (!system.name || !system.size || !system.temperature) {
@@ -55,7 +55,7 @@ function SystemCanvas(props) {
         // Render planets
         const starOffset = 20 * GLOBAL_SCALE;
         for (const planet of system.planets) {
-            console.log("Rendering planet:", planet.name);
+            // console.log("Rendering planet:", planet.name);
             let drawDistance = (Math.log(planet.distance + 1) * AU_CONVERSION_FACTOR + starOffset) * GLOBAL_SCALE;
             if (drawDistance <= (starRadius + 50)) {
                 drawDistance = starRadius + 50 + (drawDistance * 0.1);
@@ -82,7 +82,7 @@ function SystemCanvas(props) {
             // Render moons
             let moonOffset = planetRadius;
             for (const moon of planet.moons) {
-                console.log("Rendering moon:", moon.name);
+                // console.log("Rendering moon:", moon.name);
                 let moonDrawDistance = drawDistance;
                 moonOffset += (10 * GLOBAL_SCALE);
 
