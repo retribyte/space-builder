@@ -75,7 +75,7 @@ function GalaxyView(props) {
                         Save
                     </button>
                     <button id="new" type="button" className="btn btn-outline-info">
-                        <Link to="/system" state={ {} }>New</Link>
+                        <Link to="/system" state={ undefined }>New</Link>
                     </button>
                 </div>
                 <div className="closebtn right">

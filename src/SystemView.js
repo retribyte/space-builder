@@ -17,18 +17,17 @@ function SystemView(props) {
     const [isInfoPanelCollapsed, setInfoPanelCollapsed] = useState(false);
 
     useEffect(() => {
-        if (location.state && location.state.selectedObject) {
-            console.log("First clause");
-            setSystem(location.state.selectedObject);
+        if (location.state) {
+            setSystem(location.state);
+            console.log("Data from link found:", location.state);
         } else if (props.system) {
-            console.log("Second clause");
             setSystem(props.system);
+            console.log("Taking data from props:", props.system);
         } else {
-            console.log("Santa clause");
             setSystem({});
+            console.log("No data found. Creating new system:", system);
         }
-        console.log("after clauses, system is now:", system);
-    }, [location, props.system]);
+    }, []);
 
     const toggleChildrenPanel = () => {
         setChildrenPanelCollapsed(!isChildrenPanelCollapsed)
