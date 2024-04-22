@@ -186,7 +186,7 @@ main {
     filter: invert(1);
 }
 
-.star li::before {
+.star li::before, .system li::before {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/OOjs_UI_icon_sun-ltr.svg');
 }
 
@@ -198,6 +198,10 @@ main {
 .moon li::before {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/OOjs_UI_icon_moon.svg');
     top: 10% !important;
+}
+
+.landmark li::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/OOjs_UI_icon_mapPin-invert.svg');
 }
 
 .highlight {
@@ -406,19 +410,27 @@ select:disabled {
     text-transform: capitalize;
 }
 
-ul.star li {
+h2.systems-list, h2.landmarks-list {
+    width: fit-content;
+    padding-left: 2.5em;
+    font-size: 1.25em;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+ul.star li, ul.system li {
     z-index: 40;
     width: fit-content;
     padding: 2px 6px;
     border-radius: 5px;
 }
 
-ul.star li:hover {
+ul.star li:hover, ul.system li:hover {
     cursor: pointer !important;
     text-decoration: underline;
 }
 
-ul.star li.selected {
+ul.star li.selected, ul.system li.selected {
     font-weight: bold;
     text-decoration: underline;
     background-color: #555d65;

@@ -47,7 +47,7 @@ function GalaxyView(props) {
         <div id="root-container" className="container-fluid">
             <div className="row align-items-start text-center h-100"> 
                 <GalaxyCreatePanel data={props.galaxy} selected={selectedObject} collapsed={isCreatePanelCollapsed} />
-                <GalaxyOverview collapsed={isChildrenPanelCollapsed} />
+                <GalaxyOverview data={props.galaxy} collapsed={isChildrenPanelCollapsed} />
 
                 <div className="closebtn left">
                     <a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>
