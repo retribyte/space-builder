@@ -84,7 +84,7 @@ function GalaxyView(props) {
                     </a>
                 </div>
 
-                <GalaxyInfoPanel collapsed={isInfoPanelCollapsed} />
+                <GalaxyInfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} />
             </div>
         </div>
     );

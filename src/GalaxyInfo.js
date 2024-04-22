@@ -15,10 +15,10 @@ const RightPanel = (props) => {
                                 <span className="data-type">Name:</span>
                                 <span className="landmark-data">{selectedObject.name}</span>
                             </li>
-                            <li>
+                            { selectedObject.description ? <li>
                                 <span className="data-type">Description:</span>
                                 <span className="landmark-data">{selectedObject.description}</span>
-                            </li>
+                            </li> : '' }
                             </>
                           ) : (
                         <li>

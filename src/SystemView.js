@@ -101,6 +101,15 @@ function SystemView(props) {
         setSelectedObject(foundObject);
     }
 
+    // const handleSaveClick = (event) => {
+    //     event.preventDefault();
+    //     if (!system.description) {
+    //         let desc = window.prompt("Enter a description for this system:")
+    //         setSystem({ ...system, description: desc });
+    //     }
+    //     navigate('/galaxy', { state: system });
+    // }
+
     const handleDiscardClick = (event) => {
         event.preventDefault();
         if (window.confirm("Are you sure you want to discard this system?")) {

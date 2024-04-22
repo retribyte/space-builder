@@ -125,13 +125,13 @@ main {
     text-align: left;
 }
 
-.planet-data, .data-type {
+.planet-data, .data-type, .landmark-data {
     border-radius: 3px;
     padding: 0.1em;
     margin-top: .25px;
 }
 
-.planet-data {
+.planet-data, .landmark-data {
     background-color: #4c6783;
     border-radius: 2px;
     margin-left: 0.3em;
