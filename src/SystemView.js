@@ -151,7 +151,7 @@ function SystemView(props) {
 
                 <div className="button-right side-button">
                     <button id="save" type="button" className="btn btn-outline-danger">
-                        <Link to="/galaxy" state={{ system: system }}>Save</Link>
+                        <Link to="/galaxy" state={ system }>Save</Link>
                     </button>
                 </div>
 
