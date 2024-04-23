@@ -27,7 +27,7 @@ function MoonCreate({ planets, handleData }) {
         //     return;
         // }
 
-        const numericRegex = /^\d+$/;
+        const numericRegex = /^\d+\.?\d+$/;
         if (!numericRegex.test(size) || !numericRegex.test(distance)) {
             alert('Size and distance must contain only numbers.');
             return;
@@ -87,9 +87,9 @@ function MoonCreate({ planets, handleData }) {
                         type="number" 
                         id="size-input" 
                         className="form-control" 
-                        placeholder="6000" 
-                        min="1" 
-                        max="100000" 
+                        placeholder="1561" 
+                        min="1"
+                        step={0.01}
                         value={size} 
                         onChange={(e) => setSize(e.target.value)} 
                         required 
@@ -102,7 +102,8 @@ function MoonCreate({ planets, handleData }) {
                         type="number" 
                         id="distance-input" 
                         className="form-control" 
-                        placeholder="2.53" 
+                        placeholder="384400" 
+                        step={0.01}
                         value={distance} 
                         onChange={(e) => setDistance(e.target.value)} 
                         required 

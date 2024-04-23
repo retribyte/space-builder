@@ -20,7 +20,7 @@ function PlanetCreate({ handleData }) {
         //     return;
         // }
 
-        const numericRegex = /^\d+$/;
+        const numericRegex = /^\d+\.?\d+$/;
         if (!numericRegex.test(size) || !numericRegex.test(distance)) {
             alert("Size and distance must contain only numbers.");
             return;
@@ -69,8 +69,8 @@ function PlanetCreate({ handleData }) {
                         id="size-input" 
                         className="form-control" 
                         placeholder="6371" 
-                        min="1" 
-                        max="100000" 
+                        min="1"
+                        step={0.01}
                         value={size} 
                         onChange={(e) => setSize(e.target.value)} 
                         required 
@@ -84,8 +84,8 @@ function PlanetCreate({ handleData }) {
                         id="distance-input" 
                         className="form-control" 
                         placeholder="1" 
-                        min="1" 
-                        max="100000" 
+                        min="1"
+                        step={0.01}
                         value={distance} 
                         onChange={(e) => setDistance(e.target.value)} 
                         required 

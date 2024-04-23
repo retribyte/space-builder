@@ -20,7 +20,7 @@ function StarCreate({ handleData }) {
         //     return;
         // }
 
-        const numericRegex = /^\d+$/;
+        const numericRegex = /^\d+\.?\d+$/;
         if (!numericRegex.test(size) || !numericRegex.test(temperature)) {
             alert("Size and temperature must contain only numbers.");
             return;
@@ -67,8 +67,8 @@ function StarCreate({ handleData }) {
                         id="size-input" 
                         className="form-control" 
                         placeholder="1" 
-                        min="1" 
-                        max="100000" 
+                        min="1"
+                        step={0.01}
                         value={size} 
                         onChange={(e) => setSize(e.target.value)} 
                         required 
@@ -82,8 +82,8 @@ function StarCreate({ handleData }) {
                         id="temperature-input" 
                         className="form-control" 
                         placeholder="1" 
-                        min="1" 
-                        max="100000" 
+                        min="1"
+                        step={0.01}
                         value={temperature} 
                         onChange={(e) => setTemperature(e.target.value)} 
                         required 
