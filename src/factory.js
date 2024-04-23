@@ -33,6 +33,15 @@ function createStar(name, size, temperature) {
     return star;
 }
 
+function createLandmark(name, description) {
+    let landmark = {
+        name: name,
+        description: description,
+    }
+    return landmark;
+}
+
+
 function addPlanetToStar(setState, starName, name, size, distance, type) {
     setState((systemBefore) => {
         // console.log("System before:", systemBefore);
@@ -115,4 +124,4 @@ function findObject(node, key) {
 }
 
 
-export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet, addSystemToGalaxy, findObject };
+export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet, addSystemToGalaxy, findObject, createLandmark };

@@ -13,8 +13,16 @@ const GalaxyAdd = (props) => {
     }
 
     const handleData = (formData) => {
-        console.log("Still nothing");
-    }
+        console.log(formData);
+        console.log("selected type is " + selectedType);
+        console.log('Pulling bigger hand grenade...');
+        
+            props.callback({
+                kind: selectedType,
+                primary: undefined,
+                ...formData
+            });       
+    };
 
     const handleDraw = (bounds) => {
         console.log("I can't draw yet");
