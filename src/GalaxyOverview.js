@@ -27,7 +27,7 @@ const LeftPanel = (props) => {
                 }
                 <h2 className='landmarks-list'>Landmarks:</h2>
                 {
-                    galaxy.landmarks ? (
+                    galaxy.landmarks[0] ? (
                         <>
                             <nav className="container text-start">
                                 {
@@ -42,6 +42,24 @@ const LeftPanel = (props) => {
                             </nav>
                         </>
                     ) : <p>No landmarks to display.</p>
+                }
+                <h2 className='regions-list'>Regions:</h2>
+                {
+                    galaxy.regions[0] ? (
+                        <>
+                            <nav className="container text-start">
+                                {
+                                    <ul className="region">
+                                        {galaxy.regions.map((region) => (
+                                        <React.Fragment>
+                                            <li key={region.name} className={`${props.selected && props.selected.name === region.name ? 'selected' : ''}`} onClick={() => {props.setSelected(region.name)}}>{region.name}</li>
+                                        </React.Fragment>
+                                        ))}
+                                    </ul>
+                                }
+                            </nav>
+                        </>
+                    ) : <p>No regions to display.</p>
                 }
                 <button className="btn btn-danger selectable" onClick={() => {props.setSelected(null)}}>Deselect</button>
             </div>

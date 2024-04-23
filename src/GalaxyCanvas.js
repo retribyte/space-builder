@@ -45,23 +45,12 @@ function GalaxyCanvas(props) {
             ctx.font = "30px Arial";
             ctx.fillStyle = "white";
             ctx.textAlign = "center";
-            ctx.fillText("Nothing to display", canvas.width/2, canvas.height/2);
-            setEmpty(true);
+            // ctx.fillText("Nothing to display", canvas.width/2, canvas.height/2);
+            // setEmpty(true);
             return;
         }
         else {
-            setEmpty(false);
-        }
-        if (galaxy.systems.length == 0 && galaxy.landmarks.length == 0) {
-            ctx.font = "30px Arial";
-            ctx.fillStyle = "white";
-            ctx.textAlign = "center";
-            ctx.fillText("Nothing to display", canvas.width/2, canvas.height/2);
-            setEmpty(true);
-            return;
-        }
-        else {
-            setEmpty(false);
+            // setEmpty(false);
         }
 
         // Render the background image
@@ -70,7 +59,7 @@ function GalaxyCanvas(props) {
         // Render the systems
         for (const system of galaxy.systems) {
             ctx.beginPath();
-            ctx.arc(system.x, system.y, 10, 0, 2 * Math.PI);
+            ctx.arc(system.xPos, system.yPos, 10, 0, 2 * Math.PI);
             ctx.fillStyle = colors.system.fill;
             ctx.fill();
             ctx.strokeStyle = colors.system.stroke;
@@ -79,7 +68,7 @@ function GalaxyCanvas(props) {
         }
         for (const landmark of galaxy.landmarks) {
             ctx.beginPath();
-            ctx.arc(landmark.x, landmark.y, 10, 0, 2 * Math.PI);
+            ctx.arc(landmark.xPos, landmark.yPos, 10, 0, 2 * Math.PI);
             ctx.fillStyle = colors.landmark.fill;
             ctx.fill();
             ctx.strokeStyle = colors.landmark.stroke;

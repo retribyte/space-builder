@@ -82,12 +82,31 @@ function addSystemToGalaxy(setState, system, xPos, yPos) {
     setState(galaxyBefore => {
         return {
             ...galaxyBefore,
-            systems: [...galaxyBefore.systems, {
-                ...system,
-                xPos: xPos,
-                yPos: yPos
-            }]
+            systems: [
+                ...galaxyBefore.systems, 
+                { // New system
+                    ...system,
+                    xPos: xPos,
+                    yPos: yPos
+                }
+            ]
         };
+    });
+}
+
+function addLandmarkToGalaxy(setState, landmark, xPos, yPos) {
+    setState(galaxyBefore => {
+        return {
+            ...galaxyBefore,
+            landmarks: [
+                ...galaxyBefore.landmarks,
+                { // New landmark
+                    ...landmark,
+                    xPos: xPos,
+                    yPos: yPos
+                }
+            ]
+        }
     });
 }
 
@@ -124,4 +143,4 @@ function findObject(node, key) {
 }
 
 
-export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet, addSystemToGalaxy, findObject, createLandmark };
+export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet, addSystemToGalaxy, findObject, createLandmark, addLandmarkToGalaxy };

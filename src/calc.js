@@ -63,7 +63,7 @@ export function possLife(sunTemp, planetData) {
     let AU = 150000000;
     let planetTemp = sunTemp / ((planetData.distance * AU)**2);
     let HeatChance = (planetTemp / 288 ) * .5;
-    let gravityChance = (calcGravity(data) / 9.807) * .5;
+    let gravityChance = (calcGravity(planetData) / 9.807) * .5;
 
     if (HeatChance > .5 || gravityChance > .5 || planetData.type === "Gas") {
         possOfLife = 0;

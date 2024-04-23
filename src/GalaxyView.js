@@ -36,6 +36,11 @@ function GalaxyView(props) {
         factory.addSystemToGalaxy(props.setGalaxy, newSystem, Math.floor(Math.random() * 1000), Math.floor(Math.random() * 1000));
     }
 
+    const saveNewLandmark = (newLandmark) => {
+        // Randomize x and y coordinates for now
+        factory.addLandmarkToGalaxy(props.setGalaxy, newLandmark, Math.floor(Math.random() * 1000), Math.floor(Math.random() * 1000));
+    }
+
     const updateSelectedObject = (object) => {
         let foundObject = factory.findObject(props.galaxy, object);
         setSelectedObject(foundObject);
@@ -49,20 +54,6 @@ function GalaxyView(props) {
         console.log("selected:", selectedObject);
     }, [])
 
-    const addNewChild = (details) => {
-        const {name, description, kind } = details;
-        if (kind == 'landmark') {
-            let landmark = factory.createLandmark(name, description);
-            props.setGalaxy({
-                    ...props.galaxy,
-                    landmarks: [
-                        ...props.galaxy.landmarks,
-                        landmark
-                    ]
-                });
-        }
-    };
-
     return (
         <div id="root-container" className="container-fluid">
             <div className="row align-items-start text-center h-100"> 
@@ -70,7 +61,7 @@ function GalaxyView(props) {
                     {/* <ScaleSlider scale={globalScale} setScale={handleChange} /> */}
                     <GalaxyCanvas galaxy={props.galaxy} selected={selectedObject} scale={globalScale} />
                 </div>
-                <GalaxyCreatePanel data={props.galaxy} selected={selectedObject} collapsed={isCreatePanelCollapsed} callback={addNewChild} />
+                <GalaxyCreatePanel data={props.galaxy} selected={selectedObject} collapsed={isCreatePanelCollapsed} callback={saveNewLandmark} />
                 <GalaxyOverview data={props.galaxy} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
 
                 <div className="closebtn left">
