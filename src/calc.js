@@ -16,11 +16,10 @@ export function calcMass (planetData) {
 
 export function calcGravity (planetData) {
 
-    let G = 6.67 * 10**-11
     let mass = calcMass(planetData);
+    let earthMass = 5.97219 * (10 ** 24);
 
-
-    return( G * (mass / ((planetData.size/2) ** 2)));
+    return((mass / earthMass) * 9.807);
 };
 
 export function calcDayLength (planetData) {
@@ -57,4 +56,21 @@ export function starColor(temperature) {
 
     // Return RGB color
     return `rgb(${red}, ${green}, ${blue})`;
+}
+
+export function possLife(sunTemp, planetData) {
+    let possOfLife = -1;
+    let AU = 150000000;
+    let planetTemp = sunTemp / ((planetData.distance * AU)**2);
+    let HeatChance = (planetTemp / 288 ) * .5;
+    let gravityChance = (calcGravity(data) / 9.807) * .5;
+
+    if (HeatChance > .5 || gravityChance > .5 || planetData.type === "Gas") {
+        possOfLife = 0;
+    }
+    else {
+        possOfLife = HeatChance + gravityChance;
+    }
+
+    return possOfLife;
 }
