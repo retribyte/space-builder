@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
 // import sampleData from './sample.json';
 
 function App() {
-    const [galaxy, setGalaxy] = useState({systems: []});
+    const [galaxy, setGalaxy] = useState({systems: [], landmarks: []});
 
     useEffect(() => {
         const savedData = localStorage.getItem('data');

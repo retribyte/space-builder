@@ -581,3 +581,18 @@ ul.region li.selected {
 .invert {
     filter: invert(1);
 }
+
+#galaxy-canvas {
+    background-image: url('../images/galaxy_blank.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#galaxy-canvas, #galaxy-canvas * {
+    cursor: crosshair;
+}
+
+#galaxy-canvas.empty {
+    background-image: none;
+}
