@@ -33,6 +33,7 @@ yarn-error.log*
 
 # production
 /build
+/.firebase
 
 # misc
 .DS_Store
