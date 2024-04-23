@@ -32,7 +32,7 @@ const LeftPanel = (props) => {
                             <nav className="container text-start">
                                 {
                                     <ul className="landmark">
-                                        {galaxy.systems.map((landmark) => (
+                                        {galaxy.landmarks.map((landmark) => (
                                         <React.Fragment>
                                             <li key={landmark.name} className={`${props.selected && props.selected.name === landmark.name ? 'selected' : ''}`} onClick={() => {props.setSelected(landmark.name)}}>{landmark.name}</li>
                                         </React.Fragment>

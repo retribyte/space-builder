@@ -209,7 +209,7 @@ main {
 }
 
 .landmark li::before {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/OOjs_UI_icon_mapPin-invert.svg');
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/fe/OOjs_UI_icon_mapPin.svg');
 }
 
 .highlight {
@@ -426,19 +426,28 @@ h2.systems-list, h2.landmarks-list {
     font-weight: bold;
 }
 
-ul.star li, ul.system li {
+ul.star li, 
+ul.system li, 
+ul.landmark li, 
+ul.region li {
     z-index: 40;
     width: fit-content;
     padding: 2px 6px;
     border-radius: 5px;
 }
 
-ul.star li:hover, ul.system li:hover {
+ul.star li:hover, 
+ul.system li:hover, 
+ul.landmark li:hover, 
+ul.region li:hover {
     cursor: pointer !important;
     text-decoration: underline;
 }
 
-ul.star li.selected, ul.system li.selected {
+ul.star li.selected, 
+ul.system li.selected, 
+ul.landmark li.selected, 
+ul.region li.selected {
     font-weight: bold;
     text-decoration: underline;
     background-color: #555d65;
