@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import GalaxyOverview from './GalaxyOverview';
 import GalaxyInfoPanel from './GalaxyInfo';
 import GalaxyCreatePanel from './GalaxyAdd';
+import GalaxyCanvas from './GalaxyCanvas';
+import ScaleSlider from './ScaleSlider';
 import factory from './factory';
 
 function GalaxyView(props) {
@@ -12,14 +14,12 @@ function GalaxyView(props) {
     const [isCreatePanelCollapsed, setCreatePanelCollapsed] = useState(true);
     const [isInfoPanelCollapsed, setInfoPanelCollapsed] = useState(false);
 
-    const [isLeftPanelCollapsed, setLeftPanelCollapsed] = useState(true);
-    const [isGalaxyAddCollapsed, setIsGalaxyAddCollapsed] = useState(false);
+    const [globalScale, setGlobalScale] = useState(1);
+    function handleChange(number) {
+        setGlobalScale(number);
+    }
 
     let { state } = useLocation();
-
-    const toggleLeftPanel = () => {
-        setLeftPanelCollapsed(!isLeftPanelCollapsed);
-    };
 
     const toggleChildrenPanel = () => {
         setChildrenPanelCollapsed(!isChildrenPanelCollapsed)
@@ -52,6 +52,10 @@ function GalaxyView(props) {
     return (
         <div id="root-container" className="container-fluid">
             <div className="row align-items-start text-center h-100"> 
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    {/* <ScaleSlider scale={globalScale} setScale={handleChange} /> */}
+                    <GalaxyCanvas galaxy={props.galaxy} selected={selectedObject} scale={globalScale} />
+                </div>
                 <GalaxyCreatePanel data={props.galaxy} selected={selectedObject} collapsed={isCreatePanelCollapsed} />
                 <GalaxyOverview data={props.galaxy} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
 

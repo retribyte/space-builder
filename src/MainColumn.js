@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SystemCanvas from './SystemCanvas';
 import placeholder from './assets/images/bad-solar-system-diagram.avif';
+import ScaleSlider from './ScaleSlider';
 
 function MainColumn(props) {
     const [globalScale, setGlobalScale] = useState(1);
@@ -15,13 +16,7 @@ function MainColumn(props) {
                 {/* <p style={{minHeight: "1em", color: 'white'}}>{JSON.stringify(props.selectedObject)}</p> */}
             </>
             {/* <img className="image" src={placeholder} alt="Placeholder diagram of the Solar System" /> */}
-            <div className='scale-slider'>
-                <label htmlFor="globalScale">Scale</label>
-                <input type="range" id="globalScale" name="globalScale" min="0.1" max="2" defaultValue="1" step="0.1"
-                    onChange={(event) => setGlobalScale(event.target.value)} 
-                />
-                <p>{globalScale}</p>
-            </div>
+            <ScaleSlider scale={globalScale} setScale={handleChange} />
             <SystemCanvas system={props.data} selected={props.selected} scale={globalScale} />
         </main>
     );
