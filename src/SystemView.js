@@ -5,14 +5,31 @@ import ChildrenPanel from './ChildrenPanel';
 import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
 import factory from './factory';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function SystemView(props) {
-    const [system, setSystem] = useState(props.system);
+    const [system, setSystem] = useState(props.system ? props.system : {});
     const [selectedObject, setSelectedObject] = useState(null);
 
     const [isChildrenPanelCollapsed, setChildrenPanelCollapsed] = useState(false);
     const [isCreatePanelCollapsed, setCreatePanelCollapsed] = useState(true);
     const [isInfoPanelCollapsed, setInfoPanelCollapsed] = useState(false);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (location.state) {
+            setSystem(location.state);
+            console.log("Data from link found:", location.state);
+        } else if (props.system) {
+            setSystem(props.system);
+            console.log("Taking data from props:", props.system);
+        } else {
+            setSystem({});
+            console.log("No data found. Creating new system:", system);
+        }
+    }, []);
 
     const toggleChildrenPanel = () => {
         setChildrenPanelCollapsed(!isChildrenPanelCollapsed)
@@ -23,10 +40,6 @@ function SystemView(props) {
     const toggleInfoPanel = () => {
         setInfoPanelCollapsed(!isInfoPanelCollapsed)
     }
-
-    useEffect(() => {
-        console.log(system);
-    }, [])
 
     function handleResize() {
         console.log('Window resized; collapsing panels');
@@ -88,50 +101,66 @@ function SystemView(props) {
         setSelectedObject(foundObject);
     }
 
+    // const handleSaveClick = (event) => {
+    //     event.preventDefault();
+    //     if (!system.description) {
+    //         let desc = window.prompt("Enter a description for this system:")
+    //         setSystem({ ...system, description: desc });
+    //     }
+    //     navigate('/galaxy', { state: system });
+    // }
+
+    const handleDiscardClick = (event) => {
+        event.preventDefault();
+        if (window.confirm("Are you sure you want to discard this system?")) {
+            navigate('/galaxy');
+        }
+    }
+
     // Sample data
-    useEffect(() => {
-        // return;
-        setSystem({
-            name: "Sol",
-            size: 696340,
-            temperature: 5772,
-            planets: [
-            { name: "Mercury", size: 2440, distance: 0.39, type: 'terrestrial', moons: [] },
-            { name: "Venus", size: 6052, distance: 0.72, type: 'terrestrial', moons: [] },
-            {
-                name: "Earth", size: 6371, distance: 1, type: 'terrestrial', moons: [
-                { name: "Luna", size: 1737, distance: 384500, type: 'terrestrial' }
-                ]
-            },
-            {
-                name: "Mars", size: 3389, distance: 1.52, type: 'terrestrial', moons: [
-                { name: "Phobos", size: 22, distance: 9377, type: 'terrestrial' },
-                { name: "Deimos", size: 12, distance: 23460, type: 'terrestrial' }
-                ]
-            },
-            {
-                name: "Jupiter", size: 69911, distance: 5.20, type: 'gas', moons: [
-                { name: "Io", size: 1821, distance: 421700, type: 'terrestrial' },
-                { name: "Europa", size: 1561, distance: 670900, type: 'terrestrial' }
-                ]
-            },
-            {
-                name: "Saturn", size: 58232, distance: 9.58, type: 'gas', moons: [
-                { name: "Titan", size: 5149, distance: 1221870, type: 'terrestrial' },
-                { name: "Enceladus", size: 504, distance: 238020, type: 'terrestrial' }
-                ]
-            },
-            { name: "Uranus", size: 25362, distance: 19.22, type: 'ice', moons: [
-                { name: "Titania", size: 1578, distance: 435910, type: 'terrestrial' },
-                { name: "Oberon", size: 1523, distance: 583520, type: 'terrestrial' }
-            ] },
-            { name: "Neptune", size: 24622, distance: 30.05, type: 'ice', moons: [
-                { name: "Triton", size: 2707, distance: 354800, type: 'terrestrial' },
-                { name: "Nereid", size: 340, distance: 5513813, type: 'terrestrial' }
-            ] }
-            ]
-        });
-    }, [])
+    // useEffect(() => {
+    //     // return;
+    //     setSystem({
+    //         name: "Sol",
+    //         size: 696340,
+    //         temperature: 5772,
+    //         planets: [
+    //         { name: "Mercury", size: 2440, distance: 0.39, type: 'terrestrial', moons: [] },
+    //         { name: "Venus", size: 6052, distance: 0.72, type: 'terrestrial', moons: [] },
+    //         {
+    //             name: "Earth", size: 6371, distance: 1, type: 'terrestrial', moons: [
+    //             { name: "Luna", size: 1737, distance: 384500, type: 'terrestrial' }
+    //             ]
+    //         },
+    //         {
+    //             name: "Mars", size: 3389, distance: 1.52, type: 'terrestrial', moons: [
+    //             { name: "Phobos", size: 22, distance: 9377, type: 'terrestrial' },
+    //             { name: "Deimos", size: 12, distance: 23460, type: 'terrestrial' }
+    //             ]
+    //         },
+    //         {
+    //             name: "Jupiter", size: 69911, distance: 5.20, type: 'gas', moons: [
+    //             { name: "Io", size: 1821, distance: 421700, type: 'terrestrial' },
+    //             { name: "Europa", size: 1561, distance: 670900, type: 'terrestrial' }
+    //             ]
+    //         },
+    //         {
+    //             name: "Saturn", size: 58232, distance: 9.58, type: 'gas', moons: [
+    //             { name: "Titan", size: 5149, distance: 1221870, type: 'terrestrial' },
+    //             { name: "Enceladus", size: 504, distance: 238020, type: 'terrestrial' }
+    //             ]
+    //         },
+    //         { name: "Uranus", size: 25362, distance: 19.22, type: 'ice', moons: [
+    //             { name: "Titania", size: 1578, distance: 435910, type: 'terrestrial' },
+    //             { name: "Oberon", size: 1523, distance: 583520, type: 'terrestrial' }
+    //         ] },
+    //         { name: "Neptune", size: 24622, distance: 30.05, type: 'ice', moons: [
+    //             { name: "Triton", size: 2707, distance: 354800, type: 'terrestrial' },
+    //             { name: "Nereid", size: 340, distance: 5513813, type: 'terrestrial' }
+    //         ] }
+    //         ]
+    //     });
+    // }, [])
 
     return (
         <div id="root-container" className="container-fluid">
@@ -139,14 +168,27 @@ function SystemView(props) {
                 <CreatePanel data={system} selected={selectedObject} callback={addNewChild} collapsed={isCreatePanelCollapsed}/>
                 <ChildrenPanel data={system} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
 
-                <div className="closebtn left"><a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>&equiv;</a></div>
+                <div className="closebtn left">
+                    <a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>
+                        <img className='invert' src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Planet_with_rings_icon.svg"></img>
+                    </a>
+                </div>
                 <div className="button-left side-button"><button id="create" type="button" className="btn btn-outline-primary" onClick={toggleCreatePanel}>Create</button></div>
-
+                
                 <MainColumn data={system} selected={selectedObject} />
 
-                <div className="button-right side-button"><button id="save" type="button" className="btn btn-outline-danger">Save</button></div>
+                <div className="button-right side-button">
+                    <button id="save" type="button" className="btn btn-outline-danger">
+                        <Link to={ system.name ? "/galaxy" : "#" } state={ system }>Save</Link>
+                    </button>
+                    <a onClick={handleDiscardClick} className='discard'>Exit w/o Saving</a>
+                </div>
 
-                <div className="closebtn right"><a onClick={toggleInfoPanel}>&equiv;</a></div>
+                <div className="closebtn right">
+                    <a onClick={toggleInfoPanel}>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/OOjs_UI_icon_info_big-invert.svg"></img>
+                    </a>
+                </div>
                 <InfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} />
             </div>
         </div>

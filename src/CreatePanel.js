@@ -4,7 +4,7 @@ import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
 import InfoPanel from './InfoPanel';
 
-function CreatePanel({ data, selected, callback, collapsed }) {
+function CreatePanel({ data, callback, collapsed }) {
     const [selectedType, setSelectedType] = useState('star'); // Defaults to star
     const [formData, setFormData] = useState();
     const [starCreated, setStarCreated] = useState(false);
@@ -60,7 +60,7 @@ function CreatePanel({ data, selected, callback, collapsed }) {
                 <div id="create-panel-content">
                     <h1>Create</h1>
                     <div>
-                        <nav className='tab-selector'>
+                        <nav className='tab-selector system'>
                             <ul>
                                 <li id="tab-star">
                                     <a className={`${selectedType === 'star' ? 'selected' : ''} ${starCreated ? 'disabled' : ''}`} onClick={handleTabSwitch}>

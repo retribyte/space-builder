@@ -1,6 +1,7 @@
 :root {
     --create-color: 113, 150, 253;
     --save-color: 220, 83, 119;
+    --load-color: 40, 167, 69;
 }
 
 html, #root {
@@ -79,11 +80,33 @@ main {
     color: white;
 }
 
+.side-button {
+    display: flex;
+    position: absolute;
+    top: 0;
+    flex-grow: 0;
+    max-width: 10em !important;
+    flex-direction: column;
+}
+
 .side-button button {
     font-weight: bold;
-    position: absolute;
-    left: 20%;
     z-index: 4;
+}
+
+.side-button button a {
+    color: unset;
+    text-decoration: unset;
+}
+
+.button-left {
+    left: 20%;
+    align-items: flex-start;
+}
+
+.button-right {
+    right: 20%;
+    align-items: flex-end;
 }
 
 .title {
@@ -102,13 +125,13 @@ main {
     text-align: left;
 }
 
-.planet-data, .data-type {
+.planet-data, .data-type, .landmark-data {
     border-radius: 3px;
     padding: 0.1em;
     margin-top: .25px;
 }
 
-.planet-data {
+.planet-data, .landmark-data {
     background-color: #4c6783;
     border-radius: 2px;
     margin-left: 0.3em;
@@ -171,7 +194,7 @@ main {
     filter: invert(1);
 }
 
-.star li::before {
+.star li::before, .system li::before {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/OOjs_UI_icon_sun-ltr.svg');
 }
 
@@ -183,6 +206,10 @@ main {
 .moon li::before {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/OOjs_UI_icon_moon.svg');
     top: 10% !important;
+}
+
+.landmark li::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1f/OOjs_UI_icon_mapPin-invert.svg');
 }
 
 .highlight {
@@ -216,9 +243,29 @@ main {
 }
 
 .closebtn a {
-    font-size: 2em;
     text-decoration: none;
     color: white !important;
+    display: flex;
+    align-items: center;
+}
+
+.closebtn .tooltip {
+    position: absolute;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
+    width: 100px;
+    height: 2em;
+    top: 15%;
+    left: 2em;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.closebtn:hover .tooltip {
+    opacity: 1;
 }
 
 #create {
@@ -244,14 +291,14 @@ main {
 }
 
 #load {
-    color: rgb(0, 0, 255);
-    border-color: rgb(0, 0, 255);
+    color: rgb(var(--load-color));
+    border-color: rgb(var(--load-color));
 }
 
 #load:hover, #load.selected {
     color: white;
-    background-color: rgb(0, 0, 255);
-    border-color: rgb(0, 0, 255);
+    background-color: rgb(var(--load-color));
+    border-color: rgb(var(--load-color));
 }
 
 
@@ -284,7 +331,7 @@ main {
     }
 
     .scale-slider {
-        right: 10%;
+        top: 4.5em !important;
     }
 }
 
@@ -331,9 +378,15 @@ select:disabled {
     background-color: #172838;
 }
 
-.tab-selector li {
+.tab-selector.system li {
     float: left;
     width: calc(100% / 3);
+    cursor: pointer;
+}
+
+.tab-selector.galaxy li {
+    float: left;
+    width: calc(100% / 2);
     cursor: pointer;
 }
 
@@ -365,19 +418,27 @@ select:disabled {
     text-transform: capitalize;
 }
 
-ul.star li {
+h2.systems-list, h2.landmarks-list {
+    width: fit-content;
+    padding-left: 2.5em;
+    font-size: 1.25em;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+ul.star li, ul.system li {
     z-index: 40;
     width: fit-content;
     padding: 2px 6px;
     border-radius: 5px;
 }
 
-ul.star li:hover {
+ul.star li:hover, ul.system li:hover {
     cursor: pointer !important;
     text-decoration: underline;
 }
 
-ul.star li.selected {
+ul.star li.selected, ul.system li.selected {
     font-weight: bold;
     text-decoration: underline;
     background-color: #555d65;
@@ -478,6 +539,16 @@ ul.star li.selected {
     right: 250px;
 }
 
+.discard {
+    z-index: 1;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    padding-top: 0.5em;
+    cursor: pointer;
+}
+
 .scale-slider {
     width: 50%;
     display: flex;
@@ -496,4 +567,8 @@ ul.star li.selected {
     width: fit-content;
     color: white;
     margin-bottom: 0;
+}
+
+.invert {
+    filter: invert(1);
 }

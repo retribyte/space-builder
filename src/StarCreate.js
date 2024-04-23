@@ -3,48 +3,45 @@ import React, { useState } from 'react';
 
 function StarCreate({ handleData }) {
     const [name, setName] = useState('');
-    const [mass, setMass] = useState('');
-    const [radius, setRadius] = useState('');
+    const [size, setSize] = useState('');
     const [temperature, setTemperature] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (!name || !mass || !radius || !temperature) {
+        if (!name || !size || !temperature) {
             alert("Please fill out all required fields.");
             return;
         }
 
-        const nameRegex = /^[a-zA-Z]+$/;
-        if (!nameRegex.test(name)) {
-            alert("Name can only contain letters.");
+        // const nameRegex = /^[a-zA-Z]+$/;
+        // if (!nameRegex.test(name)) {
+        //     alert("Name can only contain letters.");
+        //     return;
+        // }
+
+        const numericRegex = /^\d+\.?\d+$/;
+        if (!numericRegex.test(size) || !numericRegex.test(temperature)) {
+            alert("Size and temperature must contain only numbers.");
             return;
         }
 
-        const numericRegex = /^\d+$/;
-        if (!numericRegex.test(mass) || !numericRegex.test(radius) || !numericRegex.test(temperature)) {
-            alert("Mass, radius, and temperature must contain only numbers.");
-            return;
-        }
-
-        const numericValue = parseInt(mass);
-        if (numericValue < 1 || numericValue > 100000) {
-            alert("Mass must be in the range of 1 - 100000.");
+        const numericValue = parseInt(size);
+        if (numericValue < 1) {
+            alert("Size must be greater than 1.");
             return;
         }
 
         const formData = {
             name: name,
-            mass: mass,
-            radius: radius,
+            size: size,
             temperature: temperature
         };
 
         handleData(formData);
 
         setName('');
-        setMass('');
-        setRadius('');
+        setSize('');
         setTemperature('');
     }
 
@@ -64,34 +61,19 @@ function StarCreate({ handleData }) {
                     />
                 </div>
                 <div id="inputContainer">
-                    <label htmlFor="mass-input">Mass: </label>
+                    <label htmlFor="size-input">Size: </label>
                     <input 
                         type="number" 
-                        id="mass-input" 
+                        id="size-input" 
                         className="form-control" 
                         placeholder="1" 
-                        min="1" 
-                        max="100000" 
-                        value={mass} 
-                        onChange={(e) => setMass(e.target.value)} 
+                        min="1"
+                        step={0.01}
+                        value={size} 
+                        onChange={(e) => setSize(e.target.value)} 
                         required 
                     />
                     <span className="unit">kg</span>
-                </div>
-                <div id="inputContainer">
-                    <label htmlFor="radius-input">Radius: </label>
-                    <input 
-                        type="number" 
-                        id="radius-input" 
-                        className="form-control" 
-                        placeholder="1" 
-                        min="1" 
-                        max="100000" 
-                        value={radius} 
-                        onChange={(e) => setRadius(e.target.value)} 
-                        required 
-                    />
-                    <span className="unit">km</span>
                 </div>
                 <div id="inputContainer">
                     <label htmlFor="temperature-input">Surface Temperature: </label>
@@ -100,8 +82,8 @@ function StarCreate({ handleData }) {
                         id="temperature-input" 
                         className="form-control" 
                         placeholder="1" 
-                        min="1" 
-                        max="100000" 
+                        min="1"
+                        step={0.01}
                         value={temperature} 
                         onChange={(e) => setTemperature(e.target.value)} 
                         required 

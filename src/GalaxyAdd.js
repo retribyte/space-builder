@@ -1,44 +1,52 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './assets/css/style.css';
+import LandmarkCreate from './LandmarkCreate';
+import RegionCreate from './RegionCreate';
 
-const GalaxyAdd = ({ isOpen, onClose }) => {
-  const [isChildrenPanelOpen, setIsChildrenPanelOpen] = useState(false);
-  const [selected, setSelected] = useState(null);
+const GalaxyAdd = (props) => {
+    const [selectedType, setSelectedType] = useState('landmark');
 
-  const toggleChildrenPanel = () => {
-    setIsChildrenPanelOpen(!isChildrenPanelOpen);
-  };
+    const { callback, collapsed } = props;
+    
+    const handleTabSwitch = (event) => {
+        setSelectedType(event.target.textContent.toLowerCase());
+        console.log(event.target.textContent.toLowerCase() + " tab clicked");
+    }
 
-  const GalaxyAdd = ({ isOpen = false, onClose }) => {
-  };
+    const handleData = (formData) => {
+        console.log("Still nothing");
+    }
 
-  const handleCreatePanelClick = () => {
-    setIsChildrenPanelOpen(!isChildrenPanelOpen);
-  };
+    const handleDraw = (bounds) => {
+        console.log("I can't draw yet");
+    }
 
-  return (
-    <section className={`galaxy-add ${isOpen ? 'open' : ''}`}>
-      <section id="create-panel" className="col-md-2 px-0 text-light" style={{ transform: isOpen ? 'translateX(0)' : 'translateX(-100%)' }}>
-        <div className="d-flex flex-column justify-content-center align-items-center h-100">
-          <div id="create-panel-content" className="text-center">
-            <h1>Solar System</h1>
-            <div className="content">
-              <Link to="/system">
-                <button onClick={handleCreatePanelClick}>Solar System1</button>
-              </Link>
-              <Link to="/system">
-                <button onClick={handleCreatePanelClick}>Solar System2</button>
-              </Link>
-              <Link to="/system">
-                <button onClick={handleCreatePanelClick}>Solar System3</button>
-              </Link>
+    return (
+        <section id="create-panel" className="col-md-2 px-0 text-light" style={{ transform: collapsed ? 'translateX(-100%)' : 'translateX(0)' }}>
+            <div className="d-flex flex-column">
+                <div id="create-panel-content">
+                    <h1>Create</h1>
+                    <div>
+                        <nav className='tab-selector galaxy'>
+                            <ul>
+                                <li id="tab-landmark">
+                                    <a className={`${selectedType === 'landmark' ? 'selected' : ''}`}  onClick={handleTabSwitch}>
+                                        Landmark
+                                    </a>
+                                </li>
+                                <li id="tab-region">
+                                    <a className={`${selectedType === 'region' ? 'selected' : ''}`} onClick={handleTabSwitch}>
+                                        Region
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        {selectedType === 'landmark' && <LandmarkCreate handleData={handleData} />}
+                        {selectedType === 'region' && <RegionCreate handleData={handleData} />}
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default GalaxyAdd;
