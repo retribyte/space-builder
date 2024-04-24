@@ -66,7 +66,8 @@ function GalaxyView(props) {
 
                 <div className="closebtn left">
                     <a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/OOjs_UI_icon_mapPin-invert.svg"></img>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/OOjs_UI_icon_mapPin-invert.svg"
+                            alt='Landmark icon, white'></img>
                     </a>
                 </div>
                 
@@ -75,7 +76,7 @@ function GalaxyView(props) {
                         Create
                     </button>
                 </div>
-                <p style={{width: "60%", color: 'white'}}>{JSON.stringify(props.galaxy)}</p>
+                {/* <p style={{width: "60%", color: 'white'}}>{JSON.stringify(props.galaxy)}</p> */}
                 <div className="button-right side-button">
                     <button id="load" type="button" className="btn btn-outline-success">
                         <Link to={ selectedObject ? "/system" : "#" } state={ selectedObject }>Load</Link>
@@ -89,7 +90,8 @@ function GalaxyView(props) {
                 </div>
                 <div className="closebtn right">
                     <a onClick={toggleInfoPanel}>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/OOjs_UI_icon_info_big-invert.svg"></img>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/OOjs_UI_icon_info_big-invert.svg"
+                            alt='Information icon, white'></img>
                     </a>
                 </div>
 

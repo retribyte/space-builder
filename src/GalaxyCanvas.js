@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { starColor } from './calc';
+import backgroundImage from './assets/images/galaxy_blank.png';
 
 function GalaxyCanvas(props) {
 
@@ -7,8 +8,8 @@ function GalaxyCanvas(props) {
     const [empty, setEmpty] = useState(false);
 
     const setCanvasSize = (canvas) => {
-        canvas.width = window.innerHeight;
-        canvas.height = window.innerHeight;
+        canvas.width = 1000;
+        canvas.height = 1000;
     }
 
     useEffect(() => {
@@ -53,13 +54,18 @@ function GalaxyCanvas(props) {
             // setEmpty(false);
         }
 
+        // Galaxy center offset
+        const yOffset = (1000 / 2) - (window.innerHeight / 2);
+
         // Render the background image
-        // ctx.drawImage('assets/img/galaxy.jpg', canvas.width/2, canvas.width/2, canvas.height, canvas.height);
+        var image = new Image();
+        image.src = backgroundImage;
+        ctx.drawImage(image, 0, 0 - yOffset, canvas.width, canvas.height);
 
         // Render the systems
         for (const system of galaxy.systems) {
             ctx.beginPath();
-            ctx.arc(system.xPos, system.yPos, 10, 0, 2 * Math.PI);
+            ctx.arc(system.xPos, system.yPos - yOffset, 10, 0, 2 * Math.PI);
             ctx.fillStyle = colors.system.fill;
             ctx.fill();
             ctx.strokeStyle = colors.system.stroke;
@@ -68,7 +74,7 @@ function GalaxyCanvas(props) {
         }
         for (const landmark of galaxy.landmarks) {
             ctx.beginPath();
-            ctx.arc(landmark.xPos, landmark.yPos, 10, 0, 2 * Math.PI);
+            ctx.arc(landmark.xPos, landmark.yPos - yOffset, 10, 0, 2 * Math.PI);
             ctx.fillStyle = colors.landmark.fill;
             ctx.fill();
             ctx.strokeStyle = colors.landmark.stroke;

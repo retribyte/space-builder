@@ -1,7 +1,7 @@
 :root {
-    --create-color: 113, 150, 253;
-    --save-color: 220, 83, 119;
-    --load-color: 40, 167, 69;
+    --create-color: 69, 159, 255;
+    --save-color: 245, 54, 146;
+    --load-color: 28, 230, 74;
 }
 
 html, #root {
@@ -92,6 +92,7 @@ main {
 .side-button button {
     font-weight: bold;
     z-index: 4;
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .side-button button a {
@@ -271,6 +272,7 @@ main {
 #create {
     color: rgb(var(--create-color));
     border-color: rgb(var(--create-color));
+    /* background-color: rgba(var(--create-color), 0.75); */
 }
 
 #create:hover, #create.selected {
@@ -282,6 +284,7 @@ main {
 #save {
     color: rgb(var(--save-color));
     border-color: rgb(var(--save-color));
+    /* background-color: rgba(var(--save-color), 0.75); */
 }
 
 #save:hover, #save.selected {
@@ -293,6 +296,7 @@ main {
 #load {
     color: rgb(var(--load-color));
     border-color: rgb(var(--load-color));
+    /* background-color: rgba(var(--load-color), 0.75); */
 }
 
 #load:hover, #load.selected {
@@ -583,7 +587,7 @@ ul.region li.selected {
 }
 
 #galaxy-canvas {
-    background-image: url('../images/galaxy_blank.png');
+    /* background-image: url('../images/galaxy_blank.png'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
