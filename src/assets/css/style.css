@@ -10,6 +10,20 @@ html, #root {
     overflow-x: hidden;
 }
 
+p {
+    color: white;
+}
+
+.sub {
+    color: #808080;
+    margin-right: 0.5em;
+}
+
+.white {
+    color: white;
+    margin-right: 0.5em;
+}
+
 body {
     background-image: url("../images/stars.jpg");
 }
@@ -119,7 +133,11 @@ main {
     height: 30px;
     margin-left: 10px;
     margin-right: 10px;
-    
+}
+
+.logo {
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 #info li {
@@ -163,8 +181,34 @@ main {
     flex-direction: row;
 }
 
+.nav-user {
+    text-decoration: none;
+}
+
+.nav-user div {
+    display: flex;
+    align-items: center;
+}
+
+.nav-user .user-inner-container span {
+    max-width: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 @media (max-width: 745px) {
     #main-column, #top-navbar ul {
+        flex-direction: column;
+    }
+    .nav-user .user-outer-container {
+        align-items: start;
+    }
+    .nav-user span.sub {
+        font-size: smaller;
+        margin-bottom: -0.75em;
+    }
+    .nav-user .user-outer-container {
         flex-direction: column;
     }
 }
@@ -599,4 +643,21 @@ ul.region li.selected {
 
 #galaxy-canvas.empty {
     background-image: none;
+}
+
+.sign-in-notice {
+    width: fit-content;
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-in-notice h1 {
+    color: white;
+}
+
+.sign-in-notice button {
+    margin-top: 1em;
 }

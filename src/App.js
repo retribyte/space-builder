@@ -7,6 +7,7 @@ import InfoPanel from './InfoPanel';
 import factory from './factory';
 import SystemView from './SystemView';
 import GalaxyView from './GalaxyView';
+import FirebaseAuthUI from './FirebaseAuthUI';
 import { BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
 // import sampleData from './sample.json';
 
@@ -37,6 +38,7 @@ function App() {
             <Routes>
                 <Route path="system" element={<SystemView system={undefined}/>}/>
                 <Route path="galaxy" element={<GalaxyView galaxy={galaxy} setGalaxy={setGalaxy} />}/>
+                <Route path="login" element={<FirebaseAuthUI />}/>
                 <Route path="*" element={<Navigate to="system" />} />
             </Routes>
            
