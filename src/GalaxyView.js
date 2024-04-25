@@ -81,7 +81,7 @@ function GalaxyView(props) {
                     <button id="load" type="button" className="btn btn-outline-success">
                         <Link to={ selectedObject ? "/system" : "#" } state={ selectedObject }>Load</Link>
                     </button>
-                    <button id="save" type="button" className="btn btn-outline-danger">
+                    <button id="save" type="button" className="btn btn-outline-danger" onClick={() => props.saveGalaxy(JSON.stringify(props.galaxy))}>
                         Save
                     </button>
                     <button id="new" type="button" className="btn btn-outline-info">

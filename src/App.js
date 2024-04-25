@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import CreatePanel from './CreatePanel';
-import ChildrenPanel from './ChildrenPanel';
-import MainColumn from './MainColumn';
-import InfoPanel from './InfoPanel';
-import factory from './factory';
 import SystemView from './SystemView';
 import GalaxyView from './GalaxyView';
 import FirebaseAuthUI from './FirebaseAuthUI';
-import { BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { saveUserData, loadUserData } from './login';
 import { auth, database } from './firebase-config';
-import { getDatabase, ref, set, get, child } from 'firebase/database';
+import { getDatabase, ref, set, get, update } from 'firebase/database';
 // import sampleData from './sample.json';
 
 function App() {
-    const [galaxy, setGalaxy] = useState({systems: [], landmarks: [], regions: []});
+    const [galaxy, setGalaxy] = useState({ systems: [], landmarks: [], regions: [] });
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -24,24 +18,55 @@ function App() {
             if (user) {
                 // Check if this session's sign-in is a new sign-in
                 if (user.metadata.creationTime === user.metadata.lastSignInTime) {
-                  // New user
-                  initializeUserData(user.uid);
+                    console.log("I'm a new user!")
+                    // New user
+                    initializeUserData(user.uid);
                 }
+                else {
+                    console.log("I'm a returning user!")
+                }
+                fetchUserData(user.uid);
                 setUser(user);  // Set user to state
             } else {
-                setGalaxy({systems: [], landmarks: [], regions: []});
+                console.log("No user signed in")
+                setGalaxy({ systems: [], landmarks: [], regions: [] });
                 setUser(null);  // Clear user from state
             }
         });
     }, []);
 
+    const fetchUserData = (userId) => {
+        const userDataRef = ref(database, `users/${userId}`);
+        get(userDataRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                setGalaxy(JSON.parse(snapshot.val()));
+            }
+        }).catch(error => {
+            console.error("Error fetching user data:", error);
+        });
+        console.log("User data fetched successfully.");
+    };
+
+    const updateUserData = (newData) => {
+        if (!user) return; // Ensure there is a user before trying to update
+        const userDataRef = ref(database, `users/${user.uid}`);
+        set(userDataRef, newData) // This will replace the entire data at the specified reference
+            .then(() => {
+                console.log("User data replaced successfully.");
+            })
+            .catch(error => {
+                console.error("Error replacing user data:", error);
+            });
+    };
+
+
     const initializeUserData = (userId) => {
         const userDataRef = ref(database, `users/${userId}`);
         get(userDataRef).then((snapshot) => {
             if (!snapshot.exists()) {
-            // If no data, set default data
-            const defaultData = { systems: [], landmarks: [], regions: [] };
-            set(userDataRef, defaultData);
+                // If no data, set default data
+                const defaultData = { systems: [], landmarks: [], regions: [] };
+                set(userDataRef, defaultData);
             }
         }).catch(error => {
             console.error("Error checking or initializing user data:", error);
@@ -52,12 +77,12 @@ function App() {
         <>
             <Navbar />
             <Routes>
-                <Route path="system" element={<SystemView system={undefined}/>}/>
-                <Route path="galaxy" element={<GalaxyView galaxy={galaxy} setGalaxy={setGalaxy} />}/>
-                <Route path="login" element={<FirebaseAuthUI />}/>
+                <Route path="system" element={<SystemView system={undefined} />} />
+                <Route path="galaxy" element={<GalaxyView galaxy={galaxy} setGalaxy={setGalaxy} saveGalaxy={updateUserData} />} />
+                <Route path="login" element={<FirebaseAuthUI />} />
                 <Route path="*" element={<Navigate to="system" />} />
             </Routes>
-           
+
         </>
     );
 }
