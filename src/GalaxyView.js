@@ -46,6 +46,12 @@ function GalaxyView(props) {
         setSelectedObject(foundObject);
     }
 
+    const handleSaveClicked = (event) => {
+        props.saveGalaxy(JSON.stringify(props.galaxy));
+        event.target.innerHTML = "Saved!";
+        setTimeout(() => {event.target.innerHTML = "Save"}, 1000);
+    }
+
     useEffect(() => { 
         console.log("system in hand:", state);
         if (state) {
@@ -75,17 +81,17 @@ function GalaxyView(props) {
                     <button id="create" type="button" className="btn btn-outline-primary" onClick={toggleCreatePanel}>
                         Create
                     </button>
+                    <button id="new" type="button" className="btn btn-outline-info">
+                        <Link to="/system" state={ undefined }>New</Link>
+                    </button>
                 </div>
                 {/* <p style={{width: "60%", color: 'white'}}>{JSON.stringify(props.galaxy)}</p> */}
                 <div className="button-right side-button">
                     <button id="load" type="button" className="btn btn-outline-success">
                         <Link to={ selectedObject ? "/system" : "#" } state={ selectedObject }>Load</Link>
                     </button>
-                    <button id="save" type="button" className="btn btn-outline-danger">
+                    <button id="save" type="button" className="btn btn-outline-danger" onClick={handleSaveClicked}>
                         Save
-                    </button>
-                    <button id="new" type="button" className="btn btn-outline-info">
-                        <Link to="/system" state={ undefined }>New</Link>
                     </button>
                 </div>
                 <div className="closebtn right">
