@@ -1,34 +1,91 @@
 export default{calcMass, calcGravity, calcDayLength, calcYearLength};
 
 export function calcMass (planetData) {
-    let volume = .75 * 3.14 * ((planetData.size/2) ** 3);
-    let density = 0;
-    let earthMass = 5.97219 * (10 ** 24);
-    if (planetData.type === "Terrestrial") {
-        density = 5.55;
-    }
-    else if (planetData.type ==="Gas") {
-        density = .687;
-    }
-    
-    return ((density / volume) / earthMass) ;
+    let area = planetData.size / 7926;
+    let mass = area + (5.97219 * (10 ** 24));
 
+
+    console.log(mass);
+
+    if (planetData.type === "Gas") {
+        mass = mass * 0.1237837838;
+    }
+    mass = mass.toFixed(2);
+    return (mass);
 };
 
 export function calcGravity (planetData) {
+let gravity = 0;
+gravity = (planetData.size / 7926) * 9.8;
 
-    let mass = calcMass(planetData);
-    let earthMass = 5.97219 * (10 ** 24);
-
-    return((mass / earthMass) * 9.807);
+if (planetData.type === "Gas") {
+    gravity = gravity * 0.1237837838;
+}
+gravity = gravity.toFixed(5);
+return (gravity);
 };
 
 export function calcDayLength (planetData) {
-    return (planetData.size / 6371);
+    let day = planetData.size / 6371;
+    return (day);
 }
 
 export function calcYearLength (planetData) {
-    return ((planetData.distance / 1) * 365)
+    let year = (planetData.distance / 1) * 365;
+    year = year.toFixed(5);
+
+    return (year)
+}
+
+export function possLife(sunTemp, planetData) {
+    let possOfLife = -1;
+    let planetTemp = (sunTemp / 25) * 1 / (planetData.distance) ** 2;
+    let HeatChance = (planetTemp / 288 ) * .5;
+    let gravityChance = (calcGravity(data) / 9.807) * .5;
+    gravityChance = gravityChance.toFixed(2);
+    HeatChance = HeatChance.toFixed(2);
+
+    
+    if (planetData.type === "Gas") {
+        possOfLife = possOfLife - .35;
+    };
+
+    if (gravityChance > .5 || HeatChance > .5) {
+        possOfLife = 0;
+    }
+    else {
+        possOfLife = gravityChance + HeatChance;
+    };
+    
+    return possOfLife * 100;
+}
+
+export function starColor(temperature) {
+    // Stupidly complicated function to pick star color...
+    let red, green, blue;
+
+    // Normalize temperature to 0-1 for the algorithm
+    const normalizedTemp = (temperature - 3500) / (10000 - 3500);
+
+    if (temperature < 6600) {
+        // Enhance red for cooler stars
+        red = 255;
+        green = 750 * normalizedTemp;   // Magic numbers galore
+        blue = 50 + 180 * normalizedTemp;
+    } else {
+        // For hotter stars, reduce red and green to make blue more prominent
+        red = 255 * (1 - (normalizedTemp - 0.5) * 2);
+        green = 255 * (1 - normalizedTemp);
+        blue = 255;
+    }
+
+    // Clamp values to within [0, 255]
+    red = Math.min(255, Math.max(0, Math.round(red)));
+    green = Math.min(255, Math.max(0, Math.round(green)));
+    blue = Math.min(255, Math.max(0, Math.round(blue)));
+
+    // Return RGB color
+    return `rgb(${red}, ${green}, ${blue})`;
 }
 
 export function possLife(sunTemp, planetData) {
