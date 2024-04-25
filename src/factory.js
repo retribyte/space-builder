@@ -80,18 +80,59 @@ function addMoonToPlanet(setState, planetName, name, size, distance, type) {
 
 function addSystemToGalaxy(setState, system, xPos, yPos) {
     setState(galaxyBefore => {
-        return {
-            ...galaxyBefore,
-            systems: [
-                ...galaxyBefore.systems, 
-                { // New system
+        // Map through existing systems to check for a name match
+        const updatedSystems = galaxyBefore.systems.map(existingSystem => {
+            if (existingSystem.name === system.name) {
+                // If the name matches, return a new object with updated coordinates
+                return {
                     ...system,
                     xPos: xPos,
                     yPos: yPos
-                }
-            ]
+                };
+            } else {
+                // If no match, return the system as is
+                return existingSystem;
+            }
+        });
+
+        // Check if the system was updated or if it's new
+        const isExistingSystem = galaxyBefore.systems.some(existingSystem => existingSystem.name === system.name);
+
+        return {
+            ...galaxyBefore,
+            systems: isExistingSystem ? updatedSystems : [...updatedSystems, { ...system, xPos, yPos }]
         };
     });
+}
+
+function deleteSystemFromGalaxy(setState, systemName) {
+    setState(galaxyBefore => {
+        // Filter out the system with the matching name
+        const filteredSystems = galaxyBefore.systems.filter(system => system.name !== systemName);
+
+        // Return the updated galaxy state without the deleted system
+        return {
+            ...galaxyBefore,
+            systems: filteredSystems
+        };
+    });
+}
+
+function deletePlanet(setState, planetName) {
+    setState((systemBefore) => ({
+        ...systemBefore,
+        planets: systemBefore.planets.filter(planet => planet.name !== planetName)
+    }));
+}
+
+function deleteMoon(setState, moonName) {
+    setState((systemBefore) => ({
+        ...systemBefore,
+        planets: systemBefore.planets.map((planet) => ({
+                ...planet,
+                moons: planet.moons ? planet.moons.filter(moon => moon.name !== moonName) : []
+        }))
+    }));
 }
 
 function addLandmarkToGalaxy(setState, landmark, xPos, yPos) {
@@ -143,4 +184,17 @@ function findObject(node, key) {
 }
 
 
-export default { createStar, createPlanet, createMoon, addPlanetToStar, addMoonToPlanet, addSystemToGalaxy, findObject, createLandmark, addLandmarkToGalaxy };
+export default {
+    createStar,
+    createPlanet,
+    createMoon,
+    addPlanetToStar,
+    addMoonToPlanet,
+    addSystemToGalaxy,
+    findObject,
+    createLandmark,
+    addLandmarkToGalaxy,
+    deleteSystemFromGalaxy,
+    deletePlanet,
+    deleteMoon
+};

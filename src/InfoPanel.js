@@ -50,6 +50,8 @@ function InfoPanel(props) {
                             <span className="planet-data">Nothing selected</span>
                         </li>
                     )}
+                    <hr></hr>
+                    <button className='btn btn-danger' onClick={props.deleteChild} disabled={!selectedObject || selectedObject.planets ? 'true' : ''}>Delete</button>
                 </ul>
             </div>
         </section>

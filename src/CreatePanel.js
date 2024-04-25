@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StarCreate from './StarCreate';
 import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
@@ -6,8 +6,21 @@ import InfoPanel from './InfoPanel';
 
 function CreatePanel({ data, callback, collapsed }) {
     const [selectedType, setSelectedType] = useState('star'); // Defaults to star
-    const [formData, setFormData] = useState();
-    const [starCreated, setStarCreated] = useState(false);
+    const [starCreated, setStarCreated] = useState(data.name != "");
+
+    useEffect(() => {
+        if (!data.name) {
+            setSelectedType('star');
+            setStarCreated(false);
+        }
+        else {
+            setStarCreated(true);
+        }
+    });
+
+    useEffect(() => {
+        setSelectedType('planet');
+    }, []);
 
     const handleTabSwitch = (event) => {
         if (!starCreated                                        // If there's no star...

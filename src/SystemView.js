@@ -76,10 +76,18 @@ function SystemView(props) {
             setSystem(star);
         }
         else if (kind == 'planet') {
+            if (system.planets.some(planet => planet.name === name)) {
+                alert('A planet already exists with that name!');
+                return;
+            }
             factory.addPlanetToStar(setSystem, primary, name, size, distance, objectCompositionType);
         }
         else if (kind == 'moon') {
-            factory.addMoonToPlanet(setSystem, primary, name, size, distance, objectCompositionType);
+            if (system.planets.some(planet => planet.moons.some(moon => moon.name === name))) {
+                alert('A moon already exists with that name!');
+                return;
+            }
+            factory.addMoonToPlanet(setSystem, primary, name, size, distance, objectCompositionType)
         }
         else {
             console.error('I don\'t know how to make a ' + kind + '...');
@@ -87,6 +95,29 @@ function SystemView(props) {
 
         console.log(system);
     };
+
+    const deleteChild = () => {
+        if (!selectedObject) {
+            alert("No object selected");
+            return;
+        }
+        else if (selectedObject.planets) {
+            console.log("Trying to delete a star");
+            alert("You can't delete a star!");
+        }
+        else if (selectedObject.moons) {
+            console.log("Trying to delete a planet");
+            if (window.confirm("Are you sure you want to delete " + selectedObject.name + "?")) {
+                factory.deletePlanet(setSystem, selectedObject.name);
+            }
+        }
+        else {
+            console.log("Trying to delete a moon");
+            if (window.confirm("Are you sure you want to delete " + selectedObject.name + "?")) {
+                factory.deleteMoon(setSystem, selectedObject.name);
+            }
+        }
+    }
 
     useEffect(() => {
         if (selectedObject != null) {
@@ -191,7 +222,7 @@ function SystemView(props) {
                             alt='Information icon, white'></img>
                     </a>
                 </div>
-                <InfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} />
+                <InfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} deleteChild={deleteChild} />
             </div>
         </div>
     );
