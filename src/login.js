@@ -1,19 +1,8 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, database } from './firebase-config';
-import firebase from 'firebase/app';
 import 'firebase/auth';
-import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import { getDatabase, ref, set, get, child } from 'firebase/database';
-
-const signup = async (email, password) => {
-    try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        console.log("User created:", userCredential.user);
-    } catch (error) {
-        console.error("Error signing up:", error.message);
-    }
-};
 
 // Function to save user data
 function saveUserData(userId, jsonData) {
@@ -41,4 +30,4 @@ function loadUserData(userId) {
 }
 
 
-export { signup, saveUserData, loadUserData };
+export { saveUserData, loadUserData };
