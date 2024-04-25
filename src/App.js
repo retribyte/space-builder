@@ -9,28 +9,23 @@ import SystemView from './SystemView';
 import GalaxyView from './GalaxyView';
 import FirebaseAuthUI from './FirebaseAuthUI';
 import { BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { saveUserData, loadUserData } from './login';
+import { auth } from './firebase-config';
 // import sampleData from './sample.json';
 
 function App() {
     const [galaxy, setGalaxy] = useState({systems: [], landmarks: [], regions: []});
 
     useEffect(() => {
-        const savedData = localStorage.getItem('data');
-        if (savedData !== null) {
-            try {
-                let data = JSON.parse(savedData);
-                console.log("Save data found. Loading system.");
-                setGalaxy(data);
-            } catch (e) {
-                console.log("Save data is invalid. Loading empty system.");
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loadUserData(user.uid).then(data => setGalaxy(data));
+            } else {
+                setGalaxy({systems: [], landmarks: [], regions: []});
             }
-        } else {
-            // console.log("Save data does not exist. Loading empty system.");
-        }
-        
-        // console.log(galaxy);
-    }, [])
-
+        });
+    }, []);
 
     return (
         <>
