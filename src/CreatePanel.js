@@ -72,7 +72,6 @@ function CreatePanel({ data, callback, collapsed }) {
             <div className="d-flex flex-column">
                 <div id="create-panel-content">
                     <h1>Create</h1>
-                    <div>
                         <nav className='tab-selector system'>
                             <ul>
                                 <li id="tab-star">
@@ -92,10 +91,10 @@ function CreatePanel({ data, callback, collapsed }) {
                                 </li>
                             </ul>
                         </nav>
+                        <p className='bold'>Enter the details of your {selectedType}:</p>
                         { selectedType === 'star' && <StarCreate handleData={handleData} /> }
                         { selectedType === 'planet' && <PlanetCreate handleData={handleData} /> }
                         { selectedType === 'moon' && <MoonCreate planets={data.planets} handleData={handleData} /> }
-                    </div>
                 </div>
                 
             </div>

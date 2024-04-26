@@ -60,25 +60,35 @@ function GalaxyCanvas(props) {
         // Render the background image
         var image = new Image();
         image.src = backgroundImage;
-        ctx.drawImage(image, 0, 0 - yOffset, canvas.width, canvas.height);
+        image.onload = () => {
+            // Render the background image
+            ctx.drawImage(image, 0, 0 - yOffset, canvas.width, canvas.height);
 
-        // Render the systems
-        for (const system of galaxy.systems) {
-            ctx.beginPath();
-            ctx.arc(system.xPos, system.yPos - yOffset, 10, 0, 2 * Math.PI);
-            ctx.fillStyle = colors.system.fill;
-            ctx.fill();
-            ctx.strokeStyle = colors.system.stroke;
-            ctx.lineWidth = 3;
-            ctx.stroke();
-        }
-        for (const landmark of galaxy.landmarks) {
-            ctx.beginPath();
-            ctx.arc(landmark.xPos, landmark.yPos - yOffset, 10, 0, 2 * Math.PI);
-            ctx.fillStyle = colors.landmark.fill;
-            ctx.fill();
-            ctx.strokeStyle = colors.landmark.stroke;
-            ctx.stroke();
+            // !!! Delay the rendering of the systems and landmarks until the image is loaded
+
+            // Render the systems
+            for (const system of galaxy.systems) {
+                ctx.beginPath();
+                ctx.arc(system.xPos, system.yPos - yOffset, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = colors.system.fill;
+                ctx.fill();
+                ctx.strokeStyle = colors.system.stroke;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                ctx.font = "12px Arial";
+                ctx.fillStyle = "white";
+                ctx.textAlign = "center";
+                ctx.fillText(system.name, system.xPos, system.yPos - yOffset + 30);
+            }
+            // Render the landmarks
+            for (const landmark of galaxy.landmarks) {
+                ctx.beginPath();
+                ctx.arc(landmark.xPos, landmark.yPos - yOffset, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = colors.landmark.fill;
+                ctx.fill();
+                ctx.strokeStyle = colors.landmark.stroke;
+                ctx.stroke();
+            }
         }
     });
 

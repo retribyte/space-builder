@@ -6,6 +6,7 @@ import GalaxyCreatePanel from './GalaxyAdd';
 import GalaxyCanvas from './GalaxyCanvas';
 import ScaleSlider from './ScaleSlider';
 import factory from './factory';
+import CreateTutorial from './CreateTutorial';
 
 function GalaxyView(props) {
     const [selectedObject, setSelectedObject] = useState(null);
@@ -31,14 +32,45 @@ function GalaxyView(props) {
         setInfoPanelCollapsed(!isInfoPanelCollapsed)
     }
 
+    function handleResize() {
+        console.log('Window resized; collapsing panels');
+        if (window.innerWidth <= 1260) {
+            if (!isChildrenPanelCollapsed) toggleChildrenPanel();
+            if (!isCreatePanelCollapsed) toggleCreatePanel();
+            if (!isInfoPanelCollapsed) toggleInfoPanel();
+        } else {
+            console.log('Window resized; expanding panels');
+            if (isChildrenPanelCollapsed) toggleChildrenPanel();
+            // The create panel remains collapsed unless explicitly opened by the user
+            if (isInfoPanelCollapsed) toggleInfoPanel();
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isChildrenPanelCollapsed, isCreatePanelCollapsed, isInfoPanelCollapsed, toggleChildrenPanel, toggleCreatePanel, toggleInfoPanel]);
+
+    useEffect(() => {
+        handleResize();
+    }, []);
+
     const saveNewSystem = (newSystem) => {
         // Randomize x and y coordinates for now
-        factory.addSystemToGalaxy(props.setGalaxy, newSystem, Math.floor(Math.random() * 1000), Math.floor(Math.random() * 1000));
+        factory.addSystemToGalaxy(props.setGalaxy,
+            newSystem,
+            newSystem.xPos ? newSystem.xPos : Math.floor(Math.random() * 1000),
+            newSystem.yPos ? newSystem.yPos : Math.floor(Math.random() * 1000)
+        );
     }
 
     const saveNewLandmark = (newLandmark) => {
         // Randomize x and y coordinates for now
-        factory.addLandmarkToGalaxy(props.setGalaxy, newLandmark, Math.floor(Math.random() * 1000), Math.floor(Math.random() * 1000));
+        factory.addLandmarkToGalaxy(props.setGalaxy,
+            newLandmark,
+            newLandmark.xPos ? newLandmark.xPos : Math.floor(Math.random() * 1000),
+            newLandmark.yPos ? newLandmark.yPos : Math.floor(Math.random() * 1000)
+        );
     }
 
     const updateSelectedObject = (object) => {
@@ -66,6 +98,11 @@ function GalaxyView(props) {
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     {/* <ScaleSlider scale={globalScale} setScale={handleChange} /> */}
                     <GalaxyCanvas galaxy={props.galaxy} selected={selectedObject} scale={globalScale} />
+                    {
+                        (props.galaxy.systems.length === 0 && props.galaxy.landmarks.length === 0 && props.galaxy.regions.length === 0)
+                            ? <div className='overlay'><CreateTutorial buttons={['Create', 'New']} /></div>
+                            : null
+                    }
                 </div>
                 <GalaxyCreatePanel data={props.galaxy} selected={selectedObject} collapsed={isCreatePanelCollapsed} callback={saveNewLandmark} />
                 <GalaxyOverview data={props.galaxy} selected={selectedObject} setSelected={updateSelectedObject} collapsed={isChildrenPanelCollapsed} />
@@ -74,6 +111,11 @@ function GalaxyView(props) {
                     <a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/OOjs_UI_icon_mapPin-invert.svg"
                             alt='Landmark icon, white'></img>
+                            {
+                                isChildrenPanelCollapsed && isCreatePanelCollapsed 
+                                    ? <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/OOjs_UI_icon_next-ltr-invert.svg" />
+                                    : <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/OOjs_UI_icon_previous-ltr-invert.svg" />
+                            }
                     </a>
                 </div>
                 
@@ -98,6 +140,11 @@ function GalaxyView(props) {
                     <a onClick={toggleInfoPanel}>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/OOjs_UI_icon_info_big-invert.svg"
                             alt='Information icon, white'></img>
+                            {
+                                isInfoPanelCollapsed 
+                                    ? <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/OOjs_UI_icon_previous-ltr-invert.svg" />
+                                    : <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/OOjs_UI_icon_next-ltr-invert.svg" />
+                            }
                     </a>
                 </div>
 

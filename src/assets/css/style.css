@@ -2,6 +2,7 @@
     --create-color: 69, 159, 255;
     --save-color: 245, 54, 146;
     --load-color: 28, 230, 74;
+    --new-color: 13, 202, 240;
 }
 
 html, #root {
@@ -74,6 +75,12 @@ main {
 
 #info-panel {
     right: 0;
+}
+
+#create-panel-content p {
+    background-color: #193857;
+    padding: 0.5em 0 0 0;
+    margin: 0;
 }
 
 #main-column {
@@ -265,7 +272,7 @@ main {
     background-color: black;
     border-radius: 5px;
     width: 2em !important;
-    height: 2em;
+    height: 4em;
     text-align: center;
     vertical-align: middle;
     margin: 0 0.5em;
@@ -275,6 +282,15 @@ main {
     align-items:center;
     cursor: pointer;
     position:absolute;
+}
+
+.closebtn a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+    height: 100%;
+padding: 100%;
 }
 
 .closebtn.left {
@@ -351,9 +367,9 @@ main {
 
 
 @media (max-width: 1250px) {
-    #children-panel, #info-panel {
+    #create-panel, #children-panel, #info-panel {
         z-index: 2;
-        top: 3em;
+        top: 5em;
         padding: 0;
     }
 
@@ -383,10 +399,6 @@ main {
     }
 }
 
-#createForm input, #createForm select, #createForm label {
-    width: 45% !important;
-}
-
 label {
     text-align: right;
     margin-right: 0.25em;
@@ -405,11 +417,60 @@ span.unit {
     padding: 1em 0;
 }
 
+#objectDetails {
+    display: flex;
+    padding: 0 0.5em;
+}
+
+.label-holder, #inputContainer, .unit-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9em;
+    font-size: 1em;
+    font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+    font-stretch: condensed;
+}
+
+.label-holder > *, #inputContainer > *, .unit-holder > * {
+    height: calc(100% / 1);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-wrap: nowrap;
+}
+
+textarea {
+    text-wrap: wrap !important;
+}
+
+.label-holder > * {
+    justify-content: end;
+}
+
+input, label {
+    max-height: 2.5em;
+}
+
 #inputContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    width: 85%;
+    flex-grow: 2;
+}
+
+.unit-holder {
+    padding: 0 0 0 0.25em;
+}
+
+.condensed {
+    font-size: 1em;
+    font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+    font-stretch: condensed;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 select:disabled {
@@ -660,4 +721,16 @@ ul.region li.selected {
 
 .sign-in-notice button {
     margin-top: 1em;
+}
+
+.overlay {
+    position: fixed;
+    left: 25%;
+    width: 1000px;
+    height: 1000px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

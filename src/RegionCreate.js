@@ -15,7 +15,7 @@ function RegionCreate({ handleData }) {
     }
 
     return (
-        <form id="createForm" onSubmit={handleSubmit}>
+        <form id="createForm" className='region-form' onSubmit={handleSubmit}>
             <button id="drawToggle" className="btn btn-primary">Draw</button>
         </form>
     );

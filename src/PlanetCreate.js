@@ -20,7 +20,7 @@ function PlanetCreate({ handleData }) {
         //     return;
         // }
 
-        const numericRegex = /^\d+\.?\d+$/;
+        const numericRegex = /^\d+\.?\d*$/;
         if (!numericRegex.test(size) || !numericRegex.test(distance)) {
             alert("Size and distance must contain only numbers.");
             return;
@@ -48,10 +48,16 @@ function PlanetCreate({ handleData }) {
     }
 
     return (
-        <form id="createForm" onSubmit={handleSubmit}>
+        <form id="createForm" className='planet-form' onSubmit={handleSubmit}>
             <div id="objectDetails">
-                <div id="inputContainer">
+                <div className='label-holder'>
                     <label htmlFor="name-input">Name: </label>
+                    <label htmlFor="size-input">Size: </label>
+                    <label htmlFor="distance-input">Distance to star: </label>
+                    <label htmlFor="type-input">Planet type:</label>
+                    {/* <label htmlFor="color-input">Color:</label> */}
+                </div>
+                <div id="inputContainer">
                     <input 
                         type="text" 
                         id="name-input" 
@@ -61,9 +67,6 @@ function PlanetCreate({ handleData }) {
                         onChange={(e) => setName(e.target.value)} 
                         required 
                     />
-                </div>
-                <div id="inputContainer">
-                    <label htmlFor="size-input">Size: </label>
                     <input 
                         type="number" 
                         id="size-input" 
@@ -75,10 +78,6 @@ function PlanetCreate({ handleData }) {
                         onChange={(e) => setSize(e.target.value)} 
                         required 
                     />
-                    <span className="unit">km</span>
-                </div>
-                <div id="inputContainer">
-                    <label htmlFor="distance-input">Distance to star: </label>
                     <input 
                         type="number" 
                         id="distance-input" 
@@ -90,16 +89,25 @@ function PlanetCreate({ handleData }) {
                         onChange={(e) => setDistance(e.target.value)} 
                         required 
                     />
-                    <span className="unit">AU</span>
-                </div>
-                <div id="inputContainer">
-                    <label htmlFor="type-input">Planet type:</label>
                     <select id="planetType" className="form-select" 
                         onChange={(e) => setType(e.target.value)} >
-                    <option value="gas">Gas</option>
-                    <option value="terrestrial">Terrestrial</option>
-                    <option value="ice">Ice</option>
-                </select>
+                        <option value="gas">Gas</option>
+                        <option value="terrestrial">Terrestrial</option>
+                        <option value="ice">Ice</option>
+                    </select>
+                    {/* <input
+                        type='color'
+                        id='color-input'
+                        className='form-control'
+                        defaultValue='#3333ff'
+                    /> */}
+                </div>
+                <div className='unit-holder'>
+                    <span></span>
+                    <span className="unit">km</span>
+                    <span className="unit">AU</span>
+                    <span></span>
+                    {/* <span></span> */}
                 </div>
             </div>
             <hr />

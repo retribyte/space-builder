@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SystemCanvas from './SystemCanvas';
 import placeholder from './assets/images/bad-solar-system-diagram.avif';
 import ScaleSlider from './ScaleSlider';
+import CreateTutorial from './CreateTutorial';
 
 function MainColumn(props) {
     const [globalScale, setGlobalScale] = useState(1);
@@ -17,7 +18,11 @@ function MainColumn(props) {
             </>
             {/* <img className="image" src={placeholder} alt="Placeholder diagram of the Solar System" /> */}
             <ScaleSlider scale={globalScale} setScale={handleChange} />
-            <SystemCanvas system={props.data} selected={props.selected} scale={globalScale} />
+            { 
+                Object.keys(props.data) != 0
+                    ? <SystemCanvas system={props.data} selected={props.selected} scale={globalScale} />
+                    : <CreateTutorial toggle={props.toggle} buttons={['Create']} />
+            }
         </main>
     );
 }

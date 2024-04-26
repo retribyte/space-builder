@@ -62,6 +62,9 @@ function SystemView(props) {
 
     useEffect(() => {
         handleResize();
+        if (!system.name) {
+            setCreatePanelCollapsed(false);
+        }
     }, []);
 
     const addNewChild = (details) => {
@@ -203,14 +206,19 @@ function SystemView(props) {
                     <a onClick={isCreatePanelCollapsed ? toggleChildrenPanel : toggleCreatePanel}>
                         <img className='invert' src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Planet_with_rings_icon.svg"
                             alt='Planet icon, white'></img>
+                            {
+                                isChildrenPanelCollapsed && isCreatePanelCollapsed 
+                                    ? <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/OOjs_UI_icon_next-ltr-invert.svg" />
+                                    : <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/OOjs_UI_icon_previous-ltr-invert.svg" />
+                            }
                     </a>
                 </div>
                 <div className="button-left side-button"><button id="create" type="button" className="btn btn-outline-primary" onClick={toggleCreatePanel}>Create</button></div>
                 
-                <MainColumn data={system} selected={selectedObject} />
+                <MainColumn data={system} selected={selectedObject} toggle={toggleCreatePanel} />
 
                 <div className="button-right side-button">
-                    <button id="save" type="button" className="btn btn-outline-danger">
+                    <button id="save" type="button" className="btn btn-outline-danger" disabled={!system.name}>
                         <Link to={ system.name ? "/galaxy" : "#" } state={ system }>Save</Link>
                     </button>
                     <a onClick={handleDiscardClick} className='discard'>Exit w/o Saving</a>
@@ -220,6 +228,11 @@ function SystemView(props) {
                     <a onClick={toggleInfoPanel}>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/OOjs_UI_icon_info_big-invert.svg"
                             alt='Information icon, white'></img>
+                            {
+                                isInfoPanelCollapsed 
+                                    ? <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/OOjs_UI_icon_previous-ltr-invert.svg" />
+                                    : <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/OOjs_UI_icon_next-ltr-invert.svg" />
+                            }
                     </a>
                 </div>
                 <InfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} deleteChild={deleteChild} />

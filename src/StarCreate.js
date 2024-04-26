@@ -20,7 +20,7 @@ function StarCreate({ handleData }) {
         //     return;
         // }
 
-        const numericRegex = /^\d+\.?\d+$/;
+        const numericRegex = /^\d+\.?\d*$/;
         if (!numericRegex.test(size) || !numericRegex.test(temperature)) {
             alert("Size and temperature must contain only numbers.");
             return;
@@ -46,48 +46,49 @@ function StarCreate({ handleData }) {
     }
 
     return (
-        <form id="createForm" onSubmit={handleSubmit}>
+        <form id="createForm" className='star-form' onSubmit={handleSubmit}>
             <div id="objectDetails">
-                <div id="inputContainer">
+                <div className='label-holder'>
                     <label htmlFor="name-input">Name: </label>
+                    <label htmlFor="size-input">Radius: </label>
+                    <label htmlFor="temperature-input">Temperature: </label>
+                </div>
+                <div id="inputContainer">
                     <input 
                         type="text" 
                         id="name-input" 
                         className="form-control" 
-                        placeholder="Sun" 
+                        placeholder="ex. Sol" 
                         value={name} 
                         onChange={(e) => setName(e.target.value)} 
                         required 
                     />
-                </div>
-                <div id="inputContainer">
-                    <label htmlFor="size-input">Size: </label>
                     <input 
                         type="number" 
                         id="size-input" 
                         className="form-control" 
-                        placeholder="1" 
+                        placeholder="ex. 696340" 
                         min="1"
                         step={0.01}
                         value={size} 
                         onChange={(e) => setSize(e.target.value)} 
                         required 
                     />
-                    <span className="unit">kg</span>
-                </div>
-                <div id="inputContainer">
-                    <label htmlFor="temperature-input">Surface Temperature: </label>
                     <input 
                         type="number" 
                         id="temperature-input" 
                         className="form-control" 
-                        placeholder="1" 
+                        placeholder="ex. 5772" 
                         min="1"
                         step={0.01}
                         value={temperature} 
                         onChange={(e) => setTemperature(e.target.value)} 
                         required 
                     />
+                </div>
+                <div className='unit-holder'>
+                    <span></span>
+                    <span className="unit">km</span>
                     <span className="unit">K</span>
                 </div>
             </div>

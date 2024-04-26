@@ -19,14 +19,14 @@ function LandmarkCreate({ handleData }) {
     }
 
     return (
-        <form id="createForm" onSubmit={handleSubmit}>
+        <form id="createForm" className='landmark-form' onSubmit={handleSubmit}>
             <div id="objectDetails">
-                <div id="inputContainer">
+                <div className='label-holder'>
                     <label htmlFor="name-input">Name: </label>
-                    <input type="text" id="name-input" className="form-control" placeholder="Earth" />
+                    <label htmlFor="decription-input">Description: </label>
                 </div>
                 <div id="inputContainer">
-                    <label htmlFor="decription-input">Description: </label>
+                    <input type="text" id="name-input" className="form-control" placeholder="Earth" />
                     <textarea type="text" id="decription-input" className="form-control" 
                         placeholder="The description of this landmark." rows="4" cols="50" />
                 </div>
