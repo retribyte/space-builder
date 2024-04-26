@@ -46,11 +46,16 @@ function SystemCanvas(props) {
         ctx.beginPath();
         let starRadius = system.size * KM_CONVERSION_FACTOR_STAR * GLOBAL_SCALE;
         starRadius = starRadius < 10 ? 10 : starRadius;
-        const starPivotY = starRadius * 2 * GLOBAL_SCALE;
+        const starPivotY = starRadius * 2 * GLOBAL_SCALE + 50;
 
         ctx.arc(canvas.width/2, starPivotY, starRadius, 0, 2 * Math.PI);
         ctx.fillStyle = starColor(system.temperature);
         ctx.fill();
+        
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText(system.name, canvas.width/2, starPivotY + 30);
 
         // Render planets
         const starOffset = 20 * GLOBAL_SCALE;
@@ -78,10 +83,18 @@ function SystemCanvas(props) {
             ctx.arc(canvas.width/2, starPivotY + drawDistance, planetRadius, 0, 2 * Math.PI);
             ctx.fillStyle = planetColor;
             ctx.fill();
+        
+            ctx.font = "12px Arial";
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.fillText(planet.name, canvas.width/2, starPivotY + drawDistance + 30);
 
             // Render moons
             let moonOffset = planetRadius;
+            let isTopLabel = false;
             for (const moon of planet.moons) {
+                isTopLabel = !isTopLabel;
+
                 // console.log("Rendering moon:", moon.name);
                 let moonDrawDistance = drawDistance;
                 moonOffset += (10 * GLOBAL_SCALE);
@@ -100,15 +113,18 @@ function SystemCanvas(props) {
                 ctx.arc((canvas.width/2) + moonOffset, starPivotY + drawDistance, moonRadius, 0, 2 * Math.PI);
                 ctx.fillStyle = '#aaaacc';
                 ctx.fill();
+        
+                ctx.font = "10px Arial";
+                ctx.fillStyle = "white";
+                ctx.textAlign = "center";
+                ctx.fillText(moon.name, canvas.width/2 + moonOffset, starPivotY + drawDistance + (isTopLabel ? -10 : 10));
 
             }
         }
     });
 
     return (
-        <canvas id="solar-system-canvas" width="500" height="500">
-
-        </canvas>
+        <canvas id="solar-system-canvas" width="500" height="500" />
     );
 }
 

@@ -52,7 +52,7 @@ function PlanetCreate({ handleData }) {
             <div id="objectDetails">
                 <div className='label-holder'>
                     <label htmlFor="name-input">Name: </label>
-                    <label htmlFor="size-input">Size: </label>
+                    <label htmlFor="size-input">Radius: </label>
                     <label htmlFor="distance-input">Distance to star: </label>
                     <label htmlFor="type-input">Planet type:</label>
                     {/* <label htmlFor="color-input">Color:</label> */}
@@ -62,7 +62,7 @@ function PlanetCreate({ handleData }) {
                         type="text" 
                         id="name-input" 
                         className="form-control" 
-                        placeholder="Earth" 
+                        placeholder="ex. Mars" 
                         value={name} 
                         onChange={(e) => setName(e.target.value)} 
                         required 
@@ -71,7 +71,7 @@ function PlanetCreate({ handleData }) {
                         type="number" 
                         id="size-input" 
                         className="form-control" 
-                        placeholder="6371" 
+                        placeholder="ex. 4982" 
                         min="1"
                         step={0.01}
                         value={size} 
@@ -82,7 +82,7 @@ function PlanetCreate({ handleData }) {
                         type="number" 
                         id="distance-input" 
                         className="form-control" 
-                        placeholder="1" 
+                        placeholder="ex. 1.74" 
                         min="1"
                         step={0.01}
                         value={distance} 

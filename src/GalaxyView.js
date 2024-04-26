@@ -99,7 +99,7 @@ function GalaxyView(props) {
                     <GalaxyCanvas galaxy={props.galaxy} selected={selectedObject} scale={globalScale} />
                     {
                         (props.galaxy.systems.length === 0 && props.galaxy.landmarks.length === 0 && props.galaxy.regions.length === 0)
-                            ? <div className='overlay'><CreateTutorial buttons={['Create', 'New']} /></div>
+                            ? <div className='overlay'><CreateTutorial buttons={['Create', 'New']} toggle={[toggleCreatePanel, undefined]} /></div>
                             : null
                     }
                 </div>

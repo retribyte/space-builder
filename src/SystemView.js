@@ -215,7 +215,7 @@ function SystemView(props) {
                 </div>
                 <div className="button-left side-button"><button id="create" type="button" className="btn btn-outline-primary" onClick={toggleCreatePanel}>Create</button></div>
                 
-                <MainColumn data={system} selected={selectedObject} toggle={toggleCreatePanel} />
+                <MainColumn data={system} selected={selectedObject} toggle={[toggleCreatePanel]} />
 
                 <div className="button-right side-button">
                     <button id="save" type="button" className="btn btn-outline-danger" disabled={!system.name}>

@@ -62,7 +62,7 @@ function MoonCreate({ planets, handleData }) {
                 <div className='label-holder'>
                     <label htmlFor="planet-selector">To which planet?</label>
                     <label htmlFor="name-input">Name: </label>
-                    <label htmlFor="size-input">Size: </label>
+                    <label htmlFor="size-input">Radius: </label>
                     <label htmlFor="distance-input">Distance to planet:</label>
                     <label htmlFor="planetType">Moon type:</label>
                 </div>
@@ -77,7 +77,7 @@ function MoonCreate({ planets, handleData }) {
                         type="text"
                         id="name-input"
                         className="form-control"
-                        placeholder="Europa"
+                        placeholder="ex. Europa"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
@@ -86,7 +86,7 @@ function MoonCreate({ planets, handleData }) {
                         type="number"
                         id="size-input"
                         className="form-control"
-                        placeholder="1561"
+                        placeholder="ex. 1561"
                         min="1"
                         step={0.01}
                         value={size}
@@ -97,7 +97,7 @@ function MoonCreate({ planets, handleData }) {
                         type="number"
                         id="distance-input"
                         className="form-control"
-                        placeholder="384400"
+                        placeholder="ex. 384400"
                         step={0.01}
                         value={distance}
                         onChange={(e) => setDistance(e.target.value)}

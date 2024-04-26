@@ -51,8 +51,8 @@ function InfoPanel(props) {
                         </li>
                     )}
                     <hr></hr>
-                    <button className='btn btn-danger' onClick={props.deleteChild} disabled={!selectedObject || selectedObject.planets ? 'true' : ''}>Delete</button>
                 </ul>
+                <button className='btn btn-danger' onClick={props.deleteChild} disabled={!selectedObject || selectedObject.planets ? 'true' : ''}>Delete</button>
             </div>
         </section>
     );

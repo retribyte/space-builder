@@ -171,9 +171,12 @@ main {
     width: 90%;
     border-top: 2px solid white;
     height: 1px;
-    margin-top: .25em;
-    margin-bottom: .25em;
+    margin: 1em auto !important;
     opacity: 1;
+}
+
+ul hr {
+    margin-left: 0 !important;
 }
 
 #main-column {
@@ -181,6 +184,16 @@ main {
     flex-direction: column;
     height: 100%;
     align-items: center;
+}
+
+.tutorial {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0 10px #000000;
 }
 
 #top-navbar ul {
@@ -446,10 +459,22 @@ textarea {
 
 .label-holder > * {
     justify-content: end;
+    line-height: 1em;
+}
+
+
+.label-holder > *:not(:last-child),
+.unit-holder > *:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 input, label {
     max-height: 2.5em;
+}
+
+input::placeholder {
+    color: #808080;
+    font-style: italic;
 }
 
 #inputContainer {
@@ -457,6 +482,10 @@ input, label {
     flex-direction: column;
     align-items: center;
     flex-grow: 2;
+}
+
+.label-holder {
+    padding: 0 0.25em 0 0;
 }
 
 .unit-holder {
@@ -673,7 +702,7 @@ ul.region li.selected {
     flex-direction: row;
     align-items: center;
     position:absolute;
-    z-index:4;
+    z-index: 5;
     top: 0;
 }
 
@@ -725,8 +754,8 @@ ul.region li.selected {
 
 .overlay {
     position: fixed;
-    width: 1000px;
-    height: 1000px;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     display: flex;
