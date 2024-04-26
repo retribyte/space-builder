@@ -52,10 +52,12 @@ function SystemCanvas(props) {
         ctx.fillStyle = starColor(system.temperature);
         ctx.fill();
         
-        ctx.font = "12px Arial";
+        let fontSize = 16 * GLOBAL_SCALE;
+        console.log(fontSize);
+        ctx.font = `bold small-caps ${fontSize}px Arial`;
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        ctx.fillText(system.name, canvas.width/2, starPivotY + 30);
+        ctx.fillText(system.name, canvas.width/2, starPivotY + 30 * GLOBAL_SCALE);
 
         // Render planets
         const starOffset = 20 * GLOBAL_SCALE;
@@ -84,10 +86,9 @@ function SystemCanvas(props) {
             ctx.fillStyle = planetColor;
             ctx.fill();
         
-            ctx.font = "12px Arial";
+            ctx.font = `${fontSize * 0.75}px Arial`;
             ctx.fillStyle = "white";
-            ctx.textAlign = "center";
-            ctx.fillText(planet.name, canvas.width/2, starPivotY + drawDistance + 30);
+            ctx.fillText(planet.name, canvas.width/2, starPivotY + drawDistance + 30 * GLOBAL_SCALE);
 
             // Render moons
             let moonOffset = planetRadius;
@@ -114,10 +115,10 @@ function SystemCanvas(props) {
                 ctx.fillStyle = '#aaaacc';
                 ctx.fill();
         
-                ctx.font = "10px Arial";
+                ctx.font = `${fontSize * 0.6}px Arial`;
                 ctx.fillStyle = "white";
                 ctx.textAlign = "center";
-                ctx.fillText(moon.name, canvas.width/2 + moonOffset, starPivotY + drawDistance + (isTopLabel ? -10 : 10));
+                ctx.fillText(moon.name, canvas.width/2 + moonOffset, starPivotY + drawDistance + (isTopLabel ? -10 : 10) * GLOBAL_SCALE);
 
             }
         }
