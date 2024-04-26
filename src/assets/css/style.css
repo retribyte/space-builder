@@ -725,7 +725,6 @@ ul.region li.selected {
 
 .overlay {
     position: fixed;
-    left: 25%;
     width: 1000px;
     height: 1000px;
     background-color: rgba(0, 0, 0, 0.5);
