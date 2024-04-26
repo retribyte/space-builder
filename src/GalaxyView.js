@@ -4,7 +4,6 @@ import GalaxyOverview from './GalaxyOverview';
 import GalaxyInfoPanel from './GalaxyInfo';
 import GalaxyCreatePanel from './GalaxyAdd';
 import GalaxyCanvas from './GalaxyCanvas';
-import ScaleSlider from './ScaleSlider';
 import factory from './factory';
 import CreateTutorial from './CreateTutorial';
 
@@ -132,7 +131,7 @@ function GalaxyView(props) {
                     <button id="load" type="button" className="btn btn-outline-success">
                         <Link to={ selectedObject ? "/system" : "#" } state={ selectedObject }>Load</Link>
                     </button>
-                    <button id="save" type="button" className="btn btn-outline-danger" onClick={handleSaveClicked}>
+                    <button id="save" type="button" className="btn btn-outline-danger" onClick={handleSaveClicked} disabled={!props.user}>
                         Save
                     </button>
                 </div>

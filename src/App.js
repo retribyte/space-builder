@@ -78,7 +78,7 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path="system" element={<SystemView system={undefined} />} />
-                <Route path="galaxy" element={<GalaxyView galaxy={galaxy} setGalaxy={setGalaxy} saveGalaxy={updateUserData} />} />
+                <Route path="galaxy" element={<GalaxyView galaxy={galaxy} setGalaxy={setGalaxy} saveGalaxy={updateUserData} user={user} />} />
                 <Route path="login" element={<FirebaseAuthUI />} />
                 <Route path="*" element={<Navigate to="system" />} />
             </Routes>
