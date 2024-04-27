@@ -1,33 +1,63 @@
 export default{calcMass, calcGravity, calcDayLength, calcYearLength};
 
 export function calcMass (planetData) {
-    let volume = .75 * 3.14 * ((planetData.size/2) ** 3);
-    let density = 0;
-    let earthMass = 5.97219 * (10 ** 24);
-    if (planetData.type === "Terrestrial") {
-        density = 5.55;
+    let area = planetData.size / 7926;
+    let mass = area + (5.97219 * (10 ** 24));
+
+
+    console.log(mass);
+
+    if (planetData.type === "Gas") {
+        mass = mass * 0.1237837838;
     }
-    else if (planetData.type ==="Gas") {
-        density = .687;
-    }
-    
-    return ((density / volume) / earthMass) ;
+    mass = mass.toFixed(2);
+    return (mass);
 };
 
 export function calcGravity (planetData) {
+let gravity = 0;
+gravity = (planetData.size / 7926) * 9.8;
 
-    let mass = calcMass(planetData);
-    let earthMass = 5.97219 * (10 ** 24);
-
-    return((mass / earthMass) * 9.807);
+if (planetData.type === "Gas") {
+    gravity = gravity * 0.1237837838;
+}
+gravity = gravity.toFixed(5);
+return (gravity);
 };
 
 export function calcDayLength (planetData) {
-    return (planetData.size / 6371);
+    let day = planetData.size / 6371;
+    return (day);
 }
 
 export function calcYearLength (planetData) {
-    return ((planetData.distance / 1) * 365)
+    let year = (planetData.distance / 1) * 365;
+    year = year.toFixed(5);
+
+    return (year)
+}
+
+export function possLife(sunTemp, planetData) {
+    let possOfLife = -1;
+    let planetTemp = (sunTemp / 25) * 1 / (planetData.distance) ** 2;
+    let HeatChance = (planetTemp / 288 ) * .5;
+    let gravityChance = (calcGravity(planetData) / 9.807) * .5;
+    gravityChance = gravityChance.toFixed(2);
+    HeatChance = HeatChance.toFixed(2);
+
+    
+    if (planetData.type === "Gas") {
+        possOfLife = possOfLife - .35;
+    };
+
+    if (gravityChance > .5 || HeatChance > .5) {
+        possOfLife = 0;
+    }
+    else {
+        possOfLife = gravityChance + HeatChance;
+    };
+    
+    return possOfLife * 100;
 }
 
 export function starColor(temperature) {
@@ -58,7 +88,7 @@ export function starColor(temperature) {
     return `rgb(${red}, ${green}, ${blue})`;
 }
 
-export function possLife(sunTemp, planetData) {
+export function possLife2(sunTemp, planetData) {
     let possOfLife = -1;
     let AU = 150000000;
     let planetTemp = sunTemp / ((planetData.distance * AU)**2);
