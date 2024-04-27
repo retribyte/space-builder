@@ -34,7 +34,8 @@ function ChildrenPanel(props) {
                             Try <em>creating</em> a star!
                         </p>
                 }
-                <button className="btn btn-danger selectable" onClick={() => {props.setSelected(null)}}>Deselect</button>
+                <hr />
+                <button className="btn btn-danger selectable" onClick={() => {props.setSelected(null)}} disabled={!props.selected}>Deselect</button>
             </div>
         </section>
     );

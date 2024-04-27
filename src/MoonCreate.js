@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
 function MoonCreate({ planets, handleData }) {
+    const [primary, setPrimary] = useState('');
     const [name, setName] = useState('');
     const [size, setSize] = useState('');
     const [distance, setDistance] = useState('');
+    const [type, setType] = useState('terrestrial');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,20 +22,20 @@ function MoonCreate({ planets, handleData }) {
         }
 
         const nameRegex = /^[a-zA-Z]+$/;
-        if (!nameRegex.test(name)) {
-            alert('Name can only contain letters.');
-            return;
-        }
+        // if (!nameRegex.test(name)) {
+        //     alert('Name can only contain letters.');
+        //     return;
+        // }
 
-        const numericRegex = /^\d+$/;
+        const numericRegex = /^\d+\.?\d*$/;
         if (!numericRegex.test(size) || !numericRegex.test(distance)) {
             alert('Size and distance must contain only numbers.');
             return;
         }
 
         const numericValue = parseInt(size);
-        if (numericValue < 1 || numericValue > 100000) {
-            alert('Size must be in the range of 1 - 100000.');
+        if (numericValue < 1) {
+            alert("Size must be greater than 1.");
             return;
         }
 
@@ -51,65 +53,69 @@ function MoonCreate({ planets, handleData }) {
         setName('');
         setSize('');
         setDistance('');
+        setType('terrestrial');
     };
 
     return (
-        <form id="createForm" onSubmit={handleSubmit}>
-            <div id="inputContainer">
-                <label htmlFor="planet-selector">To which planet?</label>
-                <select id="planet-selector" className="form-select">
-                    {planets.map((planet) => (
-                        <option key={planet.name} value={planet.name}>{planet.name}</option>
-                    ))}
-                </select>
-            </div>
-            <hr />
+        <form id="createForm" className='moon-form' onSubmit={handleSubmit}>
             <div id="objectDetails">
-                <div id="inputContainer">
+                <div className='label-holder'>
+                    <label htmlFor="planet-selector">To which planet?</label>
                     <label htmlFor="name-input">Name: </label>
-                    <input 
-                        type="text" 
-                        id="name-input" 
-                        className="form-control" 
-                        placeholder="Europa" 
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)} 
-                        required 
-                    />
-                </div>
-                <div id="inputContainer">
-                    <label htmlFor="size-input">Size: </label>
-                    <input 
-                        type="number" 
-                        id="size-input" 
-                        className="form-control" 
-                        placeholder="6000" 
-                        min="1" 
-                        max="100000" 
-                        value={size} 
-                        onChange={(e) => setSize(e.target.value)} 
-                        required 
-                    />
-                    <span className="unit">km</span>
-                </div>
-                <div id="inputContainer">
+                    <label htmlFor="size-input">Radius: </label>
                     <label htmlFor="distance-input">Distance to planet:</label>
-                    <input 
-                        type="number" 
-                        id="distance-input" 
-                        className="form-control" 
-                        placeholder="2.53" 
-                        value={distance} 
-                        onChange={(e) => setDistance(e.target.value)} 
-                        required 
-                    />
-                    <span className="unit">km</span>
+                    <label htmlFor="planetType">Moon type:</label>
                 </div>
                 <div id="inputContainer">
-                    <label htmlFor="planetType">Moon type:</label>
-                    <select id="planetType" className="form-select">
-                        <option value="terrestrial">Terrestrial</option>
+                    <select id="planet-selector" className="form-select"
+                        onChange={(e) => setPrimary(e.target.value)}>
+                        {planets.map((planet) => (
+                            <option key={planet.name} value={planet.name}>{planet.name}</option>
+                        ))}
                     </select>
+                    <input
+                        type="text"
+                        id="name-input"
+                        className="form-control"
+                        placeholder="ex. Europa"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="number"
+                        id="size-input"
+                        className="form-control"
+                        placeholder="ex. 1561"
+                        min="1"
+                        step={0.01}
+                        value={size}
+                        onChange={(e) => setSize(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="number"
+                        id="distance-input"
+                        className="form-control"
+                        placeholder="ex. 384400"
+                        step={0.01}
+                        value={distance}
+                        onChange={(e) => setDistance(e.target.value)}
+                        required
+                    />
+                    <select id="planetType" className="form-select"
+                        onChange={(e) => setType(e.target.value)}>
+                        <option value="terrestrial">Terrestrial</option>
+                        <option value="gas">Gas</option>
+                        <option value="ice">Ice</option>
+                    </select>
+                </div>
+                <div className='unit-holder'>
+                    <span></span>
+                    <span></span>
+                    <span className="unit">km</span>
+                    <span className="unit">km</span>
+                    <span></span>
                 </div>
             </div>
             <hr />

@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StarCreate from './StarCreate';
 import PlanetCreate from './PlanetCreate';
 import MoonCreate from './MoonCreate';
 import InfoPanel from './InfoPanel';
 
-function CreatePanel({ data, selected, callback, collapsed }) {
+function CreatePanel({ data, callback, collapsed }) {
     const [selectedType, setSelectedType] = useState('star'); // Defaults to star
-    const [formData, setFormData] = useState();
-    const [starCreated, setStarCreated] = useState(false);
+    const [starCreated, setStarCreated] = useState(data.name != "");
+
+    useEffect(() => {
+        if (!data.name) {
+            setSelectedType('star');
+            setStarCreated(false);
+        }
+        else {
+            setStarCreated(true);
+        }
+    });
+
+    useEffect(() => {
+        setSelectedType('planet');
+    }, []);
 
     const handleTabSwitch = (event) => {
         if (!starCreated                                        // If there's no star...
@@ -59,8 +72,7 @@ function CreatePanel({ data, selected, callback, collapsed }) {
             <div className="d-flex flex-column">
                 <div id="create-panel-content">
                     <h1>Create</h1>
-                    <div>
-                        <nav className='tab-selector'>
+                        <nav className='tab-selector system'>
                             <ul>
                                 <li id="tab-star">
                                     <a className={`${selectedType === 'star' ? 'selected' : ''} ${starCreated ? 'disabled' : ''}`} onClick={handleTabSwitch}>
@@ -79,10 +91,10 @@ function CreatePanel({ data, selected, callback, collapsed }) {
                                 </li>
                             </ul>
                         </nav>
+                        <p className='bold'>Enter the details of your {selectedType}:</p>
                         { selectedType === 'star' && <StarCreate handleData={handleData} /> }
                         { selectedType === 'planet' && <PlanetCreate handleData={handleData} /> }
                         { selectedType === 'moon' && <MoonCreate planets={data.planets} handleData={handleData} /> }
-                    </div>
                 </div>
                 
             </div>

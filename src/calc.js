@@ -41,7 +41,7 @@ export function possLife(sunTemp, planetData) {
     let possOfLife = -1;
     let planetTemp = (sunTemp / 25) * 1 / (planetData.distance) ** 2;
     let HeatChance = (planetTemp / 288 ) * .5;
-    let gravityChance = (calcGravity(data) / 9.807) * .5;
+    let gravityChance = (calcGravity(planetData) / 9.807) * .5;
     gravityChance = gravityChance.toFixed(2);
     HeatChance = HeatChance.toFixed(2);
 
@@ -88,12 +88,12 @@ export function starColor(temperature) {
     return `rgb(${red}, ${green}, ${blue})`;
 }
 
-export function possLife(sunTemp, planetData) {
+export function possLife2(sunTemp, planetData) {
     let possOfLife = -1;
     let AU = 150000000;
     let planetTemp = sunTemp / ((planetData.distance * AU)**2);
     let HeatChance = (planetTemp / 288 ) * .5;
-    let gravityChance = (calcGravity(data) / 9.807) * .5;
+    let gravityChance = (calcGravity(planetData) / 9.807) * .5;
 
     if (HeatChance > .5 || gravityChance > .5 || planetData.type === "Gas") {
         possOfLife = 0;
