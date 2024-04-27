@@ -16,7 +16,7 @@ p {
 }
 
 .sub {
-    color: #808080;
+    color: #a0a0a0;
     margin-right: 0.5em;
 }
 
@@ -544,7 +544,7 @@ select:disabled {
 .tab-selector .disabled {
     background-color: #181c20;
     border-radius: 0.5em 0.5em 0 0;
-    color: grey;
+    color: #a0a0a0;
     cursor: not-allowed;
 }
 
@@ -708,6 +708,11 @@ ul.region li.selected {
 
 .scale-slider input {
     width: 100%;
+}
+
+.scale-slider p, .scale-slider label, a.discard {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.5em;
 }
 
 .scale-slider label, .scale-slider p {

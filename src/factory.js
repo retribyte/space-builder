@@ -183,6 +183,20 @@ function findObject(node, key) {
     return null;
 }
 
+function findParentPlanet(system, moonName) {
+    for (const planet of system.planets) {
+        if (planet.moons) {
+            for (const moon of planet.moons) {
+                if (moon.name === moonName) {
+                    return planet;
+                }
+            }
+        }
+    }
+    // Not found
+    return null;
+}
+
 
 export default {
     createStar,
@@ -192,6 +206,7 @@ export default {
     addMoonToPlanet,
     addSystemToGalaxy,
     findObject,
+    findParentPlanet,
     createLandmark,
     addLandmarkToGalaxy,
     deleteSystemFromGalaxy,

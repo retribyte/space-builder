@@ -10,7 +10,7 @@ export function calcMass (planetData) {
     if (planetData.type === "Gas") {
         mass = mass * 0.1237837838;
     }
-    mass = mass.toFixed(2);
+    // mass = mass.toFixed(2);
     return (mass);
 };
 
@@ -21,7 +21,7 @@ gravity = (planetData.size / 7926) * 9.8;
 if (planetData.type === "Gas") {
     gravity = gravity * 0.1237837838;
 }
-gravity = gravity.toFixed(5);
+// gravity = gravity.toFixed(5);
 return (gravity);
 };
 
@@ -32,7 +32,7 @@ export function calcDayLength (planetData) {
 
 export function calcYearLength (planetData) {
     let year = (planetData.distance / 1) * 365;
-    year = year.toFixed(5);
+    // year = year.toFixed(5);
 
     return (year)
 }
@@ -42,15 +42,17 @@ export function possLife(sunTemp, planetData) {
     let planetTemp = (sunTemp / 25) * 1 / (planetData.distance) ** 2;
     let HeatChance = (planetTemp / 288 ) * .5;
     let gravityChance = (calcGravity(planetData) / 9.807) * .5;
-    gravityChance = gravityChance.toFixed(2);
-    HeatChance = HeatChance.toFixed(2);
+    
+    // Editor's note: `toFixed()` returns a string. I don't know who wrote this, but please do not use it for calculations.
+    // gravityChance = gravityChance.toFixed(2);
+    // HeatChance = HeatChance.toFixed(2);
 
     
     if (planetData.type === "Gas") {
         possOfLife = possOfLife - .35;
-    };
+    }
 
-    if (gravityChance > .5 || HeatChance > .5) {
+    else if (gravityChance > .5 || HeatChance > .5) {
         possOfLife = 0;
     }
     else {

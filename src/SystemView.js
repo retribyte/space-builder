@@ -208,8 +208,10 @@ function SystemView(props) {
                             alt='Planet icon, white'></img>
                             {
                                 isChildrenPanelCollapsed && isCreatePanelCollapsed 
-                                    ? <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/OOjs_UI_icon_next-ltr-invert.svg" />
-                                    : <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/OOjs_UI_icon_previous-ltr-invert.svg" />
+                                    ? <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/OOjs_UI_icon_next-ltr-invert.svg"
+                                        alt="Expand panel icon" />
+                                    : <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/OOjs_UI_icon_previous-ltr-invert.svg" 
+                                        alt="Collapse panel icon" />
                             }
                     </a>
                 </div>
@@ -230,12 +232,14 @@ function SystemView(props) {
                             alt='Information icon, white'></img>
                             {
                                 isInfoPanelCollapsed 
-                                    ? <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/OOjs_UI_icon_previous-ltr-invert.svg" />
-                                    : <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/OOjs_UI_icon_next-ltr-invert.svg" />
+                                    ? <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/OOjs_UI_icon_previous-ltr-invert.svg"
+                                        alt="Expand panel icon" />
+                                    : <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/OOjs_UI_icon_next-ltr-invert.svg" 
+                                        alt="Collapse panel icon" />
                             }
                     </a>
                 </div>
-                <InfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} deleteChild={deleteChild} />
+                <InfoPanel temperature={system.temperature} selected={selectedObject} collapsed={isInfoPanelCollapsed} deleteChild={deleteChild} />
             </div>
         </div>
     );
