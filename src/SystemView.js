@@ -29,6 +29,7 @@ function SystemView(props) {
             setSystem({});
             console.log("No data found. Creating new system:", system);
         }
+        openCreateIfEmpty();
     }, []);
 
     const toggleChildrenPanel = () => {
@@ -60,12 +61,15 @@ function SystemView(props) {
         return () => window.removeEventListener('resize', handleResize);
     }, [isChildrenPanelCollapsed, isCreatePanelCollapsed, isInfoPanelCollapsed, toggleChildrenPanel, toggleCreatePanel, toggleInfoPanel]);
 
-    useEffect(() => {
+    const openCreateIfEmpty = () => {
+        // Currently always opens... bugfix needed
+        // Think it has to do with react router's data not being pulled in time
         handleResize();
         if (!system.name) {
+            console.log("system is", system)
             setCreatePanelCollapsed(false);
         }
-    }, []);
+    }
 
     const addNewChild = (details) => {
         const { kind, primary, name, size, distance, objectCompositionType, temperature } = details;
@@ -106,7 +110,7 @@ function SystemView(props) {
         }
         else if (selectedObject.planets) {
             console.log("Trying to delete a star");
-            alert("You can't delete a star!");
+            alert("You can't delete this system's star!");
         }
         else if (selectedObject.moons) {
             console.log("Trying to delete a planet");
@@ -135,14 +139,14 @@ function SystemView(props) {
         setSelectedObject(foundObject);
     }
 
-    // const handleSaveClick = (event) => {
-    //     event.preventDefault();
-    //     if (!system.description) {
-    //         let desc = window.prompt("Enter a description for this system:")
-    //         setSystem({ ...system, description: desc });
-    //     }
-    //     navigate('/galaxy', { state: system });
-    // }
+    const handleSaveClick = (event) => {
+        event.preventDefault();
+        if (!system.description) {
+            let desc = window.prompt("Enter a description for this system:")
+            setSystem({ ...system, description: desc });
+        }
+        navigate('/galaxy', { state: system });
+    }
 
     const handleDiscardClick = (event) => {
         event.preventDefault();
@@ -150,51 +154,6 @@ function SystemView(props) {
             navigate('/galaxy');
         }
     }
-
-    // Sample data
-    // useEffect(() => {
-    //     // return;
-    //     setSystem({
-    //         name: "Sol",
-    //         size: 696340,
-    //         temperature: 5772,
-    //         planets: [
-    //         { name: "Mercury", size: 2440, distance: 0.39, type: 'terrestrial', moons: [] },
-    //         { name: "Venus", size: 6052, distance: 0.72, type: 'terrestrial', moons: [] },
-    //         {
-    //             name: "Earth", size: 6371, distance: 1, type: 'terrestrial', moons: [
-    //             { name: "Luna", size: 1737, distance: 384500, type: 'terrestrial' }
-    //             ]
-    //         },
-    //         {
-    //             name: "Mars", size: 3389, distance: 1.52, type: 'terrestrial', moons: [
-    //             { name: "Phobos", size: 22, distance: 9377, type: 'terrestrial' },
-    //             { name: "Deimos", size: 12, distance: 23460, type: 'terrestrial' }
-    //             ]
-    //         },
-    //         {
-    //             name: "Jupiter", size: 69911, distance: 5.20, type: 'gas', moons: [
-    //             { name: "Io", size: 1821, distance: 421700, type: 'terrestrial' },
-    //             { name: "Europa", size: 1561, distance: 670900, type: 'terrestrial' }
-    //             ]
-    //         },
-    //         {
-    //             name: "Saturn", size: 58232, distance: 9.58, type: 'gas', moons: [
-    //             { name: "Titan", size: 5149, distance: 1221870, type: 'terrestrial' },
-    //             { name: "Enceladus", size: 504, distance: 238020, type: 'terrestrial' }
-    //             ]
-    //         },
-    //         { name: "Uranus", size: 25362, distance: 19.22, type: 'ice', moons: [
-    //             { name: "Titania", size: 1578, distance: 435910, type: 'terrestrial' },
-    //             { name: "Oberon", size: 1523, distance: 583520, type: 'terrestrial' }
-    //         ] },
-    //         { name: "Neptune", size: 24622, distance: 30.05, type: 'ice', moons: [
-    //             { name: "Triton", size: 2707, distance: 354800, type: 'terrestrial' },
-    //             { name: "Nereid", size: 340, distance: 5513813, type: 'terrestrial' }
-    //         ] }
-    //         ]
-    //     });
-    // }, [])
 
     return (
         <div id="root-container" className="container-fluid">

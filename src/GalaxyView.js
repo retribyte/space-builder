@@ -72,12 +72,36 @@ function GalaxyView(props) {
         );
     }
 
+    const deleteChild = () => {
+        if (!selectedObject) {
+            alert("No object selected");
+            return;
+        }
+        else if (selectedObject.planets) {
+            console.log("Trying to delete a system");
+            if (window.confirm("Are you sure you want to delete " + selectedObject.name + "?")) {
+                factory.deleteSystemFromGalaxy(props.setGalaxy, selectedObject.name);
+            }
+        }
+        else {
+            console.log("Trying to delete a landmark");
+            if (window.confirm("Are you sure you want to delete " + selectedObject.name + "?")) {
+                factory.deleteLandmarkFromGalaxy(props.setGalaxy, selectedObject.name);
+            }
+        }
+        setSelectedObject(null);
+    }
+
     const updateSelectedObject = (object) => {
         let foundObject = factory.findObject(props.galaxy, object);
         setSelectedObject(foundObject);
     }
 
     const handleSaveClicked = (event) => {
+        if (!props.user) {
+            alert("You must be logged in to do that!");
+            return;
+        }
         props.saveGalaxy(JSON.stringify(props.galaxy));
         event.target.innerHTML = "Saved!";
         setTimeout(() => {event.target.innerHTML = "Save"}, 1000);
@@ -131,7 +155,7 @@ function GalaxyView(props) {
                     <button id="load" type="button" className="btn btn-outline-success">
                         <Link to={ selectedObject ? "/system" : "#" } state={ selectedObject }>Load</Link>
                     </button>
-                    <button id="save" type="button" className="btn btn-outline-danger" onClick={handleSaveClicked} disabled={!props.user}>
+                    <button id="save" type="button" className="btn btn-outline-danger" onClick={handleSaveClicked}>
                         Save
                     </button>
                 </div>
@@ -147,7 +171,7 @@ function GalaxyView(props) {
                     </a>
                 </div>
 
-                <GalaxyInfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} />
+                <GalaxyInfoPanel selected={selectedObject} collapsed={isInfoPanelCollapsed} deleteChild={deleteChild} />
             </div>
         </div>
     );

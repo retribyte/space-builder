@@ -62,7 +62,7 @@ const LeftPanel = (props) => {
                     ) : <p>No regions to display.</p>
                 }
                 <hr />
-                <button className="btn btn-danger selectable" onClick={() => {props.setSelected(null)}}>Deselect</button>
+                <button className="btn btn-danger selectable" onClick={() => {props.setSelected(null)}} disabled={!props.selected}>Deselect</button>
             </div>
         </section>
     );

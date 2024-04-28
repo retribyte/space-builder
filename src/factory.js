@@ -151,6 +151,19 @@ function addLandmarkToGalaxy(setState, landmark, xPos, yPos) {
     });
 }
 
+function deleteLandmarkFromGalaxy(setState, landmarkName) {
+    setState(galaxyBefore => {
+        // Filter out the landmark with the matching name
+        const filteredLandmarks = galaxyBefore.landmarks.filter(landmark => landmark.name !== landmarkName);
+
+        // Return the updated galaxy state without the deleted landmark
+        return {
+            ...galaxyBefore,
+            landmarks: filteredLandmarks
+        };
+    });
+}
+
 function findObject(node, key) {
     // Check if this node is the object I want
     if (node.name === key) {
@@ -202,14 +215,15 @@ export default {
     createStar,
     createPlanet,
     createMoon,
+    createLandmark,
+    addSystemToGalaxy,
     addPlanetToStar,
     addMoonToPlanet,
-    addSystemToGalaxy,
-    findObject,
-    findParentPlanet,
-    createLandmark,
     addLandmarkToGalaxy,
     deleteSystemFromGalaxy,
     deletePlanet,
-    deleteMoon
+    deleteMoon,
+    deleteLandmarkFromGalaxy,
+    findObject,
+    findParentPlanet,
 };

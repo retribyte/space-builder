@@ -53,11 +53,10 @@ function SystemCanvas(props) {
         ctx.fill();
         
         let fontSize = 16 * GLOBAL_SCALE;
-        console.log(fontSize);
         ctx.font = `bold small-caps ${fontSize}px Arial`;
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        ctx.fillText(system.name, canvas.width/2, starPivotY + 30 * GLOBAL_SCALE);
+        ctx.fillText(system.name, canvas.width/2, starPivotY + starRadius + 20 * GLOBAL_SCALE);
 
         // Render planets
         const starOffset = 20 * GLOBAL_SCALE;
