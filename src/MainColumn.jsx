@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import SystemCanvas from './SystemCanvas';
+import SystemCanvas from './components/Canvas/SystemCanvas';
 import placeholder from './assets/images/bad-solar-system-diagram.avif';
-import ScaleSlider from './ScaleSlider';
+import ScaleSlider from './components/Canvas/ScaleSlider';
 import CreateTutorial from './CreateTutorial';
 
 function MainColumn(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
-import './assets/css/style.css';
-import LandmarkCreate from './LandmarkCreate';
+import 'assets/css/style.css';
+import LandmarkCreate from '../Create/LandmarkCreate';
 
 const RightPanel = (props) => {
     const selectedObject = props.selected;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import GalaxyOverview from '../GalaxyOverview';
-import GalaxyInfoPanel from '../GalaxyInfo';
-import GalaxyCreatePanel from '../GalaxyAdd';
-import GalaxyCanvas from '../GalaxyCanvas';
-import factory from '../utils/factory';
+import GalaxyOverview from '../components/Overview/GalaxyOverview';
+import GalaxyInfoPanel from '../components/Info/GalaxyInfo';
+import GalaxyCreatePanel from '../components/Create/GalaxyAdd';
+import GalaxyCanvas from '../components/Canvas/GalaxyCanvas';
+import factory from 'utils/factory';
 import CreateTutorial from '../CreateTutorial';
 
 function GalaxyView(props) {

@@ -15,6 +15,10 @@ p {
     color: white;
 }
 
+.panel h1 {
+    line-height: 1.6;
+}
+
 .sub {
     color: #a0a0a0;
     margin-right: 0.5em;

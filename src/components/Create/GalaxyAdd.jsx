@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LandmarkCreate from './LandmarkCreate';
-import RegionCreate from './RegionCreate';
+import LandmarkCreate from 'components/Create/LandmarkCreate';
+import RegionCreate from 'components/Create/RegionCreate';
 
 const GalaxyAdd = (props) => {
     const [selectedType, setSelectedType] = useState('landmark');

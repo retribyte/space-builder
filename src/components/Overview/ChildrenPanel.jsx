@@ -3,7 +3,7 @@ import React from 'react';
 function ChildrenPanel(props) {
     const system = props.data;
     return (
-        <section id="children-panel" className="col-md-2 px-0 text-light" style={{ transform: props.collapsed ? 'translateX(-100%)' : 'translateX(0)' }}>
+        <section id="children-panel" className="panel col-md-2 px-0 text-light" style={{ transform: props.collapsed ? 'translateX(-100%)' : 'translateX(0)' }}>
             <div id="children-panel-content" className="collapse-horizontal">
                 <h1>Overview</h1>
                 {

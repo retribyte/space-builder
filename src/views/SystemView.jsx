@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
-import CreatePanel from '../CreatePanel';
-import ChildrenPanel from '../ChildrenPanel';
+import CreatePanel from '../components/Create/CreatePanel';
+import ChildrenPanel from '../components/Overview/ChildrenPanel';
 import MainColumn from '../MainColumn';
-import InfoPanel from '../InfoPanel';
-import factory from '../utils/factory';
+import InfoPanel from '../components/Info/InfoPanel';
+import factory from 'utils/factory';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function SystemView(props) {
