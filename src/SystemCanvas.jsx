@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { starColor } from './calc';
+import { starColor } from './utils/calc';
 
 function SystemCanvas(props) {
     const system = props.system;

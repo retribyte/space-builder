@@ -4,7 +4,7 @@ import GalaxyOverview from './GalaxyOverview';
 import GalaxyInfoPanel from './GalaxyInfo';
 import GalaxyCreatePanel from './GalaxyAdd';
 import GalaxyCanvas from './GalaxyCanvas';
-import factory from './factory';
+import factory from './utils/factory';
 import CreateTutorial from './CreateTutorial';
 
 function GalaxyView(props) {
