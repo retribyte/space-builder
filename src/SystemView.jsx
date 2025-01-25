@@ -4,7 +4,7 @@ import CreatePanel from './CreatePanel';
 import ChildrenPanel from './ChildrenPanel';
 import MainColumn from './MainColumn';
 import InfoPanel from './InfoPanel';
-import factory from './factory';
+import factory from './utils/factory';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function SystemView(props) {

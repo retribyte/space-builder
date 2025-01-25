@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { starColor } from './calc';
+import { starColor } from './utils/calc';
 import backgroundImage from './assets/images/galaxy_blank.png';
 
 function GalaxyCanvas(props) {
