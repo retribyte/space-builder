@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import GalaxyOverview from '../components/Overview/GalaxyOverview';
-import GalaxyInfoPanel from '../components/Info/GalaxyInfo';
-import GalaxyCreatePanel from '../components/Create/GalaxyAdd';
-import GalaxyCanvas from '../components/Canvas/GalaxyCanvas';
+import GalaxyOverview from 'components/Overview/GalaxyOverview';
+import GalaxyInfoPanel from 'components/Info/GalaxyInfo';
+import GalaxyCreatePanel from 'components/Create/GalaxyAdd';
+import GalaxyCanvas from 'components/Canvas/GalaxyCanvas';
 import factory from 'utils/factory';
-import CreateTutorial from '../CreateTutorial';
+import CreateTutorial from 'src/CreateTutorial';
 
 function GalaxyView(props) {
     const [selectedObject, setSelectedObject] = useState(null);

@@ -1,6 +1,6 @@
 // System for creating and retrieving information about Stars, Planets, and Moons
 import React, { useState } from 'react';
-import galaxy from '../assets/sample.json';
+import galaxy from 'assets/sample.json';
 
 function createPlanet(name, size, distance, type) {
     let planet = {

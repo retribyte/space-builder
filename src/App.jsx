@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { auth, database } from 'utils/firebase-config';
 import { getDatabase, ref, set, get, update } from 'firebase/database';
-// import sampleData from './sample.json';
 
 function App() {
     const [galaxy, setGalaxy] = useState({ systems: [], landmarks: [], regions: [] });

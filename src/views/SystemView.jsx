@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Navbar';
-import CreatePanel from '../components/Create/CreatePanel';
-import ChildrenPanel from '../components/Overview/ChildrenPanel';
-import MainColumn from '../MainColumn';
-import InfoPanel from '../components/Info/InfoPanel';
+import Navbar from 'src/Navbar';
+import CreatePanel from 'components/Create/CreatePanel';
+import ChildrenPanel from 'components/Overview/ChildrenPanel';
+import MainColumn from 'src/MainColumn';
+import InfoPanel from 'components/Info/InfoPanel';
 import factory from 'utils/factory';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
