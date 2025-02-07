@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import StarCreate from './StarCreate';
-import PlanetCreate from './PlanetCreate';
-import MoonCreate from './MoonCreate';
-import InfoPanel from './InfoPanel';
+import StarCreate from 'components/Create/StarCreate';
+import PlanetCreate from 'components/Create/PlanetCreate';
+import MoonCreate from 'components/Create/MoonCreate';
+import InfoPanel from 'components/Info/InfoPanel';
 
 function CreatePanel({ data, callback, collapsed }) {
     const [selectedType, setSelectedType] = useState('star'); // Defaults to star

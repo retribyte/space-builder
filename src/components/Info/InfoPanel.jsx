@@ -1,6 +1,6 @@
 import React from 'react';
-import { calcMass, calcGravity, calcDayLength, calcYearLength, possLife } from './utils/calc';
-import factory from './utils/factory';
+import { calcMass, calcGravity, calcDayLength, calcYearLength, possLife } from 'utils/calc';
+import factory from 'utils/factory';
 
 function InfoPanel(props) {
     const selectedObject = props.selected;

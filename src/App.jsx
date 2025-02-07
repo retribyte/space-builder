@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
-import SystemView from './SystemView';
-import GalaxyView from './GalaxyView';
-import FirebaseAuthUI from './FirebaseAuthUI';
+import Navbar from 'src/Navbar';
+import SystemView from 'views/SystemView';
+import GalaxyView from 'views/GalaxyView';
+import FirebaseAuthUI from 'views/FirebaseAuthUI';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { auth, database } from './firebase-config';
+import { auth, database } from 'utils/firebase-config';
 import { getDatabase, ref, set, get, update } from 'firebase/database';
-// import sampleData from './sample.json';
 
 function App() {
     const [galaxy, setGalaxy] = useState({ systems: [], landmarks: [], regions: [] });

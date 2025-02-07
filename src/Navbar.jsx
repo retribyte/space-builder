@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './assets/images/7547889.png';
+import logo from 'assets/images/7547889.png';
 import { Link } from 'react-router-dom';
-import UserDisplay from './UserDisplay';
+import UserDisplay from 'src/UserDisplay';
 
 function Navbar() {
     return (

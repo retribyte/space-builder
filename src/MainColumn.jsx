@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import SystemCanvas from './SystemCanvas';
-import placeholder from './assets/images/bad-solar-system-diagram.avif';
-import ScaleSlider from './ScaleSlider';
-import CreateTutorial from './CreateTutorial';
+import SystemCanvas from 'components/Canvas/SystemCanvas';
+import placeholder from 'assets/images/bad-solar-system-diagram.avif';
+import ScaleSlider from 'components/Canvas/ScaleSlider';
+import CreateTutorial from 'src/CreateTutorial';
 
 function MainColumn(props) {
     const [globalScale, setGlobalScale] = useState(1);

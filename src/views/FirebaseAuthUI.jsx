@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
-import { app, auth } from './firebase-config';
+import { app, auth } from 'utils/firebase-config';
 
 const FirebaseAuthUI = () => {
     const [isSignedIn, setIsSignedIn] = useState(false);  // State to keep track of user sign-in status
